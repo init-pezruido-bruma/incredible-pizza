@@ -1,0 +1,87 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+.firecrawl/
+tmp/
+.temp/
+.cache/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE / local tooling
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+
+# Cursor local deps inside skills (keep skill source, skip installs)
+.cursor/**/node_modules/
+.cursor/**/package-lock.json
+
+# Figma / design dumps (curated assets live in public/images/)
+/assets/
+/svg/
+/propuesta_diesño/
+
+# Raw source photos at repo root (already exported into public/images/home/)
+/IMG_*.jpg
+/IMG_*.jpeg
+/IMG_*.png
+/buffet.jpg
+/comida para llevar.jpg
+/juegos y atracciones.jpg
+/rapido y furioso.jpg
+
+# OS / editor junk
+*~
+.Spotlight-V100
+.Trashes
+
+# Cursor skill temp runs
+.cursor/**/.temp-*

@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+:root {
+  /* Core brand — edit these four first */
+  --brand-red: #e31e24;
+  --brand-yellow: #ffc20e;
+  --brand-orange: #f58220;
+  --brand-ink: #231f20;
+
+  /* Derived / supporting */
+  --brand-red-deep: #c4181e;
+  --brand-yellow-soft: #ffe566;
+  --brand-orange-deep: #d96f12;
+  --brand-blue: #2b5899;
+  --brand-blue-deep: #1a2b4c;
+  --brand-purple: #4a306d;
+  --brand-cream: #fff8e8;
+  --brand-whatsapp: #25d366;
+  --background: #ffffff;
+  --foreground: var(--brand-ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-deep: var(--brand-red-deep);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-yellow-soft: var(--brand-yellow-soft);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-deep: var(--brand-orange-deep);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-deep: var(--brand-blue-deep);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-whatsapp: var(--brand-whatsapp);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --radius-pill: 9999px;
+  --radius-card: 1.75rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--brand-yellow);
+  color: var(--brand-ink);
+}
+
+/* Apple-like motion system */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 700ms var(--ease-apple),
+    transform 700ms var(--ease-apple);
+}
+
+.reveal-up {
+  transform: translate3d(0, 56px, 0);
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.hover-lift {
+  transition:
+    transform 500ms var(--ease-apple),
+    box-shadow 500ms var(--ease-apple);
+}
+
+.hover-lift:hover {
+  transform: translate3d(0, -6px, 0);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.img-zoom {
+  transition: transform 1.2s var(--ease-apple);
+}
+
+@media (hover: hover) {
+  .group:hover .img-zoom {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+.float-soft {
+  animation: float-soft 5.5s var(--ease-apple) infinite;
+}
+
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-copy-in {
+  animation: fade-up-in 1s var(--ease-apple) both;
+}
+
+.hero-copy-in-delay-1 {
+  animation-delay: 120ms;
+}
+
+.hero-copy-in-delay-2 {
+  animation-delay: 240ms;
+}
+
+.hero-copy-in-delay-3 {
+  animation-delay: 360ms;
+}
+
+.hero-copy-in-delay-4 {
+  animation-delay: 480ms;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-20%);
+  }
+}
+
+/* Blue bowtie / ribbon for Equipo section (matches mockup) */
+.bowtie-shape {
+  border-radius: 1.25rem;
+  clip-path: polygon(
+    0% 18%,
+    42% 18%,
+    50% 0%,
+    58% 18%,
+    100% 18%,
+    100% 82%,
+    58% 82%,
+    50% 100%,
+    42% 82%,
+    0% 82%
+  );
+}
+
+@media (min-width: 640px) {
+  .bowtie-shape {
+    border-radius: 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-up,
+  .reveal-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .float-soft,
+  .hero-copy-in,
+  .hero-copy-in-delay-1,
+  .hero-copy-in-delay-2,
+  .hero-copy-in-delay-3,
+  .hero-copy-in-delay-4,
+  .img-zoom,
+  .hover-lift {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
