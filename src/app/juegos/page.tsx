@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PageHero } from "@/components/layout/page-hero";
-import { PageHeading, PageSection } from "@/components/layout/page-section";
+import { PageSection } from "@/components/layout/page-section";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -16,161 +15,233 @@ export const metadata: Metadata = {
 const attractions = [
   {
     title: "Go Karts",
-    description: "Velocidad y emoción en nuestra pista indoor.",
+    description:
+      "¡Súper divertidos y llenos de adrenalina! Asegúrate de vivir esta experiencia cuando visites Incredible Pizza.",
     image: "/images/juegos/gokarts.jpg",
-    note: "Incluida en tarjetas platino, créditos y bonus.",
-  },
-  {
-    title: "Laser Tag",
-    description: "Estrategia, acción y adrenalina en equipo.",
-    image: "/images/juegos/laser-tag.jpg",
-    note: "Incluida en tarjetas platino, créditos y bonus.",
-  },
-  {
-    title: "Trampolines",
-    description: "Salta, rebota y libérate de energía.",
-    image: "/images/juegos/trampolines.jpg",
-    note: "Incluida en tarjetas de créditos.",
-  },
-  {
-    title: "Racing Simulator",
-    description: "Siente la velocidad de Rápido y Furioso.",
-    image: "/images/juegos/racing-sim.jpg",
-    note: "Esta máquina únicamente acepta créditos.",
+    note: "Atracción incluida en tarjetas de tiempo platino, créditos y bonus.",
   },
   {
     title: "Mini Boliche",
-    description: "Diversión en familia, strike tras strike.",
-    image: "/images/juegos/gokarts.jpg",
-    note: "Incluida en tarjetas de tiempo y créditos.",
+    description:
+      "¡Súper divertidos y llenos de adrenalina! Asegúrate de vivir esta experiencia cuando visites Incredible Pizza.",
+    image: "/images/home/hero-juegos-increibles.jpg",
+    note: "Distingue tu juego por el color de tarjeta, atracción incluida en tarjetas de créditos.",
   },
   {
-    title: "Bumper Cars",
-    description: "Choques suaves y risas garantizadas.",
-    image: "/images/juegos/racing-sim.jpg",
-    note: "Incluida en tarjetas platino y créditos.",
+    title: "Tagadá",
+    description:
+      "¡Disfruta de una increíble experiencia! ¿Te gusta desafiar la fuerza centrífuga? Tagadá te ofrece momentos de gran diversión en grupo.",
+    image: "/images/home/card-juegos.jpg",
+    note: "Atracción incluida en tarjetas de tiempo platino, créditos y bonus.",
   },
   {
     title: "Mini Golf",
-    description: "Reto divertido para todas las edades.",
-    image: "/images/juegos/trampolines.jpg",
-    note: "Incluida en tarjetas de créditos.",
+    description:
+      "Juega en nuestro campo de mini golf y disfruta de una gran cantidad de diversión. ¡La meta!… ¡Lograr un hoyo en uno!",
+    image: "/images/home/gallery/carousel-04-v2.jpg",
+    note: "Distingue tu juego por el color de tarjeta, atracción incluida en tarjetas de créditos.",
   },
   {
-    title: "Resbaladeros",
-    description: "Aventura vertical para los más valientes.",
+    title: "Resbaladeros Gigantes",
+    description:
+      "Sube a nuestros resbaladeros gigantes ¡No importa qué edad tengas, en Incredible Pizza nos divertimos todos!",
+    image: "/images/juegos/trampolines.jpg",
+    note: "Distingue tu juego por el color de tarjeta, atracción incluida en tarjetas de créditos.",
+  },
+  {
+    title: "Bumpers Cars",
+    description:
+      "Disfruta de la música y el espectáculo de luces, da giros incontrolables y asegúrate de abrocharte el cinturón.",
+    image: "/images/home/rapido-y-furioso.jpg",
+    note: "Distingue tu juego por el color de tarjeta, atracción incluida en tarjetas de créditos.",
+  },
+  {
+    title: "Laser Tag",
+    description:
+      "Demuestra tus habilidades y estrategias, reúne a tus amigos y pasen una tarde llena de acción.",
     image: "/images/juegos/laser-tag.jpg",
-    note: "Incluida en tarjetas platino y créditos.",
+    note: "Atracción incluida en tarjetas de tiempo platino, créditos y bonus.",
+  },
+  {
+    title: "Lost in Space",
+    description:
+      "Vuela al espacio con esta nueva atracción. Da vueltas para encontrar el camino al planeta Tierra. ¡Crea momentos increíbles!",
+    image: "/images/juegos/racing-sim.jpg",
+    note: "Atracción incluida en tarjetas de tiempo platino, créditos y bonus.",
   },
 ] as const;
 
 const incredibleGames = [
   {
+    title: "Golden Games (Cranes)",
+    description:
+      "Son todos los juegos que dan premio directo, como nuestras máquinas de garra donde podrás ganar peluches, dulces, accesorios para celular, etc. Reconócelos por su lector de tarjeta color Multicolor.",
+    image: "/images/home/gallery/carousel-02-v2.jpg",
+    note: "Estas máquinas únicamente aceptan tarjetas de créditos.",
+  },
+  {
+    title: "Golden Games (Tokens)",
+    description:
+      "Demuestra tu destreza con las máquinas de monedas y obtén tickets físicos, que podrás canjear en nuestro mostrador de redención.",
+    image: "/images/juegos/racing-sim.jpg",
+    note: "Estas máquinas necesitan monedas que únicamente se pueden canjear con tarjetas de créditos.",
+  },
+  {
     title: "Golden Games",
-    description: "Máquinas de garra y premios directos.",
-    image: "/images/juegos/tiny-town.jpg",
-    note: "Lector multicolor",
-  },
-  {
-    title: "Ticket Games",
-    description: "Gana tickets y canjéalos por premios.",
+    description:
+      "En una jugada puedes ganar hasta 1000 tickets distínguelos por el lector de tarjeta multicolor.",
     image: "/images/home/hero-juegos-increibles.jpg",
-    note: "Redención en mostrador",
-  },
-  {
-    title: "Videojuegos",
-    description: "Más de 120 máquinas para toda la familia.",
-    image: "/images/juegos/hero-laser.jpg",
-    note: "Incluidos en tarjetas de tiempo",
+    note: "Estas máquinas únicamente aceptan tarjetas de créditos.",
   },
 ] as const;
 
 export default function JuegosPage() {
   return (
     <>
-      <PageHero
-        variant="photo"
-        title="Juegos"
-        eyebrow="Diviértete como nunca"
-        description="Arcade, atracciones y adrenalina para toda la familia en un solo lugar."
-        image={{
-          src: "/images/juegos/hero-laser.jpg",
-          alt: "Familia jugando laser tag",
-          width: 3840,
-          height: 1714,
-          objectPosition: "center 35%",
-        }}
-      >
-        <Button asChild size="lg" className="min-h-12 w-full border-2 border-black sm:w-auto">
-          <Link href="/menu">Compra aquí</Link>
-        </Button>
-      </PageHero>
+      {/* Hero — photo full-bleed + title mid-left + CTA bottom-right (flyer) */}
+      <section className="relative overflow-hidden bg-[#0b1224] text-white">
+        <div className="relative min-h-[28rem] sm:min-h-[34rem] lg:min-h-[42rem]">
+          <Image
+            src="/images/juegos/hero-laser.jpg"
+            alt="Familia jugando laser tag"
+            width={3840}
+            height={1714}
+            priority
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/25" />
 
-      <PageSection className="bg-gradient-to-b from-brand-yellow via-[#ffb84a] to-brand-orange py-14 sm:py-20">
-        <PageHeading title="Atracciones" className="mb-12" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {attractions.map((item, i) => (
-            <Reveal
-              key={item.title}
-              delay={i * 40}
-              className="hover-lift flex flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_10px_24px_rgba(35,31,32,0.12)]"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={800}
-                  height={600}
-                  sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                  className="h-full w-full object-cover"
-                />
+          <div className="relative z-10 mx-auto flex min-h-[28rem] max-w-6xl flex-col justify-center px-5 pb-10 pt-32 sm:min-h-[34rem] sm:px-8 sm:pb-12 sm:pt-36 lg:min-h-[42rem] lg:px-10 lg:pb-16 lg:pt-44">
+            <div className="max-w-xl">
+              <h1 className="hero-copy-in font-display text-[clamp(4rem,14vw,7.5rem)] font-black leading-[0.85] drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]">
+                Juegos
+              </h1>
+              <p className="hero-copy-in hero-copy-in-delay-1 mt-2 text-lg font-medium italic tracking-wide text-white sm:text-xl lg:text-2xl">
+                diviértete como nunca
+              </p>
+              <div className="hero-copy-in hero-copy-in-delay-2 mt-8">
+                <Button
+                  asChild
+                  variant="primary"
+                  size="lg"
+                  className="min-h-12 rounded-full border-2 border-black px-8 text-base font-extrabold uppercase tracking-wide text-black sm:min-h-14 sm:px-10 sm:text-lg"
+                >
+                  <Link href="/menu">Compra aquí</Link>
+                </Button>
               </div>
-              <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
-                <h2 className="font-display text-xl font-black text-brand-blue">{item.title}</h2>
-                <p className="text-sm text-brand-ink/75">{item.description}</p>
-                <p className="mt-auto pt-2 text-[11px] font-extrabold uppercase tracking-wide text-brand-blue/80">
-                  {item.note}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </PageSection>
-
-      <PageSection className="bg-white py-14 sm:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <h2 className="font-display text-[clamp(2rem,5vw,3rem)] font-black leading-[0.95] text-brand-blue">
-              Videojuegos
-            </h2>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-brand-ink/80 sm:text-lg">
-              Nuestro salón está lleno de más de 120 máquinas. Demuestra tu destreza, reúne a tus
-              amigos y pasa una tarde llena de acción.
-            </p>
-            <p className="mt-5 text-sm font-extrabold uppercase tracking-wide text-brand-red">
-              Todos los videojuegos están incluidos en las tarjetas de tiempo regular, platino,
-              créditos y bonus.
-            </p>
+            </div>
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] shadow-xl sm:rounded-[1.75rem]">
+        </div>
+      </section>
+
+      {/* Atracciones — yellow→orange band + home-style angled bottom */}
+      <section className="relative z-20 overflow-x-clip bg-white">
+        <div
+          className="relative z-20 w-full"
+          style={{
+            paddingBottom: "clamp(3.5rem, 6vw, 5.5rem)",
+            background:
+              "linear-gradient(180deg, #f5d84a 0%, #f0a93a 42%, #e85a2a 78%, #d92b1f 100%)",
+            clipPath:
+              "polygon(0 0, 100% 0, 100% calc(100% - clamp(3.5rem, 6vw, 5.5rem)), 0 100%)",
+          }}
+        >
+          <div className="mx-auto max-w-6xl px-5 pb-10 pt-14 sm:px-8 sm:pb-12 sm:pt-16 lg:px-10 lg:pb-14 lg:pt-20">
+            <h2 className="mb-10 text-center font-display text-[clamp(4rem,12vw,6.5rem)] font-black leading-[0.9] text-white drop-shadow-[0_2px_0_rgba(35,31,32,0.12)] sm:mb-12">
+              Atracciones
+            </h2>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+              {attractions.map((item, i) => (
+                <Reveal
+                  key={item.title}
+                  delay={i * 40}
+                  className="hover-lift flex flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-[0_10px_24px_rgba(35,31,32,0.14)]"
+                >
+                  <div className="relative aspect-[5/4] overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={800}
+                      height={640}
+                      sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-2 px-4 pb-4 pt-3 sm:px-4 sm:pb-5 sm:pt-3.5">
+                    <h3 className="text-[0.95rem] font-extrabold uppercase tracking-[0.04em] text-[#2b5899] sm:text-base">
+                      {item.title}
+                    </h3>
+                    <p className="text-[0.8rem] leading-snug text-brand-ink/80 sm:text-[0.85rem]">
+                      {item.description}
+                    </p>
+                    <p className="mt-auto pt-2 text-[9px] font-extrabold uppercase leading-snug tracking-[0.04em] text-[#5a8fc4] sm:text-[10px]">
+                      {item.note}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 grid lg:grid-cols-2 lg:items-stretch">
+          <div className="relative z-20 flex flex-col justify-center px-5 pb-28 pt-14 sm:px-8 sm:pb-32 sm:pt-16 lg:px-12 lg:pb-24 lg:pt-12 xl:px-16">
+            <div className="max-w-md">
+              <h2 className="font-display text-[clamp(3rem,9vw,4.75rem)] font-black leading-[0.9] text-[#2b5899]">
+                Videojuegos
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-brand-ink/85 sm:text-lg">
+                Nuestro salón de juegos está lleno de más de 120 máquinas con todo tipo de
+                diversión. Tenemos videojuegos con los que pasarás un día lleno de diversión.
+              </p>
+              <p className="mt-5 text-[11px] font-extrabold uppercase leading-snug tracking-[0.04em] text-[#2b5899] sm:text-xs">
+                Todos los videojuegos están incluidos en las tarjetas de tiempo regular, platino,
+                créditos y bonus
+              </p>
+              <p className="mt-2 text-[11px] font-extrabold uppercase leading-snug tracking-[0.04em] text-brand-red sm:text-xs">
+                (Excepto Fast & Furious esta máquina únicamente acepta créditos)
+              </p>
+            </div>
+          </div>
+
+          {/* Photo right — pulls up under Atracciones angle (same as home Fiesta) */}
+          <div className="relative z-10 -mt-[clamp(3.75rem,7vw,5.5rem)] min-h-[320px] overflow-hidden sm:min-h-[400px] lg:-mt-[clamp(3.5rem,6vw,5.5rem)] lg:min-h-[36rem] xl:min-h-[40rem]">
             <Image
-              src="/images/juegos/racing-sim.jpg"
-              alt="Simulador de carreras"
-              width={1796}
-              height={2108}
-              sizes="(max-width:1024px) 100vw, 480px"
-              className="h-full w-full object-cover"
+              src="/images/home/gallery/carousel-02-v2.jpg"
+              alt="Sala de videojuegos y simuladores"
+              fill
+              sizes="(max-width:1024px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
+          </div>
+
+          {/* Cutout straddles Videojuegos → Juegos Increíbles (more on Videojuegos) */}
+          <div className="pointer-events-none absolute bottom-0 left-1/2 z-40 w-[min(34rem,94vw)] -translate-x-1/2 translate-y-[28%] sm:w-[min(40rem,80vw)] sm:translate-y-[30%] lg:left-[36%] lg:w-[44rem] lg:translate-x-0 lg:translate-y-[32%] xl:left-[34%] xl:w-[48rem]">
+            <Image
+              src="/images/juegos/gokart-cutout.png"
+              alt="Mamá e hijo en go-kart"
+              width={838}
+              height={502}
+              sizes="(max-width:1024px) 94vw, 768px"
+              className="h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]"
             />
           </div>
         </div>
-      </PageSection>
+      </section>
 
-      <PageSection className="bg-gradient-to-b from-brand-purple to-brand-blue-deep py-14 text-white sm:py-20">
-        <PageHeading title="Juegos Increíbles" className="mb-12" />
-        <div className="grid gap-8 md:grid-cols-3">
+      <PageSection
+        className="relative z-10 bg-gradient-to-b from-[#6b2d5c] via-[#3d3f8f] to-[#2b5899] pb-16 pt-40 text-white sm:pb-24 sm:pt-48 lg:pt-52"
+        innerClassName="max-w-6xl"
+      >
+        <h2 className="mb-10 text-center font-display text-[clamp(2.75rem,8vw,4.75rem)] font-black leading-[0.9] text-white sm:mb-14">
+          Juegos Increíbles
+        </h2>
+        <div className="grid gap-10 md:grid-cols-3 md:gap-8">
           {incredibleGames.map((game, i) => (
-            <Reveal key={game.title} delay={i * 60} className="text-center">
-              <div className="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-[1.5rem] shadow-lg">
+            <Reveal key={game.title} delay={i * 70} className="flex flex-col text-center">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[1.5rem] shadow-lg">
                 <Image
                   src={game.image}
                   alt={game.title}
@@ -180,11 +251,13 @@ export default function JuegosPage() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <h3 className="mt-5 font-display text-2xl font-black text-brand-yellow">
+              <h3 className="mt-5 font-display text-[clamp(1.65rem,3.5vw,2.15rem)] font-black leading-[1.05] text-brand-yellow">
                 {game.title}
               </h3>
-              <p className="mt-2 text-sm text-white/85">{game.description}</p>
-              <p className="mt-2 text-xs font-bold uppercase tracking-wide text-brand-yellow/90">
+              <p className="mt-3 text-sm leading-relaxed text-white/90 sm:text-[0.95rem]">
+                {game.description}
+              </p>
+              <p className="mt-4 text-[10px] font-extrabold uppercase leading-snug tracking-[0.05em] text-brand-yellow sm:text-[11px]">
                 {game.note}
               </p>
             </Reveal>
@@ -192,43 +265,82 @@ export default function JuegosPage() {
         </div>
       </PageSection>
 
-      <PageSection className="bg-gradient-to-b from-brand-red to-brand-orange py-14 text-white sm:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-brand-yellow">
+      {/* Tiny Town — large photo behind, red→clear gradient reveals right half */}
+      <section className="relative overflow-hidden bg-[#e31b23] text-white">
+        <div className="relative min-h-[24rem] sm:min-h-[26rem] lg:min-h-[32rem]">
+          {/* Photo behind, pinned to the right edge (no white gap) */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <Image
+              src="/images/juegos/tiny-town.jpg"
+              alt="Área Tiny Town para niños pequeños"
+              fill
+              sizes="100vw"
+              className="scale-105 object-cover object-right opacity-90"
+              priority={false}
+            />
+          </div>
+
+          {/* Red veil: solid on left → fades so right half shows the photo */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(90deg, #e31b23 0%, #e31b23 42%, rgba(227,27,35,0.82) 52%, rgba(227,27,35,0.35) 68%, rgba(227,27,35,0.08) 82%, rgba(227,27,35,0) 100%)",
+            }}
+            aria-hidden
+          />
+
+          {/* Copy on left */}
+          <div className="relative z-10 flex min-h-[24rem] w-full max-w-[50%] flex-col justify-center px-4 py-12 sm:min-h-[26rem] sm:px-8 sm:py-14 lg:min-h-[32rem] lg:px-12 xl:px-16">
+            <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-brand-yellow sm:text-base">
               Para los más pequeños
             </p>
-            <h2 className="mt-2 font-display text-[clamp(2.5rem,7vw,3.5rem)] font-black leading-[0.92]">
+            <h2 className="mt-2 font-display text-[clamp(2.5rem,7vw,5.5rem)] font-black leading-[0.88] text-white drop-shadow-[0_1px_0_#f5d84a]">
               Tiny Town
             </h2>
-            <ul className="mt-6 space-y-2 text-base">
-              {["Laberinto (Regular–Platino)", "Carrusel", "Mini Tagadá (Regular–Platino)", "Y más"].map(
-                (item) => (
+            <div className="mt-5 space-y-1 text-sm leading-relaxed text-white sm:text-base lg:text-lg">
+              <p>Tiny Town cuenta con:</p>
+              <ul className="space-y-0.5">
+                {[
+                  "Laberinto (Regular- Platino)",
+                  "Carrusel",
+                  "MiniTagadá (Regular-Platino)",
+                  "Y más!",
+                ].map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="text-brand-yellow">•</span>
+                    <span aria-hidden>•</span>
                     <span>{item}</span>
                   </li>
-                ),
-              )}
-            </ul>
-          </div>
-          <div>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] shadow-xl">
-              <Image
-                src="/images/juegos/tiny-town.jpg"
-                alt="Área Tiny Town para niños pequeños"
-                width={3840}
-                height={1514}
-                sizes="(max-width:1024px) 100vw, 560px"
-                className="h-full w-full object-cover"
-              />
+                ))}
+              </ul>
             </div>
-            <p className="mt-4 rounded-full bg-brand-yellow px-5 py-3 text-center text-xs font-extrabold uppercase tracking-wide text-brand-ink sm:text-sm">
-              Para niños 0–3 años (límite de estatura 1.10 m)
-            </p>
+          </div>
+
+          {/* Ribbon bar (overflows edges) + text on the ribbon, in the visible field */}
+          <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
+            <div
+              className="absolute flex items-center"
+              style={{
+                left: "40%",
+                bottom: "-16%",
+                width: "90%",
+                height: "clamp(2.85rem, 5.8vw, 3.9rem)",
+                transformOrigin: "left center",
+                transform: "translateY(50%) rotate(-18deg)",
+                background:
+                  "linear-gradient(180deg, #f7d45a 0%, #f0b02a 42%, #e89414 100%)",
+                boxShadow:
+                  "0 6px 16px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.12)",
+              }}
+            >
+              {/* Sit text on the ribbon, shifted into the visible BR zone of the box */}
+              <p className="ml-[18%] whitespace-nowrap text-[clamp(0.9rem,2.2vw,1.35rem)] font-semibold italic tracking-wide text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] sm:ml-[22%]">
+                Para niños 0-3 años (límite de estatura 1 m)
+              </p>
+            </div>
           </div>
         </div>
-      </PageSection>
+      </section>
     </>
   );
 }
