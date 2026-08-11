@@ -18,6 +18,9 @@ export const siteConfig = {
     postalCode: "64000",
     country: "MX",
   },
+  /** Google Maps — negocio listado como America’s Incredible Pizza Company */
+  mapsQuery:
+    "America's Incredible Pizza Company, Av. Lázaro Cárdenas 999, Monterrey, Nuevo León",
   hours: {
     weekdays: "Lunes a viernes: 11:00 AM – 9:00 PM",
     weekend: "Sábado y domingo: 11:00 AM – 9:00 PM",

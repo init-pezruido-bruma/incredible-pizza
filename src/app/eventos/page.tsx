@@ -285,9 +285,11 @@ export default function EventosPage() {
         aria-label="Todos tus eventos en un lugar increíble"
         className="flex w-full items-center justify-center bg-brand-red px-5 py-5 sm:px-8 sm:py-6 lg:py-7"
       >
-        <p className="text-center font-display text-[clamp(1.65rem,4.5vw,2.85rem)] font-black leading-[1.05] text-white">
-          Todos tus eventos en un lugar increíble
-        </p>
+        <Reveal>
+          <p className="text-center font-display text-[clamp(1.65rem,4.5vw,2.85rem)] font-black leading-[1.05] text-white">
+            Todos tus eventos en un lugar increíble
+          </p>
+        </Reveal>
       </section>
 
       <section className="bg-gradient-to-b from-[#4a76a8] via-[#7a5a8a] to-[#d64541] py-14 text-white sm:py-20">
@@ -351,15 +353,15 @@ export default function EventosPage() {
             </div>
           </div>
 
-          <div className="mt-6 flex justify-end pb-2 sm:mt-8">
+          <Reveal delay={180} className="mt-6 flex justify-end pb-2 sm:mt-8">
             <Button
               asChild
               size="sm"
-              className="min-h-10 rounded-full border-2 border-black bg-white px-5 text-xs font-extrabold uppercase tracking-wide text-black shadow-none hover:bg-white sm:text-sm"
+              className="min-h-10 rounded-full border-2 border-black bg-white px-5 text-xs font-extrabold uppercase tracking-wide text-black shadow-none transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white sm:text-sm"
             >
               <Link href="/">Ver galería completa</Link>
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -372,7 +374,7 @@ export default function EventosPage() {
               title="Promociones"
             />
           </Reveal>
-          <div className="mt-8 text-center sm:mt-10">
+          <Reveal delay={100} className="mt-8 text-center sm:mt-10">
             <Button
               asChild
               variant="secondary"
@@ -381,7 +383,7 @@ export default function EventosPage() {
             >
               <Link href="/promociones">Ver todas</Link>
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
 

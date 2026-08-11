@@ -172,7 +172,7 @@ export default function MenuPage() {
 
       {/* Ingrediente extra — red bar */}
       <section className="bg-brand-red py-6 text-white sm:py-7">
-        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-8 lg:px-10">
+        <Reveal className="mx-auto flex max-w-6xl flex-col gap-5 px-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-8 lg:px-10">
           <p className="shrink-0 font-display text-[clamp(1.65rem,4vw,2.5rem)] font-black leading-[1.05]">
             Ingrediente extra $25 c/u
           </p>
@@ -190,7 +190,7 @@ export default function MenuPage() {
               </ul>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* De todo un poco + Complementos (azul→rojo) + Refrescos (ángulo lima→teal) */}
@@ -381,7 +381,7 @@ export default function MenuPage() {
 
       {/* Delivery bar — Encuéntranos en + logos blancos */}
       <section className="bg-brand-red text-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-5 px-5 py-6 sm:gap-x-12 sm:px-8 sm:py-7 lg:justify-between lg:gap-x-10 lg:px-10">
+        <Reveal className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-5 px-5 py-6 sm:gap-x-12 sm:px-8 sm:py-7 lg:justify-between lg:gap-x-10 lg:px-10">
           <p className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-black italic leading-none">
             Encuéntranos en
           </p>
@@ -394,7 +394,7 @@ export default function MenuPage() {
               className="h-10 w-auto sm:h-12"
             />
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

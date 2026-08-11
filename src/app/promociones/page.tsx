@@ -31,7 +31,7 @@ export default function PromocionesPage() {
       <section className="bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#f5d84a] pb-12 pt-44 sm:pb-14 sm:pt-52 lg:pb-16 lg:pt-60">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
           <Reveal>
-            <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.18em] text-brand-ink/55">
+            <p className="hero-copy-in text-[0.7rem] font-extrabold uppercase tracking-[0.18em] text-brand-ink/55">
               Este mes
             </p>
             <h1 className="hero-copy-in mt-1 font-display text-[clamp(2.75rem,8vw,4.75rem)] font-black leading-[0.92] text-brand-ink">

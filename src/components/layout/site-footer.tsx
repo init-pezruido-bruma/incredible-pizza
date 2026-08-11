@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 const footerLinks = [
   { href: "/quienes-somos", label: "Acerca" },
@@ -12,9 +16,19 @@ const footerLinks = [
 ];
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  const clearsAngledCta = pathname === "/quienes-somos";
+
   return (
     <footer className="bg-gradient-to-r from-[#fcda21] via-[#ef9128] to-[#e13e30] text-white">
-      <Container className="relative grid gap-10 py-12 md:grid-cols-[1.15fr_1fr_1.25fr] md:items-start md:gap-8 lg:py-14">
+      <Container
+        className={cn(
+          "relative grid gap-10 pb-12 md:grid-cols-[1.15fr_1fr_1.25fr] md:items-start md:gap-8 lg:pb-14",
+          clearsAngledCta
+            ? "pt-[clamp(4.5rem,8vw,6.5rem)] lg:pt-[clamp(5rem,9vw,7rem)]"
+            : "pt-12 lg:pt-14",
+        )}
+      >
         <div>
           <Image
             src="/images/brand/wordmark-footer.png"

@@ -127,9 +127,9 @@ export default function HomePage() {
 
       {/* 2+3. Horarios + Fiesta (foto a la derecha en PC) */}
       <section className="relative overflow-hidden bg-white">
-        <div className="relative z-20">
+        <Reveal className="relative z-20">
           <HoursBanner />
-        </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 lg:items-stretch">
           <Reveal className="order-2 flex flex-col items-start justify-center space-y-6 bg-white px-5 pb-10 pt-10 sm:px-8 sm:pb-12 lg:order-1 lg:min-h-[36rem] lg:px-12 lg:pb-14 lg:pt-12 xl:px-16">

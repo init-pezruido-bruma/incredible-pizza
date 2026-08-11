@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Incredible Pizza — Food and Fun
 
-## Getting Started
+Sitio web de Incredible Pizza Monterrey (Next.js App Router).
 
-First, run the development server:
+## Requisitos
+
+- Node.js 20+
+- npm 10+
+
+## Desarrollo local
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build de producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Variables de entorno
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Descripción | Ejemplo |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | URL canónica (sitemap, robots, metadata) | `https://incrediblepizza.mx` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copia `.env.example` a `.env.local` en local. En Vercel configúrala en **Project Settings → Environment Variables** (Production / Preview).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy en Vercel
 
-## Deploy on Vercel
+1. Conecta el repo `init-pezruido-bruma/incredible-pizza` en [vercel.com/new](https://vercel.com/new).
+2. Framework: **Next.js** (auto-detectado).
+3. Build command: `npm run build` · Output: default de Next.
+4. Añade `NEXT_PUBLIC_SITE_URL` con el dominio de producción (o el `*.vercel.app` temporal).
+5. Deploy. Las rutas son estáticas (`○`); no hace falta servidor Node custom.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Dominio propio: **Project → Settings → Domains**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Rutas
+
+- `/` Home  
+- `/fiestas` `/juegos` `/eventos` `/menu` `/promociones`  
+- `/quienes-somos` `/contacto` `/aviso-de-privacidad`  
+- `/tienda` redirige a la tienda en línea externa  

@@ -223,15 +223,17 @@ export default function JuegosPage() {
 
           {/* Cutout straddles Videojuegos → Juegos Increíbles (centered) */}
           <div className="pointer-events-none absolute bottom-0 left-1/2 z-40 w-[min(34rem,94vw)] -translate-x-1/2 translate-y-[28%] sm:w-[min(40rem,80vw)] sm:translate-y-[30%] lg:w-[44rem] lg:translate-y-[32%] xl:w-[48rem]">
-            <Image
-              src="/images/juegos/gokart-sin-fondo.png"
-              alt="Mamá e hijo en go-kart"
-              width={838}
-              height={502}
-              sizes="(max-width:1024px) 94vw, 768px"
-              unoptimized
-              className="float-soft h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]"
-            />
+            <Reveal>
+              <Image
+                src="/images/juegos/gokart-sin-fondo.png"
+                alt="Mamá e hijo en go-kart"
+                width={838}
+                height={502}
+                sizes="(max-width:1024px) 94vw, 768px"
+                unoptimized
+                className="float-soft h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]"
+              />
+            </Reveal>
           </div>
         </div>
       </section>
@@ -329,14 +331,14 @@ export default function JuegosPage() {
           </Reveal>
 
           {/* Mobile: message in a box (no ribbon) */}
-          <div className="absolute inset-x-3 bottom-3 z-20 sm:hidden">
+          <Reveal className="absolute inset-x-3 bottom-3 z-20 sm:hidden">
             <p className="rounded-xl bg-gradient-to-r from-[#ef9a1a] via-[#f0b02a] to-[#f5c43a] px-3.5 py-2.5 text-center text-[0.8rem] font-semibold italic leading-snug tracking-wide text-white shadow-[0_6px_16px_rgba(0,0,0,0.22)]">
               Para niños 0-3 años (límite de estatura 1 m)
             </p>
-          </div>
+          </Reveal>
 
           {/* Desktop/tablet: diagonal ribbon */}
-          <div className="pointer-events-none absolute inset-0 z-20 hidden overflow-hidden sm:block">
+          <Reveal className="pointer-events-none absolute inset-0 z-20 hidden overflow-hidden sm:block">
             <div
               className="absolute flex items-center"
               style={{
@@ -356,7 +358,7 @@ export default function JuegosPage() {
                 Para niños 0-3 años (límite de estatura 1 m)
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

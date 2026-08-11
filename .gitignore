@@ -72,7 +72,7 @@ next-env.d.ts
 # Large PDF artboard renders (keep docs/design-refs/README.md)
 /docs/design-refs/*.png
 
-# Raw source photos at repo root (already exported into public/images/home/)
+# Raw source photos at repo root (already exported into public/images/)
 /IMG_*.jpg
 /IMG_*.jpeg
 /IMG_*.png
@@ -80,6 +80,8 @@ next-env.d.ts
 /comida para llevar.jpg
 /juegos y atracciones.jpg
 /rapido y furioso.jpg
+/coca sin fondo.png
+/gokart sin fondo.png
 
 # OS / editor junk
 *~
