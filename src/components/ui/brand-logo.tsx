@@ -19,7 +19,7 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const image = (
     <Image
-      src="/images/brand/logo-circle.png"
+      src="/images/brand/logo-mark.png"
       alt="Incredible Food and Fun"
       width={width}
       height={height}

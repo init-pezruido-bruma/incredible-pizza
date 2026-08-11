@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import { FullImage } from "@/components/ui/full-image";
 import { HeroParallaxImage } from "@/components/ui/hero-parallax-image";
 import { Reveal } from "@/components/ui/reveal";
+import { GalleryCarousel } from "@/components/home/gallery-carousel";
 import { HoursBanner } from "@/components/home/hours-banner";
 import { siteConfig } from "@/lib/site";
 
@@ -48,36 +48,53 @@ const services = [
 ] as const;
 
 const gallery = [
-  { src: "/images/home/gallery-1.jpg", alt: "Cumpleaños en Incredible Pizza" },
-  { src: "/images/home/gallery-2.jpg", alt: "Amigos en Incredible Pizza" },
-  { src: "/images/home/gallery-3.jpg", alt: "Trampolines" },
-  { src: "/images/home/gallery-4.jpg", alt: "Arcade en familia" },
-  { src: "/images/home/gallery-5.jpg", alt: "Máquina de tickets" },
+  { src: "/images/home/gallery/carousel-01-v2.jpg", alt: "Celebración en Incredible Pizza" },
+  { src: "/images/home/gallery/carousel-02-v2.jpg", alt: "Diversión en familia" },
+  { src: "/images/home/gallery/carousel-03-v2.jpg", alt: "Momentos increíbles" },
+  { src: "/images/home/gallery/carousel-04-v2.jpg", alt: "Fiesta de cumpleaños" },
+  { src: "/images/home/gallery/carousel-05-v2.jpg", alt: "Invitados disfrutando" },
+  { src: "/images/home/gallery/carousel-06-v2.jpg", alt: "Juegos y risas" },
+  { src: "/images/home/gallery/carousel-07-v2.jpg", alt: "Arcade Incredible Pizza" },
+  { src: "/images/home/gallery/carousel-08-v2.jpg", alt: "Amigos en Incredible Pizza" },
+  { src: "/images/home/gallery/carousel-09-v2.jpg", alt: "Experiencia Food and Fun" },
+  { src: "/images/home/gallery/carousel-10-v2.jpg", alt: "Diversión sin límites" },
+  { src: "/images/home/gallery/carousel-11-v2.jpg", alt: "Ambiente Incredible Pizza" },
+  { src: "/images/home/gallery/carousel-12-v2.jpg", alt: "Cumpleaños inolvidable" },
 ] as const;
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — foto a altura natural en móvil; en desktop iguala el panel de texto */}
+      {/* 1. Hero — móvil: foto de fondo + gradiente + texto; desktop: split */}
       <section className="relative overflow-hidden bg-[#1a2b56]">
-        <div className="grid lg:grid-cols-2 lg:items-stretch">
-          <div className="relative min-h-[280px] overflow-hidden bg-[#1a2038] sm:min-h-[320px] lg:min-h-0">
+        <div className="relative grid lg:grid-cols-2 lg:items-stretch">
+          <div className="z-0 overflow-hidden bg-[#1a2038] max-lg:absolute max-lg:inset-0 lg:relative lg:min-h-[48rem] xl:min-h-[53rem]">
             <HeroParallaxImage
               src="/images/home/hero-juegos-increibles.jpg"
               alt="Niño celebrando su cumpleaños frente a la Incredible Wheel of Fun"
               width={2852}
               height={4340}
               sizes="(max-width:1024px) 100vw, 960px"
+              objectPosition="center 22%"
             />
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent lg:h-32" />
+            {/* Móvil: gradiente sobre la foto para legibilidad del texto */}
+            <div
+              className="pointer-events-none absolute inset-0 lg:hidden"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(26,32,56,0.55) 0%, rgba(106,63,92,0.72) 38%, rgba(63,80,143,0.82) 68%, rgba(43,88,153,0.92) 100%)",
+              }}
+              aria-hidden
+            />
+            <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-black/50 to-transparent lg:block" />
           </div>
 
-          <div className="relative flex min-h-[34rem] flex-col justify-center bg-gradient-to-b from-[#6a3f5c] via-[#3f508f] to-[#2b5899] px-6 py-16 sm:min-h-[38rem] sm:px-10 sm:py-[4.75rem] lg:min-h-[48rem] lg:px-12 lg:py-24 xl:min-h-[53rem] xl:px-16">
+          <div className="relative z-10 flex min-h-[36rem] flex-col justify-end bg-transparent px-6 pb-14 pt-20 sm:min-h-[40rem] sm:px-10 sm:pb-16 sm:pt-24 lg:min-h-[48rem] lg:justify-center lg:bg-gradient-to-b lg:from-[#6a3f5c] lg:via-[#3f508f] lg:to-[#2b5899] lg:px-12 lg:py-24 xl:min-h-[53rem] xl:px-16">
             <div className="mx-auto w-full max-w-lg lg:mx-0">
               <p className="hero-copy-in text-xs font-bold uppercase tracking-[0.22em] text-white sm:text-sm">
                 Conoce nuestros
               </p>
-              <h1 className="hero-copy-in hero-copy-in-delay-1 mt-2 font-display text-[clamp(2.75rem,7vw,4.15rem)] font-black leading-[0.9] text-white">
+              <h1 className="hero-copy-in hero-copy-in-delay-1 mt-2 font-display text-[clamp(2.75rem,7vw,4.15rem)] font-black leading-[0.9] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
                 Juegos
                 <br />
                 Increíbles
@@ -133,7 +150,7 @@ export default function HomePage() {
             </Button>
           </Reveal>
 
-          <div className="relative order-1 z-10 min-h-[380px] overflow-hidden sm:min-h-[460px] lg:order-2 lg:min-h-[36rem] lg:-mt-[clamp(3.5rem,6vw,5.5rem)] xl:min-h-[40rem]">
+          <div className="relative order-1 z-10 -mt-[clamp(3.5rem,6vw,5.5rem)] min-h-[420px] overflow-hidden sm:min-h-[480px] lg:order-2 lg:min-h-[36rem] xl:min-h-[40rem]">
             <HeroParallaxImage
               src="/images/home/fiesta-increible.jpg"
               alt="Niño disfrutando su fiesta en Incredible Pizza"
@@ -142,7 +159,8 @@ export default function HomePage() {
               sizes="(max-width:1024px) 100vw, 50vw"
               priority={false}
               quality={90}
-              objectPosition="center top"
+              objectPosition="center 18%"
+              intensity={1.35}
             />
           </div>
         </div>
@@ -221,74 +239,71 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Galería */}
-      <section className="bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#f5d84a] py-10 sm:py-12">
+      {/* 6. Galería — carrusel con foco central + puntitos */}
+      <section className="bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#f5d84a] pt-16 pb-10 sm:pt-20 sm:pb-12 lg:pt-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
           <Reveal>
-            <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-5 sm:gap-3.5">
-              {gallery.map((item) => (
-                <FullImage
-                  key={item.src}
-                  src={item.src}
-                  alt={item.alt}
-                  width={480}
-                  height={583}
-                  sizes="(max-width:640px) 33vw, 18vw"
-                  maxHeightClass="max-h-[150px] sm:max-h-[190px] lg:max-h-[210px]"
-                  rounded="rounded-[1.25rem] sm:rounded-[1.5rem]"
-                  className="shadow-lg"
-                />
-              ))}
-            </div>
+            <GalleryCarousel items={gallery} />
           </Reveal>
-          <div className="mt-5 flex justify-center gap-2" aria-hidden>
-            {gallery.map((_, i) => (
-              <span
-                key={i}
-                className={`rounded-full bg-white shadow-sm ${i === 2 ? "size-2.5" : "size-2 opacity-75"}`}
-              />
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* 7. Equipo — bowtie azul sobre amarillo */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#f5d84a] via-[#f0c83a] to-[#6ba3d4] py-14 sm:py-20">
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center px-5 text-center">
-          <Reveal className="relative w-full max-w-xl">
-            <div className="bowtie-shape relative mx-auto bg-[#1e4f9c] px-8 py-10 text-white shadow-2xl sm:px-14 sm:py-12">
-              <p className="font-display text-base font-black uppercase tracking-wide text-brand-yellow sm:text-lg">
-                Únete a nuestro
-              </p>
-              <h2 className="mt-1 font-display text-[clamp(2rem,6vw,3.25rem)] font-black uppercase leading-none">
-                Equipo Increíble
-              </h2>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="mt-6 min-h-11 w-full border-2 border-white px-8 text-white sm:w-auto"
-              >
-                <Link href="/contacto">Envía tu solicitud</Link>
-              </Button>
-            </div>
+      {/* 7. Equipo — bowtie asset + fotos de staff */}
+      <section className="relative overflow-x-clip bg-gradient-to-b from-[#f5d84a] via-[#f0c83a] to-[#6ba3d4] py-16 sm:py-24">
+        <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 text-center">
+          <Reveal className="relative w-full max-w-4xl">
+            <div className="relative mx-auto w-full">
+              <div className="relative mx-auto w-full">
+                <Image
+                  src="/images/home/equipo-bowtie.png"
+                  alt=""
+                  width={940}
+                  height={618}
+                  sizes="(max-width:1024px) 94vw, 896px"
+                  className="mx-auto h-auto w-full drop-shadow-xl"
+                  aria-hidden
+                  priority={false}
+                />
+                {/* Centrado óptico en el azul (bajo el rojo, sobre el botón) */}
+                <div className="absolute left-1/2 top-[49.5%] z-10 w-[78%] -translate-x-1/2 -translate-y-1/2 text-center text-white sm:top-[50.5%] sm:w-[68%] lg:w-[72%]">
+                  <p className="text-[clamp(0.75rem,2.2vw,1.05rem)] font-bold uppercase leading-tight tracking-[0.14em] text-brand-yellow sm:text-base lg:text-lg xl:text-xl">
+                    Únete a nuestro
+                  </p>
+                  <h2 className="mt-1 font-display text-[clamp(1.85rem,7.2vw,3rem)] font-black leading-[1.05] whitespace-nowrap sm:text-[clamp(2.75rem,4.5vw,4.25rem)]">
+                    Equipo Increíble
+                  </h2>
+                </div>
 
-            <Image
-              src="/images/home/staff-circle.jpg"
-              alt="Equipo Incredible Pizza"
-              width={900}
-              height={900}
-              sizes="112px"
-              className="absolute -left-2 bottom-0 z-20 size-[4.5rem] rounded-full border-[5px] border-brand-yellow object-contain shadow-lg sm:-left-8 sm:size-24 sm:border-[6px] md:size-28"
-            />
-            <Image
-              src="/images/home/staff-checkered.jpg"
-              alt="Staff Incredible Pizza"
-              width={900}
-              height={900}
-              sizes="112px"
-              className="absolute -right-2 top-0 z-20 size-[4.5rem] rounded-full border-[5px] border-white object-contain shadow-lg [border-style:double] sm:-right-8 sm:size-24 sm:border-[6px] md:size-28"
-            />
+                {/* Debajo del bloque de texto */}
+                <div className="absolute left-1/2 top-[82%] z-30 w-max -translate-x-1/2 sm:top-[80%]">
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="lg"
+                    className="min-h-12 bg-white px-8 text-base shadow-md"
+                  >
+                    <Link href="/contacto">Envía tu solicitud</Link>
+                  </Button>
+                </div>
+              </div>
+
+              <Image
+                src="/images/home/staff-circle.png"
+                alt="Equipo Incredible Pizza"
+                width={1024}
+                height={1002}
+                sizes="(max-width:640px) 120px, 320px"
+                className="absolute -left-6 -bottom-4 z-20 w-[7.25rem] drop-shadow-lg sm:-left-24 sm:-bottom-8 sm:w-[15.7rem] md:-left-32 md:w-[20.2rem]"
+              />
+              <Image
+                src="/images/home/staff-checkered-solid.png"
+                alt="Staff Incredible Pizza"
+                width={1024}
+                height={1024}
+                sizes="(max-width:640px) 120px, 320px"
+                className="absolute -right-6 -top-5 z-20 w-[7.25rem] drop-shadow-lg sm:-right-24 sm:-top-10 sm:w-[15.7rem] md:-right-32 md:w-[20.2rem]"
+              />
+            </div>
           </Reveal>
         </div>
       </section>

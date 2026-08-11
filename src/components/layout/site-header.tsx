@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { navLinks, navLinksLeft, navLinksRight } from "@/lib/site";
+import { navLinks, navLinksLeft, navLinksRight, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const pillGradient =
@@ -15,6 +15,19 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
 
   return (
     <header
@@ -49,7 +62,6 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            {/* Espacio central para el logo que se superpone */}
             <div className="w-[168px] shrink-0 xl:w-[186px]" aria-hidden />
 
             <nav className="flex items-center justify-evenly gap-x-2 pl-4 text-[13px] font-extrabold uppercase tracking-[0.05em] text-white xl:gap-x-3 xl:pl-6 xl:text-[15px]">
@@ -70,7 +82,7 @@ export function SiteHeader() {
             className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
           >
             <Image
-              src="/images/brand/logo-circle.png"
+              src="/images/brand/logo-mark.png"
               alt="Incredible Food and Fun"
               width={822}
               height={681}
@@ -85,7 +97,7 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile — misma cápsula con degradado, layout distinto */}
+      {/* Mobile bar */}
       <div
         className={cn(
           "lg:hidden",
@@ -99,10 +111,10 @@ export function SiteHeader() {
             className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-white/90 bg-black/15 text-white transition active:scale-95"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen(true)}
           >
-            {open ? <X className="size-5" strokeWidth={2.5} /> : <Menu className="size-5" strokeWidth={2.5} />}
-            <span className="sr-only">Menú</span>
+            <Menu className="size-5" strokeWidth={2.5} />
+            <span className="sr-only">Abrir menú</span>
           </button>
 
           <div className="flex min-w-0 flex-1 justify-center px-2">
@@ -117,7 +129,7 @@ export function SiteHeader() {
             className="relative z-20 -my-3 shrink-0"
           >
             <Image
-              src="/images/brand/logo-circle.png"
+              src="/images/brand/logo-mark.png"
               alt="Incredible Food and Fun"
               width={822}
               height={681}
@@ -127,33 +139,138 @@ export function SiteHeader() {
             />
           </Link>
         </div>
+      </div>
 
-        {open ? (
-          <nav
-            id="mobile-nav"
-            className={cn(
-              "mt-2 max-h-[70vh] overflow-y-auto rounded-[1.75rem] p-2",
-              pillGradient,
-            )}
-          >
-            <div className="rounded-[1.35rem] bg-black/20 p-1.5 backdrop-blur-sm">
-              {navLinks.map((link) => (
+      {/* Mobile full-screen menu */}
+      {open ? (
+        <div
+          id="mobile-nav"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú de navegación"
+          className="fixed inset-0 z-[60] flex flex-col bg-brand-cream lg:hidden"
+        >
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 50% at 100% 0%, rgba(255,194,14,0.35), transparent 55%), radial-gradient(ellipse 60% 40% at 0% 100%, rgba(227,30,36,0.12), transparent 50%)",
+            }}
+            aria-hidden
+          />
+
+          <div className="relative flex items-start justify-between gap-4 px-5 pb-4 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-7">
+            <Link
+              href="/"
+              className="flex min-w-0 items-center gap-3"
+              onClick={() => setOpen(false)}
+            >
+              <Image
+                src="/images/brand/logo-mark.png"
+                alt=""
+                width={822}
+                height={681}
+                sizes="56px"
+                className="h-auto w-12 object-contain sm:w-14"
+                aria-hidden
+              />
+              <span className="min-w-0 text-left">
+                <span className="block truncate text-base font-extrabold tracking-tight text-brand-ink">
+                  Incredible Pizza
+                </span>
+                <span className="mt-0.5 block text-[0.65rem] font-bold uppercase tracking-[0.16em] text-brand-red">
+                  Food and Fun
+                </span>
+              </span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-brand-ink/15 bg-white text-brand-ink shadow-sm transition active:scale-95"
+              aria-label="Cerrar menú"
+            >
+              <X className="size-5" strokeWidth={2} />
+            </button>
+          </div>
+
+          <nav className="relative flex-1 overflow-y-auto px-5 py-2 sm:px-7">
+            <ul className="flex flex-col gap-1">
+              <li>
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "flex min-h-12 items-center rounded-full px-4 py-3 text-sm font-extrabold uppercase tracking-wide text-white transition hover:bg-white/15",
-                    pathname === link.href && "bg-white text-brand-ink",
-                  )}
+                  href="/"
                   onClick={() => setOpen(false)}
+                  className={cn(
+                    "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-brand-ink transition active:text-brand-red",
+                    pathname === "/" && "text-brand-red",
+                  )}
                 >
-                  {link.label}
+                  Inicio
                 </Link>
+              </li>
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-brand-ink transition active:text-brand-red",
+                      pathname === link.href && "text-brand-red",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
+            </ul>
+
+            <div className="my-6 h-px bg-brand-ink/10" />
+
+            <div className="grid gap-6 pb-4 sm:grid-cols-2">
+              <div>
+                <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-brand-red">
+                  [ Contacto ]
+                </p>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="mt-2 block text-sm font-semibold text-brand-ink/85 underline-offset-2 hover:underline"
+                >
+                  {siteConfig.email}
+                </a>
+                <a
+                  href={`tel:${siteConfig.phoneTel}`}
+                  className="mt-1 block text-sm font-semibold text-brand-ink/85 underline-offset-2 hover:underline"
+                >
+                  {siteConfig.phone}
+                </a>
+              </div>
+              <div>
+                <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-brand-red">
+                  [ Visítanos ]
+                </p>
+                <p className="mt-2 text-sm font-semibold leading-snug text-brand-ink/85">
+                  {siteConfig.address.street}
+                  <br />
+                  {siteConfig.address.city}, {siteConfig.address.region}
+                </p>
+              </div>
             </div>
           </nav>
-        ) : null}
-      </div>
+
+          <div className="relative flex items-center justify-between gap-3 border-t border-brand-ink/10 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-7">
+            <p className="text-xs font-semibold text-brand-ink/45">
+              © {new Date().getFullYear()} {siteConfig.legalName}
+            </p>
+            <Link
+              href="/contacto"
+              onClick={() => setOpen(false)}
+              className="rounded-full bg-brand-ink px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white"
+            >
+              Cotizar
+            </Link>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }

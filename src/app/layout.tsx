@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Nunito } from "next/font/google";
+import localFont from "next/font/local";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
@@ -7,16 +7,31 @@ import { restaurantJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const display = Montserrat({
+/* Alkaline script — headlines in sentence case (matches design PDF) */
+const display = localFont({
+  src: [
+    { path: "../fonts/alkaline/Alkaline-Regular.otf", weight: "400", style: "normal" },
+    { path: "../fonts/alkaline/Alkaline-Medium.otf", weight: "500", style: "normal" },
+    { path: "../fonts/alkaline/Alkaline-Demi.otf", weight: "600", style: "normal" },
+    { path: "../fonts/alkaline/Alkaline-Bold.otf", weight: "700", style: "normal" },
+    { path: "../fonts/alkaline/Alkaline-Heavy.otf", weight: "800", style: "normal" },
+    { path: "../fonts/alkaline/Alkaline-Heavy.otf", weight: "900", style: "normal" },
+  ],
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  display: "swap",
 });
 
-const body = Nunito({
+const body = localFont({
+  src: [
+    { path: "../fonts/proxima/ProximaSoft-Regular.otf", weight: "400", style: "normal" },
+    { path: "../fonts/proxima/ProximaSoft-Medium.otf", weight: "500", style: "normal" },
+    { path: "../fonts/proxima/ProximaSoft-Semibold.otf", weight: "600", style: "normal" },
+    { path: "../fonts/proxima/ProximaSoft-Bold.otf", weight: "700", style: "normal" },
+    { path: "../fonts/proxima/ProximaSoft-Extrabold.otf", weight: "800", style: "normal" },
+    { path: "../fonts/proxima/ProximaSoft-Black.otf", weight: "900", style: "normal" },
+  ],
   variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +48,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | Food and Fun`,
     description: siteConfig.description,
-    images: [{ url: "/images/brand/logo-circle.png", width: 822, height: 681, alt: siteConfig.name }],
+    images: [{ url: "/images/brand/logo-mark.png", width: 822, height: 681, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
@@ -53,7 +68,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const jsonLd = restaurantJsonLd();
 
   return (
-    <html lang="es-MX" className={`${display.variable} ${body.variable} h-full antialiased`}>
+    <html
+      lang="es-MX"
+      data-scroll-behavior="smooth"
+      className={`${display.variable} ${body.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col font-sans text-brand-ink">
         <script
           type="application/ld+json"

@@ -63,7 +63,7 @@ export default function EventosPage() {
       <section className="bg-gradient-to-r from-brand-orange to-brand-red py-10 text-white sm:py-14 lg:py-16">
         <Container className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="order-2 space-y-5 lg:order-1">
-            <h1 className="font-display text-[clamp(2rem,8vw,3.25rem)] font-black uppercase leading-tight">
+ <h1 className="font-display text-[clamp(2rem,8vw,3.25rem)] font-black leading-tight">
               Eventos que nunca se olvidan
             </h1>
             <p className="max-w-xl text-white/90">
@@ -115,7 +115,7 @@ export default function EventosPage() {
                 key={event.title}
                 className="flex h-full flex-col rounded-[1.5rem] bg-white p-5 text-brand-ink shadow-lg"
               >
-                <h2 className="font-display text-xl font-black uppercase text-brand-blue">{event.title}</h2>
+ <h2 className="font-display text-xl font-black text-brand-blue">{event.title}</h2>
                 <p className="mt-1 font-extrabold text-brand-red">{event.price}</p>
                 <ul className="mt-4 flex-1 space-y-2 text-sm text-brand-ink/75">
                   {event.features.map((f) => (
@@ -169,7 +169,7 @@ export default function EventosPage() {
 
       <section className="bg-gradient-to-r from-brand-yellow to-brand-orange py-12 sm:py-16">
         <Container>
-          <h2 className="mb-8 text-center font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black uppercase text-brand-red">
+ <h2 className="mb-8 text-center font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black text-brand-red">
             Promociones del mes
           </h2>
           <div className="grid gap-5 md:grid-cols-3">
@@ -196,7 +196,7 @@ export default function EventosPage() {
         <div className="absolute inset-0 bg-black/65" />
         <Container className="relative grid items-center gap-10 lg:grid-cols-2">
           <div className="text-white">
-            <h2 className="font-display text-[clamp(2rem,8vw,3rem)] font-black uppercase">
+ <h2 className="font-display text-[clamp(2rem,8vw,3rem)] font-black ">
               Cuéntanos de tu evento
             </h2>
             <p className="mt-3 text-lg font-extrabold uppercase text-brand-yellow">

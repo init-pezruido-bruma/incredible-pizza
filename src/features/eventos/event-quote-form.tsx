@@ -18,7 +18,7 @@ export function EventQuoteForm() {
         setSent(true);
       }}
     >
-      <h3 className="font-display text-2xl font-black uppercase text-brand-blue">Pide tu cotización</h3>
+ <h3 className="font-display text-2xl font-black text-brand-blue">Pide tu cotización</h3>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <label className="grid gap-1 text-xs font-bold uppercase tracking-wide text-brand-ink/70">
           Nombre

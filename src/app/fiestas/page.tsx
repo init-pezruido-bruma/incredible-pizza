@@ -44,7 +44,7 @@ export default function FiestasPage() {
       <section className="bg-gradient-to-b from-brand-orange to-brand-red py-10 text-white sm:py-14 lg:py-16">
         <Container className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
           <div className="order-2 space-y-5 text-center lg:order-1 lg:text-left">
-            <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-black uppercase leading-tight">
+ <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-black leading-tight">
               Tu fiesta increíble te espera
             </h1>
             <p className="mx-auto max-w-xl text-base text-white/90 sm:text-lg lg:mx-0">
@@ -155,7 +155,7 @@ export default function FiestasPage() {
             className="shadow-lg"
           />
           <div>
-            <h2 className="font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black uppercase text-brand-blue">
+ <h2 className="font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black text-brand-blue">
               Haz tu fiesta aún más especial
             </h2>
             <p className="mt-2 text-sm font-extrabold uppercase tracking-wide text-brand-orange">
@@ -181,7 +181,7 @@ export default function FiestasPage() {
 
       <section className="bg-gradient-to-r from-emerald-500 via-brand-blue to-brand-orange py-12 text-white sm:py-14">
         <Container className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <h2 className="font-display text-[clamp(2rem,8vw,3rem)] font-black uppercase md:-rotate-2">
+ <h2 className="font-display text-[clamp(2rem,8vw,3rem)] font-black md:-rotate-2">
             ¿Listo para reservar?
           </h2>
           <div className="w-full max-w-md space-y-4 md:w-auto">

@@ -4,32 +4,46 @@ import { useEffect, useRef } from "react";
 
 /**
  * Full-width hours strip: flat top, angled bottom.
- * Title follows the slope + scroll motion; hours styled to stand out.
+ * Title + hours stay parallel to that bottom slope.
  */
 export function HoursBanner() {
   const frameRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
+  const hoursRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const frame = frameRef.current;
     const box = boxRef.current;
     const title = titleRef.current;
-    if (!frame || !box || !title) return;
+    const hours = hoursRef.current;
+    if (!frame || !box || !title || !hours) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-
     let raf = 0;
+
+    const slopeAngle = () => {
+      const width = box.offsetWidth || 1;
+      const styles = window.getComputedStyle(box);
+      const drop = Number.parseFloat(styles.paddingBottom) || 56;
+      // Bottom edge rises left→right → CSS counter-clockwise (negative)
+      return -(Math.atan(drop / width) * (180 / Math.PI));
+    };
+
     const update = () => {
       raf = 0;
+      const angle = slopeAngle();
       const rect = frame.getBoundingClientRect();
       const viewH = window.innerHeight || 1;
-      const progress = (viewH / 2 - (rect.top + rect.height / 2)) / viewH;
-      const shiftY = Math.max(-10, Math.min(10, progress * 14));
-      const titleShift = Math.max(-8, Math.min(8, progress * 12));
+      const progress = reduced
+        ? 0
+        : (viewH / 2 - (rect.top + rect.height / 2)) / viewH;
+      const shiftY = reduced ? 0 : Math.max(-10, Math.min(10, progress * 14));
+      const titleShift = reduced ? 0 : Math.max(-8, Math.min(8, progress * 12));
+
       box.style.transform = `translate3d(0, ${shiftY}px, 0)`;
-      title.style.transform = `rotate(-8deg) translate3d(0, ${titleShift}px, 0)`;
+      title.style.transform = `rotate(${angle}deg) translate3d(0, ${titleShift}px, 0)`;
+      hours.style.transform = `rotate(${angle}deg)`;
     };
 
     const onScroll = () => {
@@ -64,16 +78,19 @@ export function HoursBanner() {
           boxShadow: "0 10px 24px rgba(35, 31, 32, 0.16)",
         }}
       >
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-5 py-12 text-center sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:px-8 sm:py-14 sm:text-left lg:px-10">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-5 py-14 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-14 sm:px-8 sm:py-16 sm:text-left lg:gap-20 lg:px-10 lg:py-[4.5rem]">
           <p
             ref={titleRef}
-            className="origin-center font-display text-[clamp(2.4rem,7vw,4rem)] font-black leading-none text-white drop-shadow-[0_3px_0_rgba(35,31,32,0.25)] will-change-transform"
-            style={{ transform: "rotate(-8deg)" }}
+            className="origin-center font-display text-[clamp(3.25rem,10vw,5.75rem)] font-black leading-[0.92] text-white drop-shadow-[0_3px_0_rgba(35,31,32,0.25)] will-change-transform sm:shrink-0"
           >
-            ¡Abrimos todos los días!
+            ¡Abrimos todos
+            <br className="sm:hidden" /> los días!
           </p>
 
-          <div className="flex w-full flex-col gap-2 sm:w-auto sm:min-w-[16rem]">
+          <div
+            ref={hoursRef}
+            className="flex w-full origin-center flex-col gap-3 will-change-transform sm:w-auto sm:min-w-[24.5rem] sm:shrink-0"
+          >
             <HourRow label="Lun – Vie" time="11:00 AM – 9:00 PM" />
             <HourRow label="Sáb – Dom" time="11:00 AM – 9:00 PM" />
           </div>
@@ -85,11 +102,13 @@ export function HoursBanner() {
 
 function HourRow({ label, time }: { label: string; time: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-full bg-brand-ink/90 px-4 py-2.5 text-white shadow-[0_4px_0_0_rgba(255,194,14,0.85)] sm:min-w-[17rem] sm:justify-start sm:gap-5 sm:px-5">
-      <span className="shrink-0 rounded-full bg-brand-yellow px-3 py-1 text-[0.7rem] font-black uppercase tracking-wide text-brand-ink sm:text-xs">
+    <div className="flex w-full items-center justify-between gap-5 whitespace-nowrap rounded-full bg-brand-ink/90 px-5 py-3 text-white shadow-[0_4px_0_0_rgba(255,194,14,0.85)] sm:min-w-[24.5rem] sm:gap-6 sm:px-8 sm:py-3.5">
+      <span className="inline-flex w-[7.25rem] shrink-0 items-center justify-center rounded-full bg-brand-yellow px-3.5 py-1.5 text-xs font-black uppercase tracking-wide text-brand-ink sm:w-[8rem] sm:text-sm">
         {label}
       </span>
-      <span className="text-sm font-extrabold tabular-nums tracking-wide sm:text-base">{time}</span>
+      <span className="shrink-0 text-base font-extrabold tabular-nums tracking-wide sm:text-lg">
+        {time}
+      </span>
     </div>
   );
 }

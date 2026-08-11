@@ -11,7 +11,7 @@ export default function AvisoPrivacidadPage() {
   return (
     <section className="bg-white py-16">
       <Container className="prose prose-neutral max-w-3xl">
-        <h1 className="font-display text-3xl font-black uppercase text-brand-blue">
+ <h1 className="font-display text-3xl font-black text-brand-blue">
           Aviso de privacidad
         </h1>
         <p className="mt-4 text-brand-ink/80">

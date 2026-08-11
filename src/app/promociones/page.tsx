@@ -20,7 +20,7 @@ export default function PromocionesPage() {
   return (
     <section className="bg-gradient-to-b from-brand-yellow to-brand-orange py-12 sm:py-16">
       <Container>
-        <h1 className="mb-8 text-center font-display text-[clamp(2rem,8vw,3rem)] font-black uppercase text-brand-red">
+ <h1 className="mb-8 text-center font-display text-[clamp(2rem,8vw,3rem)] font-black text-brand-red">
           Promociones del mes
         </h1>
         <div className="grid gap-5 md:grid-cols-3">

@@ -14,7 +14,7 @@ export default function ContactoPage() {
   return (
     <section className="bg-brand-cream py-20">
       <Container className="max-w-2xl space-y-6 text-center">
-        <h1 className="font-display text-4xl font-black uppercase text-brand-blue">Contacto</h1>
+ <h1 className="font-display text-4xl font-black text-brand-blue">Contacto</h1>
         <p className="text-brand-ink/80">
           Página en construcción. Mientras tanto escríbenos por WhatsApp o llámanos.
         </p>

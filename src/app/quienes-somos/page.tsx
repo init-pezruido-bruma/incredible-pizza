@@ -54,7 +54,7 @@ export default function QuienesSomosPage() {
     <>
       <section className="bg-gradient-to-b from-brand-orange to-brand-red py-10 text-white sm:py-14 lg:py-16">
         <Container className="space-y-8 text-center">
-          <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-black uppercase">
+ <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-black ">
             ¿Quiénes somos?
           </h1>
           <p className="mx-auto max-w-3xl text-base text-white/90 sm:text-lg">
@@ -79,7 +79,7 @@ export default function QuienesSomosPage() {
 
       <section className="bg-gradient-to-br from-brand-yellow via-white to-brand-blue py-12 sm:py-16">
         <Container className="grid items-center gap-8 lg:grid-cols-2">
-          <h2 className="font-display text-[clamp(2rem,7vw,3rem)] font-black uppercase text-white drop-shadow">
+ <h2 className="font-display text-[clamp(2rem,7vw,3rem)] font-black text-white drop-shadow">
             Experiencias Increíbles
           </h2>
           <p className="text-lg font-semibold text-brand-ink/85">
@@ -92,7 +92,7 @@ export default function QuienesSomosPage() {
       <section className="bg-white py-12 sm:py-16">
         <Container className="grid overflow-hidden rounded-[1.75rem] shadow-xl lg:grid-cols-2">
           <div className="order-2 space-y-4 p-6 sm:p-8 lg:order-1 lg:p-10">
-            <h2 className="font-display text-[clamp(1.35rem,4vw,1.875rem)] font-black uppercase text-brand-blue">
+ <h2 className="font-display text-[clamp(1.35rem,4vw,1.875rem)] font-black text-brand-blue">
               En America’s Incredible Pizza Company reunimos a las familias y amigos a través de la
               buena comida y gran diversión.
             </h2>
@@ -118,7 +118,7 @@ export default function QuienesSomosPage() {
 
       <section className="bg-gradient-to-b from-brand-red to-brand-yellow py-12 text-white sm:py-16">
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <h2 className="font-display text-[clamp(2rem,7vw,3rem)] font-black uppercase">
+ <h2 className="font-display text-[clamp(2rem,7vw,3rem)] font-black ">
             Declaración de nuestra misión
           </h2>
           <ol className="space-y-5">
@@ -126,7 +126,7 @@ export default function QuienesSomosPage() {
               <li key={item.number} className="grid grid-cols-[auto_1fr] gap-4">
                 <span className="font-display text-3xl font-black">{item.number}</span>
                 <div>
-                  <h3 className="font-display text-lg font-black uppercase">{item.title}</h3>
+ <h3 className="font-display text-lg font-black ">{item.title}</h3>
                   <p className="text-sm text-white/90">{item.description}</p>
                 </div>
               </li>
@@ -137,7 +137,7 @@ export default function QuienesSomosPage() {
 
       <section className="bg-gradient-to-b from-brand-blue to-brand-red py-12 text-white sm:py-16">
         <Container>
-          <h2 className="mb-8 font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black uppercase">
+ <h2 className="mb-8 font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black ">
             Valores familiares — nuestras metas son:
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -150,7 +150,7 @@ export default function QuienesSomosPage() {
 
       <section className="bg-gradient-to-r from-brand-red to-brand-orange py-12 text-white sm:py-14">
         <Container className="flex flex-col items-center gap-5 text-center md:flex-row md:justify-between md:text-left">
-          <h2 className="max-w-xl font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black uppercase md:-rotate-2">
+ <h2 className="max-w-xl font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black md:-rotate-2">
             Conoce a todos nuestros personajes y comedores
           </h2>
           <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">

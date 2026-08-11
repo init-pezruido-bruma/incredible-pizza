@@ -51,12 +51,14 @@ body {
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
+/* Alkaline script for display titles; Proxima Soft for body/UI */
 h1,
 h2,
 h3,
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+  font-style: normal;
 }
 
 ::selection {
@@ -159,29 +161,6 @@ h3,
   }
   to {
     transform: translateX(-20%);
-  }
-}
-
-/* Blue bowtie / ribbon for Equipo section (matches mockup) */
-.bowtie-shape {
-  border-radius: 1.25rem;
-  clip-path: polygon(
-    0% 18%,
-    42% 18%,
-    50% 0%,
-    58% 18%,
-    100% 18%,
-    100% 82%,
-    58% 82%,
-    50% 100%,
-    42% 82%,
-    0% 82%
-  );
-}
-
-@media (min-width: 640px) {
-  .bowtie-shape {
-    border-radius: 1.75rem;
   }
 }
 

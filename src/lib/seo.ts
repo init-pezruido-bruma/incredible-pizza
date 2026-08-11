@@ -10,7 +10,7 @@ export function restaurantJsonLd() {
     url: siteConfig.url,
     telephone: siteConfig.phoneTel,
     email: siteConfig.email,
-    image: `${siteConfig.url}/images/brand/logo-circle.png`,
+    image: `${siteConfig.url}/images/brand/logo-mark.png`,
     servesCuisine: ["Pizza", "American", "Buffet"],
     priceRange: "$$",
     address: {

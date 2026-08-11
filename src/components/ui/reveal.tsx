@@ -12,8 +12,9 @@ type RevealProps = {
 };
 
 /**
- * Vertical reveal that re-triggers on scroll up and down.
- * Enter: fade + rise. Leave: fade + sink.
+ * One-shot vertical reveal on scroll.
+ * Stays visible after the first enter so content doesn't flicker
+ * when sections sit near the bottom of the page.
  */
 export function Reveal({
   children,
@@ -36,12 +37,13 @@ export function Reveal({
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        // true al entrar (scroll abajo o arriba), false al salir
-        setVisible(entry.isIntersecting);
+        if (!entry.isIntersecting) return;
+        setVisible(true);
+        io.disconnect();
       },
       {
-        threshold: [0, 0.12, 0.2],
-        rootMargin: "0px 0px -6% 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -4% 0px",
       },
     );
 
@@ -52,10 +54,7 @@ export function Reveal({
   return (
     <Tag
       ref={ref as never}
-      style={{
-        // delay solo al entrar; al salir responde al instante
-        transitionDelay: visible ? `${delay}ms` : "0ms",
-      }}
+      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       className={cn("reveal reveal-up", visible && "reveal-in", className)}
     >
       {children}

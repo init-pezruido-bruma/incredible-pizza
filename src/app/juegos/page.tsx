@@ -91,7 +91,7 @@ export default function JuegosPage() {
           />
           <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-black/75 via-transparent to-transparent sm:block" />
           <Container className="absolute inset-x-0 bottom-0 hidden flex-col gap-2 pb-8 pt-16 sm:flex">
-            <h1 className="font-display text-[clamp(2rem,6vw,3rem)] font-black uppercase leading-none">
+ <h1 className="font-display text-[clamp(2rem,6vw,3rem)] font-black leading-none">
               Juegos
             </h1>
             <p className="text-lg font-bold text-brand-yellow">diviértete como nunca</p>
@@ -101,7 +101,7 @@ export default function JuegosPage() {
           </Container>
         </div>
         <Container className="flex flex-col gap-2 py-6 sm:hidden">
-          <h1 className="font-display text-[clamp(2rem,9vw,2.75rem)] font-black uppercase leading-none">
+ <h1 className="font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-none">
             Juegos
           </h1>
           <p className="text-lg font-bold text-brand-yellow">diviértete como nunca</p>
@@ -127,7 +127,7 @@ export default function JuegosPage() {
                   rounded="rounded-[1.25rem]"
                 />
                 <div className="space-y-2 p-3 sm:p-4">
-                  <h2 className="font-display text-lg font-black uppercase text-brand-blue">{item.title}</h2>
+ <h2 className="font-display text-lg font-black text-brand-blue">{item.title}</h2>
                   <p className="text-sm text-brand-ink/75">{item.description}</p>
                   <p className="text-[11px] font-extrabold uppercase tracking-wide text-brand-blue">
                     {item.note}
@@ -142,7 +142,7 @@ export default function JuegosPage() {
       <section className="bg-white py-12 sm:py-16">
         <Container className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div>
-            <h2 className="font-display text-[clamp(1.75rem,5.5vw,2.5rem)] font-black uppercase text-brand-blue">
+ <h2 className="font-display text-[clamp(1.75rem,5.5vw,2.5rem)] font-black text-brand-blue">
               Videojuegos
             </h2>
             <p className="mt-4 max-w-md text-brand-ink/80">
@@ -182,7 +182,7 @@ export default function JuegosPage() {
                   rounded="rounded-[1.5rem]"
                   className="mb-4 shadow-md"
                 />
-                <h3 className="font-display text-xl font-black uppercase text-brand-yellow">{game.title}</h3>
+ <h3 className="font-display text-xl font-black text-brand-yellow">{game.title}</h3>
                 <p className="mt-2 text-sm text-white/85">{game.description}</p>
                 <p className="mt-2 text-xs font-bold uppercase text-brand-yellow">{game.note}</p>
               </article>
@@ -195,7 +195,7 @@ export default function JuegosPage() {
         <Container className="grid items-center gap-8 lg:grid-cols-2">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.2em]">Para los más pequeños</p>
-            <h2 className="mt-2 font-display text-[clamp(2rem,7vw,2.75rem)] font-black uppercase">
+ <h2 className="mt-2 font-display text-[clamp(2rem,7vw,2.75rem)] font-black ">
               Tiny Town
             </h2>
             <ul className="mt-6 space-y-2 text-sm">

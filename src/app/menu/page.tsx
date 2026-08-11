@@ -67,7 +67,7 @@ export default function MenuPage() {
     <>
       <section className="bg-gradient-to-b from-brand-orange to-brand-red py-12 text-white sm:py-16">
         <Container>
-          <h1 className="mb-10 text-center font-display text-[clamp(2.5rem,10vw,3.75rem)] font-black uppercase">
+ <h1 className="mb-10 text-center font-display text-[clamp(2.5rem,10vw,3.75rem)] font-black ">
             Pizzas
           </h1>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -92,7 +92,7 @@ export default function MenuPage() {
 
       <section className="bg-gradient-to-b from-brand-blue-deep to-brand-orange py-16 text-white">
         <Container>
-          <h2 className="font-display text-4xl font-black uppercase sm:text-5xl">De todo un poco</h2>
+ <h2 className="font-display text-4xl font-black sm:text-5xl">De todo un poco</h2>
           <p className="mt-3 inline-block -rotate-2 rounded-full bg-gradient-to-r from-brand-yellow to-brand-orange px-4 py-2 text-sm font-extrabold uppercase text-brand-ink">
             Elige entre salsa Buffalo o BBQ
           </p>
@@ -106,12 +106,12 @@ export default function MenuPage() {
 
       <section className="bg-brand-blue py-14 text-white">
         <Container>
-          <h2 className="mb-8 font-display text-4xl font-black uppercase">Complementos</h2>
+ <h2 className="mb-8 font-display text-4xl font-black ">Complementos</h2>
           <div className="grid gap-4 md:grid-cols-2">
             {sides.map((item) => (
               <div key={item.name} className="rounded-2xl bg-white/10 px-5 py-4">
                 <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-display font-black uppercase text-brand-yellow">{item.name}</h3>
+ <h3 className="font-display font-black text-brand-yellow">{item.name}</h3>
                   <span className="font-extrabold">{item.price}</span>
                 </div>
                 <p className="mt-1 text-sm text-white/80">{item.description}</p>
@@ -124,7 +124,7 @@ export default function MenuPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-lime-400 to-brand-blue py-16 text-white">
         <Container className="grid items-center gap-8 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-5xl font-black uppercase -rotate-6 sm:text-6xl">
+ <h2 className="font-display text-5xl font-black -rotate-6 sm:text-6xl">
               Refrescos
             </h2>
             <ul className="mt-10 space-y-4">
@@ -132,7 +132,7 @@ export default function MenuPage() {
                 <li key={drink.name}>
                   <div className="flex items-baseline justify-between gap-3 border-b border-white/25 pb-2">
                     <div>
-                      <p className="font-display font-black uppercase text-brand-yellow">{drink.name}</p>
+ <p className="font-display font-black text-brand-yellow">{drink.name}</p>
                       <p className="text-sm text-white/85">{drink.description}</p>
                     </div>
                     <span className="font-extrabold">{drink.price}</span>
