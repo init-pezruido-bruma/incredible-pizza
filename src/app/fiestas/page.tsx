@@ -57,7 +57,7 @@ const packages = [
     mascot: {
       src: "/images/fiestas/mascots/riley.png",
       alt: "Riley el mapache",
-      mobileClassName: "bottom-1 right-1 h-[14rem] w-[14rem]",
+      mobileClassName: "bottom-1 right-1 h-[8.5rem] w-[8.5rem]",
       desktopClassName:
         "-right-16 bottom-0 w-[13.5rem] translate-y-[44%] sm:-right-18 sm:w-[15.1rem] lg:-right-22 lg:w-[16.2rem]",
     },
@@ -72,7 +72,7 @@ const packages = [
     mascot: {
       src: "/images/fiestas/mascots/rosie.png",
       alt: "Rosie The Cat",
-      mobileClassName: "bottom-1 right-1 h-[7rem] w-[7rem]",
+      mobileClassName: "bottom-1 right-1 h-[8.5rem] w-[8.5rem]",
       desktopClassName:
         "-right-3 top-0 h-[10.35rem] w-[7.65rem] -translate-y-[62%] sm:-right-4 sm:h-[11.7rem] sm:w-[8.55rem]",
     },
@@ -87,7 +87,7 @@ const packages = [
     mascot: {
       src: "/images/fiestas/mascots/tiger.png",
       alt: "Turbo Tiger",
-      mobileClassName: "bottom-1 right-1 h-[7rem] w-[7rem]",
+      mobileClassName: "bottom-1 right-1 h-[8.5rem] w-[8.5rem]",
       desktopClassName:
         "-right-3 top-0 h-[10.35rem] w-[7.65rem] -translate-y-[62%] sm:-right-4 sm:h-[11.7rem] sm:w-[8.55rem]",
     },

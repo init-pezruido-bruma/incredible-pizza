@@ -101,15 +101,17 @@ export default function JuegosPage() {
       {/* Hero — photo full-bleed + title mid-left + CTA bottom-right (flyer) */}
       <section className="relative overflow-hidden bg-[#0b1224] text-white">
         <div className="relative min-h-[28rem] sm:min-h-[34rem] lg:min-h-[42rem]">
-          <Image
-            src="/images/juegos/hero-laser.jpg"
-            alt="Familia jugando laser tag"
-            width={3840}
-            height={1714}
-            priority
-            sizes="100vw"
-            className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
-          />
+          <div className="group absolute inset-0">
+            <Image
+              src="/images/juegos/hero-laser.jpg"
+              alt="Familia jugando laser tag"
+              width={3840}
+              height={1714}
+              priority
+              sizes="100vw"
+              className="img-zoom absolute inset-0 h-full w-full object-cover object-[center_40%]"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/25" />
 
@@ -126,7 +128,7 @@ export default function JuegosPage() {
                   asChild
                   variant="primary"
                   size="lg"
-                  className="min-h-12 rounded-full border-2 border-black px-8 text-base font-extrabold uppercase tracking-wide text-black sm:min-h-14 sm:px-10 sm:text-lg"
+                  className="min-h-12 rounded-full border-2 border-black px-8 text-base font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:min-h-14 sm:px-10 sm:text-lg"
                 >
                   <Link href="/menu">Compra aquí</Link>
                 </Button>
@@ -149,15 +151,17 @@ export default function JuegosPage() {
           }}
         >
           <div className="mx-auto max-w-6xl px-5 pb-10 pt-14 sm:px-8 sm:pb-12 sm:pt-16 lg:px-10 lg:pb-14 lg:pt-20">
-            <h2 className="mb-10 text-center font-display text-[clamp(4rem,12vw,6.5rem)] font-black leading-[0.9] text-white drop-shadow-[0_2px_0_rgba(35,31,32,0.12)] sm:mb-12">
-              Atracciones
-            </h2>
+            <Reveal>
+              <h2 className="mb-10 text-center font-display text-[clamp(4rem,12vw,6.5rem)] font-black leading-[0.9] text-white drop-shadow-[0_2px_0_rgba(35,31,32,0.12)] sm:mb-12">
+                Atracciones
+              </h2>
+            </Reveal>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
               {attractions.map((item, i) => (
                 <Reveal
                   key={item.title}
-                  delay={i * 40}
-                  className="hover-lift flex flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-[0_10px_24px_rgba(35,31,32,0.14)]"
+                  delay={i * 50}
+                  className="group hover-lift flex flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-[0_10px_24px_rgba(35,31,32,0.14)]"
                 >
                   <div className="relative aspect-[5/4] overflow-hidden">
                     <Image
@@ -166,7 +170,7 @@ export default function JuegosPage() {
                       width={800}
                       height={640}
                       sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                      className="h-full w-full object-cover"
+                      className="img-zoom h-full w-full object-cover"
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-2 px-4 pb-4 pt-3 sm:px-4 sm:pb-5 sm:pt-3.5">
@@ -187,7 +191,7 @@ export default function JuegosPage() {
         </div>
 
         <div className="relative z-10 grid lg:grid-cols-2 lg:items-stretch">
-          <div className="relative z-20 flex flex-col justify-center px-5 pb-28 pt-14 sm:px-8 sm:pb-32 sm:pt-16 lg:px-12 lg:pb-24 lg:pt-12 xl:px-16">
+          <Reveal className="relative z-20 flex flex-col justify-center px-5 pb-28 pt-14 sm:px-8 sm:pb-32 sm:pt-16 lg:px-12 lg:pb-24 lg:pt-12 xl:px-16">
             <div className="max-w-md">
               <h2 className="font-display text-[clamp(3rem,9vw,4.75rem)] font-black leading-[0.9] text-[#2b5899]">
                 Videojuegos
@@ -204,28 +208,29 @@ export default function JuegosPage() {
                 (Excepto Fast & Furious esta máquina únicamente acepta créditos)
               </p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Photo right — pulls up under Atracciones angle (same as home Fiesta) */}
-          <div className="relative z-10 -mt-[clamp(3.75rem,7vw,5.5rem)] min-h-[320px] overflow-hidden sm:min-h-[400px] lg:-mt-[clamp(3.5rem,6vw,5.5rem)] lg:min-h-[36rem] xl:min-h-[40rem]">
+          <Reveal className="group relative z-10 -mt-[clamp(3.75rem,7vw,5.5rem)] min-h-[320px] overflow-hidden sm:min-h-[400px] lg:-mt-[clamp(3.5rem,6vw,5.5rem)] lg:min-h-[36rem] xl:min-h-[40rem]">
             <Image
               src="/images/home/gallery/carousel-02-v2.jpg"
               alt="Sala de videojuegos y simuladores"
               fill
               sizes="(max-width:1024px) 100vw, 50vw"
-              className="object-cover object-center"
+              className="img-zoom object-cover object-center"
             />
-          </div>
+          </Reveal>
 
-          {/* Cutout straddles Videojuegos → Juegos Increíbles (more on Videojuegos) */}
-          <div className="pointer-events-none absolute bottom-0 left-1/2 z-40 w-[min(34rem,94vw)] -translate-x-1/2 translate-y-[28%] sm:w-[min(40rem,80vw)] sm:translate-y-[30%] lg:left-[36%] lg:w-[44rem] lg:translate-x-0 lg:translate-y-[32%] xl:left-[34%] xl:w-[48rem]">
+          {/* Cutout straddles Videojuegos → Juegos Increíbles (centered) */}
+          <div className="pointer-events-none absolute bottom-0 left-1/2 z-40 w-[min(34rem,94vw)] -translate-x-1/2 translate-y-[28%] sm:w-[min(40rem,80vw)] sm:translate-y-[30%] lg:w-[44rem] lg:translate-y-[32%] xl:w-[48rem]">
             <Image
-              src="/images/juegos/gokart-cutout.png"
+              src="/images/juegos/gokart-sin-fondo.png"
               alt="Mamá e hijo en go-kart"
               width={838}
               height={502}
               sizes="(max-width:1024px) 94vw, 768px"
-              className="h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]"
+              unoptimized
+              className="float-soft h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]"
             />
           </div>
         </div>
@@ -234,21 +239,28 @@ export default function JuegosPage() {
       <PageSection
         className="relative z-10 bg-gradient-to-b from-[#6b2d5c] via-[#3d3f8f] to-[#2b5899] pb-16 pt-40 text-white sm:pb-24 sm:pt-48 lg:pt-52"
         innerClassName="max-w-6xl"
+        reveal={false}
       >
-        <h2 className="mb-10 text-center font-display text-[clamp(2.75rem,8vw,4.75rem)] font-black leading-[0.9] text-white sm:mb-14">
-          Juegos Increíbles
-        </h2>
+        <Reveal>
+          <h2 className="mb-10 text-center font-display text-[clamp(2.75rem,8vw,4.75rem)] font-black leading-[0.9] text-white sm:mb-14">
+            Juegos Increíbles
+          </h2>
+        </Reveal>
         <div className="grid gap-10 md:grid-cols-3 md:gap-8">
           {incredibleGames.map((game, i) => (
-            <Reveal key={game.title} delay={i * 70} className="flex flex-col text-center">
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[1.5rem] shadow-lg">
+            <Reveal
+              key={game.title}
+              delay={i * 80}
+              className="group flex flex-col text-left"
+            >
+              <div className="hover-lift relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[1.5rem] shadow-lg">
                 <Image
                   src={game.image}
                   alt={game.title}
                   width={800}
                   height={1000}
                   sizes="(max-width:768px) 100vw, 33vw"
-                  className="h-full w-full object-cover"
+                  className="img-zoom h-full w-full object-cover"
                 />
               </div>
               <h3 className="mt-5 font-display text-[clamp(1.65rem,3.5vw,2.15rem)] font-black leading-[1.05] text-brand-yellow">
@@ -291,7 +303,7 @@ export default function JuegosPage() {
           />
 
           {/* Copy on left */}
-          <div className="relative z-10 flex min-h-[24rem] w-full max-w-[50%] flex-col justify-center px-4 py-12 sm:min-h-[26rem] sm:px-8 sm:py-14 lg:min-h-[32rem] lg:px-12 xl:px-16">
+          <Reveal className="relative z-10 flex min-h-[24rem] w-full max-w-[50%] flex-col justify-center px-4 pb-16 pt-12 sm:min-h-[26rem] sm:px-8 sm:py-14 lg:min-h-[32rem] lg:px-12 xl:px-16">
             <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-brand-yellow sm:text-base">
               Para los más pequeños
             </p>
@@ -314,10 +326,17 @@ export default function JuegosPage() {
                 ))}
               </ul>
             </div>
+          </Reveal>
+
+          {/* Mobile: message in a box (no ribbon) */}
+          <div className="absolute inset-x-3 bottom-3 z-20 sm:hidden">
+            <p className="rounded-xl bg-gradient-to-r from-[#ef9a1a] via-[#f0b02a] to-[#f5c43a] px-3.5 py-2.5 text-center text-[0.8rem] font-semibold italic leading-snug tracking-wide text-white shadow-[0_6px_16px_rgba(0,0,0,0.22)]">
+              Para niños 0-3 años (límite de estatura 1 m)
+            </p>
           </div>
 
-          {/* Ribbon bar (overflows edges) + text on the ribbon, in the visible field */}
-          <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
+          {/* Desktop/tablet: diagonal ribbon */}
+          <div className="pointer-events-none absolute inset-0 z-20 hidden overflow-hidden sm:block">
             <div
               className="absolute flex items-center"
               style={{
@@ -333,7 +352,6 @@ export default function JuegosPage() {
                   "0 6px 16px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.12)",
               }}
             >
-              {/* Sit text on the ribbon, shifted into the visible BR zone of the box */}
               <p className="ml-[18%] whitespace-nowrap text-[clamp(0.9rem,2.2vw,1.35rem)] font-semibold italic tracking-wide text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] sm:ml-[22%]">
                 Para niños 0-3 años (límite de estatura 1 m)
               </p>

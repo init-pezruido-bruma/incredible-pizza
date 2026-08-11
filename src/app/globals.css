@@ -164,6 +164,36 @@ h3,
   }
 }
 
+@keyframes slide-in-left {
+  from {
+    opacity: 0.92;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes nav-item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-28px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.mobile-nav-panel {
+  animation: slide-in-left 0.48s var(--ease-apple) both;
+}
+
+.mobile-nav-item {
+  animation: nav-item-in 0.45s var(--ease-apple) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -184,7 +214,9 @@ h3,
   .hero-copy-in-delay-3,
   .hero-copy-in-delay-4,
   .img-zoom,
-  .hover-lift {
+  .hover-lift,
+  .mobile-nav-panel,
+  .mobile-nav-item {
     animation: none !important;
     transition: none !important;
     transform: none !important;

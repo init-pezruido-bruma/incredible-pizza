@@ -121,20 +121,20 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile full-screen menu */}
+      {/* Mobile full-screen menu — slides in L→R, brand gradient */}
       {open ? (
         <div
           id="mobile-nav"
           role="dialog"
           aria-modal="true"
           aria-label="Menú de navegación"
-          className="fixed inset-0 z-[60] flex flex-col bg-brand-cream lg:hidden"
+          className="mobile-nav-panel fixed inset-0 z-[60] flex flex-col bg-gradient-to-b from-brand-yellow via-brand-orange to-brand-red lg:hidden"
         >
           <div
-            className="pointer-events-none absolute inset-0 opacity-40"
+            className="pointer-events-none absolute inset-0 opacity-50"
             style={{
               background:
-                "radial-gradient(ellipse 80% 50% at 100% 0%, rgba(255,194,14,0.35), transparent 55%), radial-gradient(ellipse 60% 40% at 0% 100%, rgba(227,30,36,0.12), transparent 50%)",
+                "radial-gradient(ellipse 90% 55% at 0% 0%, rgba(255,255,255,0.28), transparent 55%), radial-gradient(ellipse 70% 45% at 100% 100%, rgba(35,31,32,0.18), transparent 50%)",
             }}
             aria-hidden
           />
@@ -142,7 +142,8 @@ export function SiteHeader() {
           <div className="relative flex items-start justify-between gap-4 px-5 pb-4 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-7">
             <Link
               href="/"
-              className="flex min-w-0 items-center gap-3"
+              className="mobile-nav-item flex min-w-0 items-center gap-3"
+              style={{ animationDelay: "80ms" }}
               onClick={() => setOpen(false)}
             >
               <Image
@@ -151,14 +152,14 @@ export function SiteHeader() {
                 width={822}
                 height={681}
                 sizes="56px"
-                className="h-auto w-12 object-contain sm:w-14"
+                className="h-auto w-12 object-contain drop-shadow-md sm:w-14"
                 aria-hidden
               />
               <span className="min-w-0 text-left">
-                <span className="block truncate text-base font-extrabold tracking-tight text-brand-ink">
+                <span className="block truncate text-base font-extrabold tracking-tight text-white">
                   Incredible Pizza
                 </span>
-                <span className="mt-0.5 block text-[0.65rem] font-bold uppercase tracking-[0.16em] text-brand-red">
+                <span className="mt-0.5 block text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/85">
                   Food and Fun
                 </span>
               </span>
@@ -167,7 +168,8 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-brand-ink/15 bg-white text-brand-ink shadow-sm transition active:scale-95"
+              className="mobile-nav-item inline-flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-white/90 bg-black/15 text-white shadow-sm transition active:scale-95"
+              style={{ animationDelay: "100ms" }}
               aria-label="Cerrar menú"
             >
               <X className="size-5" strokeWidth={2} />
@@ -176,26 +178,30 @@ export function SiteHeader() {
 
           <nav className="relative flex-1 overflow-y-auto px-5 py-2 sm:px-7">
             <ul className="flex flex-col gap-1">
-              <li>
+              <li className="mobile-nav-item" style={{ animationDelay: "140ms" }}>
                 <Link
                   href="/"
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-brand-ink transition active:text-brand-red",
-                    pathname === "/" && "text-brand-red",
+                    "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-white transition active:opacity-80",
+                    pathname === "/" && "underline decoration-2 underline-offset-[10px]",
                   )}
                 >
                   Inicio
                 </Link>
               </li>
-              {navLinks.map((link) => {
+              {navLinks.map((link, i) => {
                 const external = "external" in link && link.external;
                 const className = cn(
-                  "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-brand-ink transition active:text-brand-red",
-                  pathname === link.href && "text-brand-red",
+                  "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-white transition active:opacity-80",
+                  pathname === link.href && "underline decoration-2 underline-offset-[10px]",
                 );
                 return (
-                  <li key={link.href}>
+                  <li
+                    key={link.href}
+                    className="mobile-nav-item"
+                    style={{ animationDelay: `${180 + i * 45}ms` }}
+                  >
                     {external ? (
                       <a
                         href={link.href}
@@ -220,31 +226,34 @@ export function SiteHeader() {
               })}
             </ul>
 
-            <div className="my-6 h-px bg-brand-ink/10" />
+            <div className="my-6 h-px bg-white/25" />
 
-            <div className="grid gap-6 pb-4 sm:grid-cols-2">
+            <div
+              className="mobile-nav-item grid gap-6 pb-4 sm:grid-cols-2"
+              style={{ animationDelay: `${180 + navLinks.length * 45 + 40}ms` }}
+            >
               <div>
-                <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-brand-red">
+                <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-white/80">
                   [ Contacto ]
                 </p>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="mt-2 block text-sm font-semibold text-brand-ink/85 underline-offset-2 hover:underline"
+                  className="mt-2 block text-sm font-semibold text-white underline-offset-2 hover:underline"
                 >
                   {siteConfig.email}
                 </a>
                 <a
                   href={`tel:${siteConfig.phoneTel}`}
-                  className="mt-1 block text-sm font-semibold text-brand-ink/85 underline-offset-2 hover:underline"
+                  className="mt-1 block text-sm font-semibold text-white underline-offset-2 hover:underline"
                 >
                   {siteConfig.phone}
                 </a>
               </div>
               <div>
-                <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-brand-red">
+                <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-white/80">
                   [ Visítanos ]
                 </p>
-                <p className="mt-2 text-sm font-semibold leading-snug text-brand-ink/85">
+                <p className="mt-2 text-sm font-semibold leading-snug text-white/95">
                   {siteConfig.address.street}
                   <br />
                   {siteConfig.address.city}, {siteConfig.address.region}
@@ -253,14 +262,14 @@ export function SiteHeader() {
             </div>
           </nav>
 
-          <div className="relative flex items-center justify-between gap-3 border-t border-brand-ink/10 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-7">
-            <p className="text-xs font-semibold text-brand-ink/45">
+          <div className="relative flex items-center justify-between gap-3 border-t border-white/20 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-7">
+            <p className="text-xs font-semibold text-white/70">
               © {new Date().getFullYear()} {siteConfig.legalName}
             </p>
             <Link
               href="/contacto"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-brand-ink px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white"
+              className="rounded-full border-2 border-black bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-95"
             >
               Cotizar
             </Link>

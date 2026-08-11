@@ -11,9 +11,15 @@ type GalleryItem = {
 
 type GalleryCarouselProps = {
   items: readonly GalleryItem[];
+  eyebrow?: string;
+  title?: string;
 };
 
-export function GalleryCarousel({ items }: GalleryCarouselProps) {
+export function GalleryCarousel({
+  items,
+  eyebrow = "Momentos",
+  title = "Galería",
+}: GalleryCarouselProps) {
   const count = items.length;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -47,10 +53,10 @@ export function GalleryCarousel({ items }: GalleryCarouselProps) {
       <div className="mb-4 flex items-end justify-between gap-4 px-1 sm:mb-5">
         <div>
           <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.18em] text-brand-ink/55">
-            Momentos
+            {eyebrow}
           </p>
           <p className="mt-0.5 font-display text-2xl font-black leading-none text-brand-ink sm:text-3xl">
-            Galería
+            {title}
           </p>
         </div>
         <p className="tabular-nums text-sm font-extrabold text-brand-ink/70 sm:text-base">
