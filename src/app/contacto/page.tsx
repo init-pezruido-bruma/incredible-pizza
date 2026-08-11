@@ -110,7 +110,7 @@ export default function ContactoPage() {
                   <p
                     className={
                       channel.nowrap
-                        ? "mt-4 overflow-x-auto whitespace-nowrap font-display text-[clamp(0.9rem,2vw,1.15rem)] font-black leading-none tracking-tight"
+                        ? "mt-4 whitespace-nowrap font-display text-[clamp(0.85rem,1.9vw,1.15rem)] font-black leading-none tracking-tight"
                         : "mt-4 font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-black leading-[1.05]"
                     }
                   >
