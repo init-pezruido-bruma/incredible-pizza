@@ -128,41 +128,39 @@ export default function HomePage() {
           <HoursBanner />
         </div>
 
-        <div className="grid lg:grid-cols-2 lg:items-stretch">
-          <Reveal className="order-2 flex flex-col items-start justify-center space-y-6 bg-white px-5 pb-14 pt-10 sm:px-8 lg:order-1 lg:min-h-[36rem] lg:px-12 lg:pb-16 lg:pt-12 xl:px-16">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2b5899] sm:text-sm">
-                Celebra con nosotros tu
-              </p>
-              <h2 className="mt-2 font-display text-[clamp(3.25rem,9vw,5.75rem)] font-black leading-[0.9] text-[#2b5899]">
-                Fiesta
-                <br />
-                Increíble
-              </h2>
-            </div>
+        <Reveal className="flex flex-col items-start justify-center space-y-6 bg-white px-5 pb-10 pt-10 sm:px-8 sm:pb-12 lg:px-12 lg:pb-14 lg:pt-12 xl:px-16">
+          <div className="mx-auto w-full max-w-6xl">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2b5899] sm:text-sm">
+              Celebra con nosotros tu
+            </p>
+            <h2 className="mt-2 font-display text-[clamp(3.25rem,9vw,5.75rem)] font-black leading-[0.9] text-[#2b5899]">
+              Fiesta
+              <br />
+              Increíble
+            </h2>
             <Button
               asChild
               variant="outlineDark"
               size="xl"
-              className="h-auto w-fit self-start rounded-full border-2 border-black bg-white px-8 py-3.5 text-base font-extrabold uppercase tracking-wide text-black hover:bg-brand-ink hover:text-white sm:px-10 sm:py-4 sm:text-lg"
+              className="mt-6 h-auto w-fit rounded-full border-2 border-black bg-white px-8 py-3.5 text-base font-extrabold uppercase tracking-wide text-black hover:bg-brand-ink hover:text-white sm:px-10 sm:py-4 sm:text-lg"
             >
               <Link href="/fiestas">Envía tu solicitud</Link>
             </Button>
-          </Reveal>
-
-          <div className="relative order-1 z-10 -mt-[clamp(3.5rem,6vw,5.5rem)] min-h-[420px] overflow-hidden sm:min-h-[480px] lg:order-2 lg:min-h-[36rem] xl:min-h-[40rem]">
-            <HeroParallaxImage
-              src="/images/home/fiesta-increible.jpg"
-              alt="Niño disfrutando su fiesta en Incredible Pizza"
-              width={3592}
-              height={3516}
-              sizes="(max-width:1024px) 100vw, 50vw"
-              priority={false}
-              quality={90}
-              objectPosition="center 18%"
-              intensity={1.35}
-            />
           </div>
+        </Reveal>
+
+        <div className="relative z-10 -mt-[clamp(1.5rem,3vw,2.5rem)] min-h-[280px] w-full overflow-hidden sm:min-h-[380px] lg:min-h-[480px] xl:min-h-[560px]">
+          <HeroParallaxImage
+            src="/images/home/fiesta-increible.jpg"
+            alt="Niño disfrutando su fiesta en Incredible Pizza"
+            width={3592}
+            height={3516}
+            sizes="100vw"
+            priority={false}
+            quality={90}
+            objectPosition="center 22%"
+            intensity={1.35}
+          />
         </div>
       </section>
 

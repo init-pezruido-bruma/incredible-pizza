@@ -1,9 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PageHeading, PageSection } from "@/components/layout/page-section";
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { FullImage } from "@/components/ui/full-image";
-import { ValueCard } from "@/components/ui/section";
+import { Reveal } from "@/components/ui/reveal";
 
 export const metadata: Metadata = {
   title: "¿Quiénes somos?",
@@ -38,7 +38,7 @@ const missionItems = [
     title: "Influencia positiva",
     description: "Involucrarnos con los niños de nuestra comunidad.",
   },
-];
+] as const;
 
 const values = [
   { number: "01", title: "Hablar bonito", description: "Comunicarnos positivamente y con respeto mutuo." },
@@ -47,117 +47,128 @@ const values = [
   { number: "04", title: "El cambio nos emociona", description: "Tomar los cambios con espíritu de enseñanza." },
   { number: "05", title: "Verse y sentirse bien", description: "Atención, vestimenta e higiene personal." },
   { number: "06", title: "Honesto, leal y amigable", description: "Ser prácticos y amables en cada turno." },
-];
+] as const;
 
 export default function QuienesSomosPage() {
   return (
     <>
-      <section className="bg-gradient-to-b from-brand-orange to-brand-red py-10 text-white sm:py-14 lg:py-16">
-        <Container className="space-y-8 text-center">
- <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-black ">
+      <PageSection clearHeader className="bg-gradient-to-b from-brand-orange to-brand-red py-14 text-white sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="font-display text-[clamp(2.75rem,8vw,4.5rem)] font-black leading-[0.92]">
             ¿Quiénes somos?
           </h1>
-          <p className="mx-auto max-w-3xl text-base text-white/90 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
             El mejor centro de entretenimiento familiar de los Estados Unidos, ahora en México.
             America’s Incredible Pizza Company fue fundado en Springfield, Missouri en 2002.
           </p>
-          <Button asChild size="lg" variant="green" className="min-h-12 w-full sm:w-auto">
-            <Link href="/menu">Compra aquí</Link>
-          </Button>
-          <FullImage
+          <div className="mt-8">
+            <Button asChild size="lg" className="min-h-12 w-full border-2 border-black sm:w-auto">
+              <Link href="/menu">Compra aquí</Link>
+            </Button>
+          </div>
+        </div>
+        <Reveal className="relative mx-auto mt-12 aspect-[21/9] max-w-5xl overflow-hidden rounded-[1.5rem] shadow-xl sm:rounded-[1.75rem]">
+          <Image
             src="/images/about/monterrey-hero.jpg"
             alt="Monterrey es Increíble — mascota y auto clásico"
-            width={3840}
-            height={1295}
+            fill
             priority
             sizes="(max-width:1280px) 100vw, 1024px"
-            maxHeightClass="max-h-[200px] sm:max-h-[260px] lg:max-h-[300px]"
-            className="mx-auto max-w-5xl shadow-xl"
+            className="object-cover"
           />
-        </Container>
-      </section>
+        </Reveal>
+      </PageSection>
 
-      <section className="bg-gradient-to-br from-brand-yellow via-white to-brand-blue py-12 sm:py-16">
-        <Container className="grid items-center gap-8 lg:grid-cols-2">
- <h2 className="font-display text-[clamp(2rem,7vw,3rem)] font-black text-white drop-shadow">
+      <PageSection className="bg-gradient-to-r from-brand-yellow via-[#f5d84a] to-[#6ba3d4] py-14 sm:py-16">
+        <div className="grid items-center gap-8 lg:grid-cols-2">
+          <h2 className="font-display text-[clamp(2.25rem,6vw,3.5rem)] font-black leading-[0.95] text-white drop-shadow">
             Experiencias Increíbles
           </h2>
-          <p className="text-lg font-semibold text-brand-ink/85">
+          <p className="text-lg font-semibold leading-relaxed text-brand-ink/85">
             Familias y amigos vienen juntos a Incredible Pizza a disfrutar experiencias increíbles y
             crear recuerdos memorables, logrando que regresen una y otra vez.
           </p>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
-      <section className="bg-white py-12 sm:py-16">
-        <Container className="grid overflow-hidden rounded-[1.75rem] shadow-xl lg:grid-cols-2">
-          <div className="order-2 space-y-4 p-6 sm:p-8 lg:order-1 lg:p-10">
- <h2 className="font-display text-[clamp(1.35rem,4vw,1.875rem)] font-black text-brand-blue">
+      <PageSection className="bg-white py-14 sm:py-20">
+        <div className="grid overflow-hidden rounded-[1.75rem] bg-brand-cream/60 lg:grid-cols-2">
+          <div className="order-2 space-y-4 p-6 sm:p-10 lg:order-1">
+            <h2 className="font-display text-[clamp(1.5rem,4vw,2.25rem)] font-black leading-tight text-brand-blue">
               En America’s Incredible Pizza Company reunimos a las familias y amigos a través de la
               buena comida y gran diversión.
             </h2>
-            <p className="text-brand-ink/80">
+            <p className="text-base leading-relaxed text-brand-ink/80">
               Nuestro objetivo es ofrecer un sitio seguro, muy divertido y con una excelente propuesta
               de comida. Sabemos que la primera vez nos visitan por la novedad, pero las siguientes
               por la increíble experiencia.
             </p>
           </div>
-          <div className="order-1 lg:order-2">
-            <FullImage
+          <div className="relative order-1 aspect-[4/5] min-h-[240px] lg:order-2 lg:min-h-0">
+            <Image
               src="/images/about/buffet-interior.jpg"
               alt="Buffet de Incredible Pizza"
-              width={1622}
-              height={2116}
-              sizes="(max-width:1024px) 100vw, 480px"
-              maxHeightClass="max-h-[260px] sm:max-h-[340px]"
-              rounded="rounded-none"
+              fill
+              sizes="(max-width:1024px) 100vw, 50vw"
+              className="object-cover"
             />
           </div>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
-      <section className="bg-gradient-to-b from-brand-red to-brand-yellow py-12 text-white sm:py-16">
-        <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
- <h2 className="font-display text-[clamp(2rem,7vw,3rem)] font-black ">
+      <PageSection className="bg-gradient-to-b from-brand-red to-brand-orange py-14 text-white sm:py-20">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <h2 className="font-display text-[clamp(2.25rem,6vw,3.5rem)] font-black leading-[0.95]">
             Declaración de nuestra misión
           </h2>
-          <ol className="space-y-5">
+          <ol className="space-y-6">
             {missionItems.map((item) => (
-              <li key={item.number} className="grid grid-cols-[auto_1fr] gap-4">
-                <span className="font-display text-3xl font-black">{item.number}</span>
+              <li
+                key={item.number}
+                className="grid grid-cols-[auto_1fr] gap-4 border-b border-white/20 pb-6 last:border-0"
+              >
+                <span className="font-display text-3xl font-black text-brand-yellow">
+                  {item.number}
+                </span>
                 <div>
- <h3 className="font-display text-lg font-black ">{item.title}</h3>
-                  <p className="text-sm text-white/90">{item.description}</p>
+                  <h3 className="font-display text-xl font-black">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-white/90">{item.description}</p>
                 </div>
               </li>
             ))}
           </ol>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
-      <section className="bg-gradient-to-b from-brand-blue to-brand-red py-12 text-white sm:py-16">
-        <Container>
- <h2 className="mb-8 font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black ">
-            Valores familiares — nuestras metas son:
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((value) => (
-              <ValueCard key={value.number} {...value} />
-            ))}
-          </div>
-        </Container>
-      </section>
+      <PageSection className="bg-gradient-to-b from-[#2b5899] to-brand-red py-14 text-white sm:py-20">
+        <PageHeading title="Valores familiares" eyebrow="Nuestras metas son" className="mb-10" />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((value, i) => (
+            <Reveal
+              key={value.number}
+              delay={i * 40}
+              className="rounded-[1.35rem] bg-white p-5 text-brand-ink shadow-md"
+            >
+              <span className="inline-flex size-10 items-center justify-center rounded-full bg-brand-yellow text-sm font-black text-brand-ink">
+                {value.number}
+              </span>
+              <h3 className="mt-3 font-display text-xl font-black text-brand-blue">{value.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-brand-ink/75">{value.description}</p>
+            </Reveal>
+          ))}
+        </div>
+      </PageSection>
 
-      <section className="bg-gradient-to-r from-brand-red to-brand-orange py-12 text-white sm:py-14">
-        <Container className="flex flex-col items-center gap-5 text-center md:flex-row md:justify-between md:text-left">
- <h2 className="max-w-xl font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black md:-rotate-2">
+      <PageSection className="bg-gradient-to-r from-brand-red to-brand-orange py-14 text-white sm:py-16">
+        <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+          <h2 className="max-w-xl font-display text-[clamp(1.85rem,5vw,2.75rem)] font-black leading-[0.95] md:-rotate-2">
             Conoce a todos nuestros personajes y comedores
           </h2>
           <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">
             <Link href="/juegos">Ver más</Link>
           </Button>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
     </>
   );
 }

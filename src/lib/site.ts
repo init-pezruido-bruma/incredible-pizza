@@ -27,6 +27,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/",
     tiktok: "https://www.tiktok.com/",
   },
+  storeUrl: "https://tiendaenlinea.incrediblepizza.mx/app",
 } as const;
 
 /** Orden exacto del mockup de header */
@@ -34,7 +35,7 @@ export const navLinksLeft = [
   { href: "/fiestas", label: "Fiestas" },
   { href: "/juegos", label: "Juegos" },
   { href: "/eventos", label: "Eventos" },
-  { href: "/tienda", label: "Tienda en línea", comingSoon: true },
+  { href: siteConfig.storeUrl, label: "Tienda en línea", external: true },
 ] as const;
 
 export const navLinksRight = [

@@ -14,7 +14,6 @@ const pillGradient =
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const isHome = pathname === "/";
 
   useEffect(() => {
     setOpen(false);
@@ -30,25 +29,14 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "z-50 w-full",
-        isHome ? "absolute inset-x-0 top-0" : "sticky top-0",
-      )}
-    >
-      {/* Desktop */}
-      <div
-        className={cn(
-          "mx-auto hidden max-w-[1680px] px-4 sm:px-6 lg:block xl:px-8",
-          isHome ? "pt-16 lg:min-h-[200px] lg:pt-20" : "py-4 lg:min-h-[160px] lg:pt-6",
-          !isHome && "bg-gradient-to-r from-brand-yellow/90 via-brand-orange/90 to-brand-red/90 backdrop-blur-md",
-        )}
-      >
+    <header className="absolute inset-x-0 top-0 z-50 w-full">
+      {/* Desktop — mismo en todas las páginas */}
+      <div className="mx-auto hidden max-w-[1680px] px-4 pt-16 sm:px-6 lg:block lg:min-h-[200px] lg:pt-20 xl:px-8">
         <div className="relative mx-auto w-full">
           <div
             className={cn(
-              "grid h-[72px] w-full grid-cols-[1fr_auto_1fr] items-center rounded-full px-4 xl:h-[78px] xl:px-6",
-              isHome ? cn(pillGradient, "backdrop-blur-sm") : "bg-black/20",
+              "grid h-[72px] w-full grid-cols-[1fr_auto_1fr] items-center rounded-full px-4 backdrop-blur-sm xl:h-[78px] xl:px-6",
+              pillGradient,
             )}
           >
             <nav className="flex items-center justify-evenly gap-x-2 pr-4 text-[13px] font-extrabold uppercase tracking-[0.05em] text-white xl:gap-x-3 xl:pr-6 xl:text-[15px]">
@@ -58,6 +46,7 @@ export function SiteHeader() {
                   href={link.href}
                   label={link.label}
                   active={pathname === link.href}
+                  external={"external" in link && link.external}
                 />
               ))}
             </nav>
@@ -88,23 +77,14 @@ export function SiteHeader() {
               height={681}
               priority
               sizes="186px"
-              className={cn(
-                "h-auto w-auto object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.4)] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]",
-                isHome ? "max-h-[168px] xl:max-h-[186px]" : "max-h-[138px] xl:max-h-[150px]",
-              )}
+              className="h-auto max-h-[168px] w-auto object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.4)] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03] xl:max-h-[186px]"
             />
           </Link>
         </div>
       </div>
 
-      {/* Mobile bar */}
-      <div
-        className={cn(
-          "lg:hidden",
-          isHome ? "px-3 pt-5 sm:pt-6" : "bg-transparent px-3 py-3 sm:py-3.5",
-          !isHome && "bg-gradient-to-r from-brand-yellow/95 via-brand-orange/95 to-brand-red/95",
-        )}
-      >
+      {/* Mobile — mismo en todas las páginas */}
+      <div className="px-3 pt-5 sm:pt-6 lg:hidden">
         <div className={cn("relative flex items-center rounded-full px-2 py-1.5", pillGradient)}>
           <button
             type="button"
@@ -208,20 +188,36 @@ export function SiteHeader() {
                   Inicio
                 </Link>
               </li>
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-brand-ink transition active:text-brand-red",
-                      pathname === link.href && "text-brand-red",
+              {navLinks.map((link) => {
+                const external = "external" in link && link.external;
+                const className = cn(
+                  "block py-2.5 font-display text-[clamp(2rem,9vw,2.75rem)] font-black leading-[1.05] text-brand-ink transition active:text-brand-red",
+                  pathname === link.href && "text-brand-red",
+                );
+                return (
+                  <li key={link.href}>
+                    {external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setOpen(false)}
+                        className={className}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className={className}
+                      >
+                        {link.label}
+                      </Link>
                     )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="my-6 h-px bg-brand-ink/10" />
@@ -279,19 +275,28 @@ function NavItem({
   href,
   label,
   active,
+  external = false,
 }: {
   href: string;
   label: string;
   active: boolean;
+  external?: boolean;
 }) {
+  const className = cn(
+    "whitespace-nowrap px-1 text-center text-white transition-opacity hover:opacity-90",
+    active && "underline decoration-2 underline-offset-[8px]",
+  );
+
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={cn(
-        "whitespace-nowrap px-1 text-center text-white transition-opacity hover:opacity-90",
-        active && "underline decoration-2 underline-offset-[8px]",
-      )}
-    >
+    <Link href={href} className={className}>
       {label}
     </Link>
   );

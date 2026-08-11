@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/quienes-somos",
     "/promociones",
     "/contacto",
-    "/tienda",
     "/aviso-de-privacidad",
   ];
 

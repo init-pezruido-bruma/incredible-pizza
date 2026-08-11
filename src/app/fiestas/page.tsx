@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PageHero } from "@/components/layout/page-hero";
+import { PageHeading, PageSection } from "@/components/layout/page-section";
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { FullImage } from "@/components/ui/full-image";
-import { CircleFeature, PackageCard, SectionHeading } from "@/components/ui/section";
+import { Reveal } from "@/components/ui/reveal";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -14,123 +14,284 @@ export const metadata: Metadata = {
   alternates: { canonical: "/fiestas" },
 };
 
+const reasons = [
+  {
+    title: "Juegos ilimitados",
+    description: "Arcade, atracciones y diversión sin parar.",
+    image: "/images/fiestas/reason-laser.jpg",
+  },
+  {
+    title: "Buffet",
+    description: "Pizza y más para todos los invitados.",
+    image: "/images/menu/buffet.jpg",
+  },
+  {
+    title: "Escenografía incluida",
+    description: "Ambiente listo para celebrar.",
+    image: "/images/fiestas/party-room.jpg",
+  },
+  {
+    title: "Todo el año",
+    description: "Espacios climatizados, lluvia o sol.",
+    image: "/images/fiestas/reason-trampolines.jpg",
+  },
+] as const;
+
 const packages = [
   {
     name: "Fiesta Express",
     price: "$3,500",
     features: ["1 hr de juego + 1 atracción", "100 créditos (solo niños)", "Buffet incluido"],
+    badge: "bg-gradient-to-r from-[#d94a45] via-[#9a5a8a] to-[#55679c]",
+    priceClass: "text-[#3f6aad]",
+    mascot: null,
   },
   {
     name: 'Mini Fiesta "Riley"',
     price: "$7,999",
     features: ["2 hrs de juego + 1 atracción", "200 créditos", "Buffet, pastel e invitaciones"],
-    mascot: "/images/fiestas/mascot-riley.jpg",
+    badge: "bg-gradient-to-r from-[#f7d24a] to-[#e44f2f]",
+    priceClass: "text-[#e2453a]",
+    mascot: {
+      src: "/images/fiestas/mascots/riley.png",
+      alt: "Riley el mapache",
+      // Fuera del cuadro: pies abajo, cola pegada a la derecha
+      className:
+        "-right-16 bottom-0 w-[13.5rem] translate-y-[44%] sm:-right-18 sm:w-[15.1rem] lg:-right-22 lg:w-[16.2rem]",
+    },
   },
   {
     name: "Fiesta Rosie The Cat",
     price: "$11,999",
     features: ["3 hrs de juego + 3 atracciones", "300 créditos", "Buffet, pastel e invitaciones"],
+    badge: "bg-gradient-to-r from-[#f5d84a] to-[#54779f]",
+    priceClass: "text-[#3f6aad]",
+    mascot: {
+      src: "/images/fiestas/mascots/rosie.png",
+      alt: "Rosie The Cat",
+      className:
+        "-right-3 top-0 h-[10.35rem] w-[7.65rem] -translate-y-[62%] sm:-right-4 sm:h-[11.7rem] sm:w-[8.55rem]",
+    },
   },
   {
     name: "Fiesta Turbo Tiger",
     price: "$15,999",
     features: ["4 hrs + atracciones ilimitadas", "Créditos ilimitados", "Buffet, pastel e invitaciones"],
+    badge: "bg-gradient-to-r from-[#cd3c3c] via-[#8d5a8e] to-[#505e9a]",
+    priceClass: "text-[#e2453a]",
+    mascot: {
+      src: "/images/fiestas/mascots/tiger.png",
+      alt: "Turbo Tiger",
+      className:
+        "-right-3 top-0 h-[10.35rem] w-[7.65rem] -translate-y-[62%] sm:-right-4 sm:h-[11.7rem] sm:w-[8.55rem]",
+    },
   },
+] as const;
+
+const addons = [
+  "Charola botana",
+  "Charola frutas",
+  "Mesa botana",
+  "Bolsitas recuerdo",
+  "Charola dulces",
+  "Pastel",
 ];
 
 export default function FiestasPage() {
   return (
     <>
-      <section className="bg-gradient-to-b from-brand-orange to-brand-red py-10 text-white sm:py-14 lg:py-16">
-        <Container className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-          <div className="order-2 space-y-5 text-center lg:order-1 lg:text-left">
- <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-black leading-tight">
-              Tu fiesta increíble te espera
-            </h1>
-            <p className="mx-auto max-w-xl text-base text-white/90 sm:text-lg lg:mx-0">
-              Celebra en un espacio diseñado para que cada momento sea único e inolvidable,
-              todo el año, sin importar el clima.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-              <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">
-                <Link href="#cotizar">Cotizar mi fiesta</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="min-h-12 w-full sm:w-auto">
-                <a href="#paquetes">Ver paquetes</a>
-              </Button>
-            </div>
-          </div>
-          <div className="relative order-1 lg:order-2">
-            <FullImage
-              src="/images/fiestas/hero-party.jpg"
-              alt="Invitados celebrando en Incredible Pizza"
-              width={3840}
-              height={1295}
-              priority
-              sizes="(max-width:1024px) 100vw, 520px"
-              maxHeightClass="max-h-[200px] sm:max-h-[260px]"
-              className="shadow-xl"
-            />
-            <Image
-              src="/images/fiestas/hosting-circle.jpg"
-              alt="Staff preparando la mesa de fiesta"
-              width={978}
-              height={978}
-              sizes="144px"
-              className="absolute -bottom-5 left-2 size-24 rounded-full border-4 border-dashed border-black object-contain shadow-lg sm:-bottom-6 sm:size-36"
-            />
-          </div>
-        </Container>
+      <PageHero
+        align="center"
+        contentClassName="pt-48 sm:pt-56 lg:pt-64 xl:pt-72"
+        title={
+          <>
+            <span className="sm:hidden">
+              Tu fiesta increíble
+              <br />
+              te espera
+            </span>
+            <span className="hidden whitespace-nowrap sm:inline">Tu fiesta increíble te espera</span>
+          </>
+        }
+        description="Celebra en un espacio diseñado para que cada momento sea único e inolvidable, todo el año, sin importar el clima."
+      >
+        <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">
+          <Link href="#cotizar">Cotizar mi fiesta</Link>
+        </Button>
+        <Button
+          asChild
+          variant="outline"
+          size="lg"
+          className="min-h-12 w-full border-2 border-white text-white sm:w-auto"
+        >
+          <a href="#paquetes">Ver paquetes</a>
+        </Button>
+      </PageHero>
+
+      {/* Foto full-bleed entre el hero y “El mejor lugar para celebrar” */}
+      <section className="relative z-10 w-full overflow-visible bg-brand-ink">
+        <div className="relative min-h-[260px] w-full overflow-hidden sm:min-h-[360px] lg:min-h-[460px]">
+          <Image
+            src="/images/fiestas/hero-party.jpg"
+            alt="Invitados celebrando en Incredible Pizza"
+            width={3840}
+            height={1295}
+            sizes="100vw"
+            priority
+            className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+          />
+        </div>
+        <Image
+          src="/images/fiestas/hosting-circle.jpg"
+          alt="Staff preparando la mesa de fiesta"
+          width={978}
+          height={978}
+          sizes="180px"
+          className="absolute bottom-0 right-4 z-20 size-28 translate-y-1/3 rounded-full border-4 border-white object-cover shadow-lg sm:right-8 sm:size-40 lg:right-12 lg:size-44"
+        />
       </section>
 
-      <section className="bg-gradient-to-b from-brand-blue to-brand-purple py-12 text-white sm:py-16">
-        <Container>
-          <SectionHeading
-            title="El mejor lugar para celebrar"
-            eyebrow="4 razones para hacer tu fiesta con nosotros"
-            className="mb-10"
-          />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <CircleFeature
-              title="Juegos ilimitados"
-              description="Arcade, atracciones y diversión sin parar."
-              image="/images/fiestas/reason-laser.jpg"
-            />
-            <CircleFeature
-              title="Buffet"
-              description="Pizza y más para todos los invitados."
-              image="/images/menu/buffet.jpg"
-            />
-            <CircleFeature
-              title="Escenografía incluida"
-              description="Ambiente listo para celebrar."
-              image="/images/fiestas/party-room.jpg"
-            />
-            <CircleFeature
-              title="Todo el año"
-              description="Espacios climatizados, lluvia o sol."
-              image="/images/fiestas/reason-trampolines.jpg"
-            />
-          </div>
-        </Container>
-      </section>
+      <PageSection className="bg-gradient-to-b from-[#2b5899] via-[#3f508f] to-[#4a306d] py-14 text-white sm:py-20">
+        <PageHeading
+          title="El mejor lugar para celebrar"
+          eyebrow="4 razones para hacer tu fiesta con nosotros"
+          className="mb-14 sm:mb-16"
+        />
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+          {reasons.map((item, i) => (
+            <Reveal key={item.title} delay={i * 60} className="text-center">
+              <div className="mx-auto size-44 overflow-hidden rounded-full border-4 border-white/90 shadow-lg sm:size-52 lg:size-56">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={560}
+                  height={560}
+                  sizes="(max-width:1024px) 208px, 224px"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <h3 className="mt-5 font-display text-2xl font-black text-brand-yellow sm:text-3xl lg:text-[2rem]">
+                {item.title}
+              </h3>
+              <p className="mx-auto mt-3 max-w-[18ch] text-base leading-relaxed text-white/90 sm:max-w-none sm:text-lg">
+                {item.description}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+      </PageSection>
 
-      <section id="paquetes" className="bg-gradient-to-b from-brand-yellow to-brand-orange py-12 sm:py-16">
-        <Container>
-          <SectionHeading
-            tone="yellow"
-            title="Celebra con nosotros"
-            description="Todos incluyen buffet ilimitado, pastel, invitaciones y palomitas ilimitadas."
-            className="mb-12"
-          />
-          <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
-            {packages.map((pkg) => (
-              <PackageCard key={pkg.name} {...pkg} />
-            ))}
+      <PageSection
+        id="paquetes"
+        className="overflow-visible bg-gradient-to-b from-[#fad122] via-[#f19a27] to-[#e2452f] py-14 sm:py-20"
+        innerClassName="max-w-7xl overflow-visible"
+      >
+        <div className="mx-auto mb-12 max-w-4xl text-center sm:mb-16">
+          <h2 className="font-display text-[clamp(2.75rem,7vw,4.5rem)] font-black leading-[0.95] text-white drop-shadow-[0_2px_0_rgba(35,31,32,0.15)]">
+            Celebra con nosotros
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-sm font-extrabold uppercase leading-relaxed tracking-[0.06em] text-white sm:text-base md:text-lg">
+            Todos incluyen buffet ilimitado, pastel, invitaciones
+            <br />
+            y palomitas ilimitadas.
+          </p>
+        </div>
+
+        <div className="grid items-stretch gap-10 pt-16 pb-28 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-28 sm:pt-20 sm:pb-36 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-24">
+          {packages.map((pkg, i) => (
+            <Reveal key={pkg.name} delay={i * 50} className="relative overflow-visible">
+              {/* Cuadro blanco */}
+              <div className="relative z-0 flex aspect-square w-full flex-col rounded-2xl bg-white px-5 py-5 shadow-[0_16px_36px_rgba(35,31,32,0.28)] ring-1 ring-black/5 sm:px-6 sm:py-6">
+                <span
+                  className={`inline-flex w-fit rounded-full px-3 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.12em] text-white sm:text-xs ${pkg.badge}`}
+                >
+                  Agenda tu fiesta
+                </span>
+                <h3 className="mt-3 font-display text-[1.45rem] font-black leading-[1.05] text-brand-ink sm:text-[1.65rem]">
+                  {pkg.name}
+                </h3>
+                <p
+                  className={`mt-2 text-[1.85rem] font-black leading-none tabular-nums sm:text-[2.15rem] ${pkg.priceClass}`}
+                >
+                  {pkg.price}{" "}
+                  <span className="text-[0.55em] font-extrabold uppercase tracking-wide">Total</span>
+                </p>
+                <ul className="mt-4 flex-1 space-y-0 text-sm leading-snug text-brand-ink/75 sm:text-[0.95rem]">
+                  {pkg.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-2 border-b border-brand-ink/10 py-2.5 last:border-0"
+                    >
+                      <span className="mt-0.5 shrink-0 font-bold text-brand-red" aria-hidden>
+                        ✓
+                      </span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Mascota fuera del cuadro (hermana del blanco, no hija) */}
+              {pkg.mascot ? (
+                <div
+                  className={`pointer-events-none absolute z-20 ${pkg.mascot.className}`}
+                  aria-hidden
+                >
+                  <Image
+                    src={pkg.mascot.src}
+                    alt={pkg.mascot.alt}
+                    width={480}
+                    height={480}
+                    sizes="240px"
+                    className={
+                      pkg.mascot.className.includes("h-[")
+                        ? "h-full w-full object-contain object-right object-bottom drop-shadow-[0_10px_18px_rgba(0,0,0,0.28)]"
+                        : "h-auto w-full object-contain object-right drop-shadow-[0_10px_18px_rgba(0,0,0,0.28)]"
+                    }
+                  />
+                </div>
+              ) : null}
+            </Reveal>
+          ))}
+        </div>
+
+        <div
+          id="cotizar"
+          className="mt-14 grid gap-6 sm:mt-16 md:grid-cols-3 md:items-end"
+        >
+          <div className="space-y-2 text-center md:text-left">
+            <a
+              href={`tel:${siteConfig.phoneTel}`}
+              className="block text-lg font-extrabold text-white drop-shadow transition hover:text-brand-yellow sm:text-xl"
+            >
+              {siteConfig.phone}
+            </a>
+            <a
+              href={`https://wa.me/${siteConfig.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 text-base font-bold text-white/95 transition hover:text-brand-yellow sm:text-lg md:justify-start"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden
+                className="size-5 shrink-0 text-[#25d366] sm:size-6"
+              >
+                <path
+                  fill="currentColor"
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+                />
+              </svg>
+              <span>{siteConfig.whatsappDisplay}</span>
+            </a>
           </div>
-          <div id="cotizar" className="mt-12 flex flex-col items-center gap-4 text-center">
-            <p className="font-bold text-brand-ink">Agenda al {siteConfig.phone}</p>
-            <Button asChild size="xl" variant="secondary" className="min-h-12 w-full sm:w-auto">
+          <div className="flex justify-center">
+            <Button
+              asChild
+              size="xl"
+              variant="secondary"
+              className="min-h-14 w-full border-2 border-brand-ink bg-white px-10 text-base text-brand-ink shadow-[0_6px_0_0_#fad122] sm:w-auto"
+            >
               <a
                 href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hola, quiero cotizar una fiesta")}`}
                 target="_blank"
@@ -140,55 +301,60 @@ export default function FiestasPage() {
               </a>
             </Button>
           </div>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
-      <section className="bg-white py-12 sm:py-16">
-        <Container className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
-          <FullImage
-            src="/images/fiestas/party-table.jpg"
-            alt="Mesa de fiesta con pizza y cupcakes"
-            width={1622}
-            height={1767}
-            sizes="(max-width:1024px) 100vw, 480px"
-            maxHeightClass="max-h-[240px] sm:max-h-[320px]"
-            className="shadow-lg"
-          />
-          <div>
- <h2 className="font-display text-[clamp(1.75rem,6vw,2.5rem)] font-black text-brand-blue">
+      <section className="relative border-t-[3px] border-[#e13e30] bg-white">
+        <div className="grid lg:grid-cols-2">
+          <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-[520px]">
+            <Image
+              src="/images/fiestas/party-table.jpg"
+              alt="Mesa de fiesta con pizza y cupcakes"
+              fill
+              sizes="(max-width:1024px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
+          </div>
+          <div className="flex flex-col justify-center px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+            <h2 className="max-w-[14ch] font-display text-[clamp(2.75rem,6.5vw,4.75rem)] font-black leading-[0.92] text-[#3f6eab] sm:-rotate-1">
               Haz tu fiesta aún más especial
             </h2>
-            <p className="mt-2 text-sm font-extrabold uppercase tracking-wide text-brand-orange">
+            <p className="mt-5 text-sm font-extrabold uppercase tracking-[0.12em] text-[#3f6eab] sm:text-base">
               Agrega charolas, pasteles, dulces y más
             </p>
-            <ul className="mt-6 grid gap-2 text-sm text-brand-ink/80 sm:grid-cols-2">
-              {[
-                "Charola botana",
-                "Charola frutas",
-                "Mesa botana",
-                "Bebidas recuerdo",
-                "Pastel personalizado",
-                "Dulces y confeti",
-              ].map((item) => (
-                <li key={item} className="rounded-full bg-brand-cream px-4 py-2.5 font-semibold">
+            <ul className="mt-10 grid max-w-lg grid-cols-2 gap-x-8 gap-y-0 text-sm font-bold text-brand-ink sm:text-base">
+              {addons.map((item) => (
+                <li key={item} className="border-b border-brand-ink/15 py-3.5">
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-        </Container>
+        </div>
+        <div
+          className="h-2.5 w-full bg-gradient-to-r from-[#e6cd31] via-[#9aa06a] to-[#456ea8] sm:h-3"
+          aria-hidden
+        />
       </section>
 
-      <section className="bg-gradient-to-r from-emerald-500 via-brand-blue to-brand-orange py-12 text-white sm:py-14">
-        <Container className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
- <h2 className="font-display text-[clamp(2rem,8vw,3rem)] font-black md:-rotate-2">
+      <PageSection
+        className="bg-gradient-to-r from-[#eacf2e] via-[#989f6b] to-[#456ea8] py-14 text-white sm:py-16"
+        innerClassName="max-w-6xl"
+      >
+        <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center md:gap-14">
+          <h2 className="max-w-[10ch] -translate-y-3 font-display text-[clamp(2.75rem,7vw,4.5rem)] font-black leading-[0.95] -rotate-6 drop-shadow-[0_2px_0_rgba(35,31,32,0.12)] sm:-translate-y-5 sm:-rotate-[10deg]">
             ¿Listo para reservar?
           </h2>
-          <div className="w-full max-w-md space-y-4 md:w-auto">
-            <p className="font-extrabold uppercase tracking-wide">
+          <div className="w-full max-w-md space-y-5 md:w-auto">
+            <p className="text-sm font-extrabold uppercase tracking-[0.08em] sm:text-base">
               Escríbenos y te damos tu cotización en minutos
             </p>
-            <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className="min-h-12 w-full border-2 border-brand-ink bg-white px-8 text-brand-ink shadow-[0_0_0_3px_#eacf2e] sm:w-auto"
+            >
               <a
                 href={`https://wa.me/${siteConfig.whatsapp}`}
                 target="_blank"
@@ -198,8 +364,8 @@ export default function FiestasPage() {
               </a>
             </Button>
           </div>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
     </>
   );
 }
