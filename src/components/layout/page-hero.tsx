@@ -98,13 +98,13 @@ export function PageHero({
       )}
     >
       {eyebrow ? (
-        <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-brand-yellow sm:text-sm">
+        <p className="hero-copy-in text-xs font-extrabold uppercase tracking-[0.2em] text-brand-yellow sm:text-sm">
           {eyebrow}
         </p>
       ) : null}
       <h1
         className={cn(
-          "font-display font-black leading-[0.95]",
+          "hero-copy-in hero-copy-in-delay-1 font-display font-black leading-[0.95]",
           centered
             ? "text-[clamp(2.5rem,7.5vw,5.5rem)]"
             : "text-[clamp(2.5rem,7vw,4rem)]",
@@ -115,7 +115,7 @@ export function PageHero({
       {description ? (
         <p
           className={cn(
-            "max-w-xl text-base leading-relaxed text-white/90 sm:text-lg",
+            "hero-copy-in hero-copy-in-delay-2 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg",
             (centered || imageLayout === "split") && "mx-auto",
             image && imageLayout === "split" && "lg:mx-0",
           )}
@@ -126,7 +126,7 @@ export function PageHero({
       {children ? (
         <div
           className={cn(
-            "flex flex-col gap-3 sm:flex-row sm:flex-wrap",
+            "hero-copy-in hero-copy-in-delay-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap",
             centered && "items-center justify-center sm:justify-center",
             image && imageLayout === "split" && "sm:justify-center lg:justify-start",
           )}
