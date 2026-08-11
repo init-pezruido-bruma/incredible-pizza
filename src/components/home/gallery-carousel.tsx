@@ -13,12 +13,15 @@ type GalleryCarouselProps = {
   items: readonly GalleryItem[];
   eyebrow?: string;
   title?: string;
+  /** When false, only the carousel stage renders (no eyebrow/title row). */
+  showHeader?: boolean;
 };
 
 export function GalleryCarousel({
   items,
   eyebrow = "Momentos",
   title = "Galería",
+  showHeader = true,
 }: GalleryCarouselProps) {
   const count = items.length;
   const [active, setActive] = useState(0);
@@ -50,15 +53,22 @@ export function GalleryCarousel({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="mb-4 flex items-end justify-between gap-4 px-1 sm:mb-5">
-        <div>
-          <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.18em] text-brand-ink/55">
-            {eyebrow}
-          </p>
-          <p className="mt-0.5 font-display text-2xl font-black leading-none text-brand-ink sm:text-3xl">
-            {title}
-          </p>
-        </div>
+      <div
+        className={cn(
+          "mb-4 flex items-end gap-4 px-1 sm:mb-5",
+          showHeader ? "justify-between" : "justify-end",
+        )}
+      >
+        {showHeader ? (
+          <div>
+            <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.18em] text-brand-ink/55">
+              {eyebrow}
+            </p>
+            <p className="mt-0.5 font-display text-2xl font-black leading-none text-brand-ink sm:text-3xl">
+              {title}
+            </p>
+          </div>
+        ) : null}
         <p className="tabular-nums text-sm font-extrabold text-brand-ink/70 sm:text-base">
           <span className="text-brand-red">{String(active + 1).padStart(2, "0")}</span>
           <span className="mx-1.5 text-brand-ink/30">/</span>

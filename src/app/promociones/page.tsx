@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PageHeading, PageSection } from "@/components/layout/page-section";
+import { GalleryCarousel } from "@/components/home/gallery-carousel";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -14,64 +13,82 @@ export const metadata: Metadata = {
 const promos = [
   {
     src: "/images/eventos/promo-grupos.jpg",
-    alt: "Promoción grupos",
-    title: "Reserva tu evento",
+    alt: "Promoción reserva tu evento",
   },
   {
     src: "/images/eventos/promo-escolares.jpg",
-    alt: "Promoción escolares",
-    title: "Paquetes escolares",
+    alt: "Promoción paquetes escolares",
   },
   {
     src: "/images/eventos/promo-recarga.jpg",
-    alt: "Promoción recarga",
-    title: "Recarga y gana",
+    alt: "Promoción recarga y gana",
   },
 ] as const;
 
 export default function PromocionesPage() {
   return (
     <>
-      <PageSection clearHeader className="bg-gradient-to-b from-[#fff8e0] via-brand-yellow to-brand-orange py-14 sm:py-20">
-        <PageHeading
-          tone="ink"
-          title="Promociones del mes"
-          description="Ofertas para grupos, escuelas y recargas. Pregunta en sucursal o cotiza tu evento."
-          className="mb-12"
-        />
-        <div className="grid gap-6 md:grid-cols-3">
-          {promos.map((promo, i) => (
-            <Reveal key={promo.src} delay={i * 70} className="group">
-              <div className="relative aspect-square overflow-hidden rounded-[1.5rem] shadow-lg">
-                <Image
-                  src={promo.src}
-                  alt={promo.alt}
-                  fill
-                  sizes="(max-width:768px) 100vw, 33vw"
-                  className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                  priority={i === 0}
-                />
-              </div>
-              <h2 className="mt-4 text-center font-display text-2xl font-black text-brand-ink">
-                {promo.title}
-              </h2>
-            </Reveal>
-          ))}
+      <section className="bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#f5d84a] pb-12 pt-44 sm:pb-14 sm:pt-52 lg:pb-16 lg:pt-60">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
+          <Reveal>
+            <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.18em] text-brand-ink/55">
+              Este mes
+            </p>
+            <h1 className="hero-copy-in mt-1 font-display text-[clamp(2.75rem,8vw,4.75rem)] font-black leading-[0.92] text-brand-ink">
+              Promociones
+              <br className="sm:hidden" /> del mes
+            </h1>
+            <p className="hero-copy-in hero-copy-in-delay-1 mt-3 max-w-xl text-base font-medium leading-relaxed text-brand-ink/75 sm:text-lg">
+              Ofertas para grupos, escuelas y recargas. Pregunta en sucursal o cotiza tu evento.
+            </p>
+          </Reveal>
+
+          <Reveal delay={80} className="mt-8 sm:mt-10">
+            <GalleryCarousel items={promos} showHeader={false} />
+          </Reveal>
+
+          <Reveal delay={120} className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row">
+            <Button
+              asChild
+              variant="secondary"
+              size="lg"
+              className="min-h-12 w-full border-2 border-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:w-auto"
+            >
+              <Link href="/eventos#cotizar">Cotizar evento</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outlineDark"
+              size="lg"
+              className="min-h-12 w-full border-2 border-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:w-auto"
+            >
+              <Link href="/fiestas">Ver fiestas</Link>
+            </Button>
+          </Reveal>
         </div>
-        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">
-            <Link href="/eventos#cotizar">Cotizar evento</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outlineDark"
-            size="lg"
-            className="min-h-12 w-full border-2 sm:w-auto"
-          >
-            <Link href="/fiestas">Ver fiestas</Link>
-          </Button>
+      </section>
+
+      <section className="bg-gradient-to-b from-brand-red via-[#e85a2a] to-brand-orange py-12 text-white sm:py-16">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+          <Reveal>
+            <h2 className="font-display text-[clamp(1.85rem,4.5vw,2.75rem)] font-black leading-[0.95]">
+              ¿Listo para tu próximo evento?
+            </h2>
+            <p className="mt-2 text-sm font-extrabold uppercase tracking-wide text-white/90 sm:text-base">
+              Nosotros nos encargamos
+            </p>
+          </Reveal>
+          <Reveal delay={60}>
+            <Button
+              asChild
+              size="lg"
+              className="min-h-12 rounded-full border-2 border-black bg-white px-8 text-sm font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white sm:min-h-14 sm:px-10 sm:text-base"
+            >
+              <Link href="/eventos#cotizar">Cotizar mi evento</Link>
+            </Button>
+          </Reveal>
         </div>
-      </PageSection>
+      </section>
     </>
   );
 }
