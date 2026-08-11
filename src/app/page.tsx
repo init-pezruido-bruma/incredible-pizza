@@ -89,31 +89,34 @@ export default function HomePage() {
             <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-black/50 to-transparent lg:block" />
           </div>
 
-          <div className="relative z-10 flex min-h-[36rem] flex-col justify-end bg-transparent px-6 pb-14 pt-20 sm:min-h-[40rem] sm:px-10 sm:pb-16 sm:pt-24 lg:min-h-[48rem] lg:justify-center lg:bg-gradient-to-b lg:from-[#6a3f5c] lg:via-[#3f508f] lg:to-[#2b5899] lg:px-12 lg:py-24 xl:min-h-[53rem] xl:px-16">
-            <div className="mx-auto w-full max-w-lg lg:mx-0">
-              <p className="hero-copy-in text-xs font-bold uppercase tracking-[0.22em] text-white sm:text-sm">
+          <div className="relative z-10 flex min-h-[36rem] flex-col items-center justify-center bg-transparent px-6 pb-14 pt-28 sm:min-h-[40rem] sm:px-10 sm:pb-16 sm:pt-32 lg:min-h-[48rem] lg:bg-gradient-to-b lg:from-[#6a3f5c] lg:via-[#3f508f] lg:to-[#2b5899] lg:px-12 lg:pb-20 lg:pt-[13.5rem] xl:min-h-[53rem] xl:px-16 xl:pt-[14.5rem]">
+            <div className="w-full max-w-xl lg:max-w-2xl">
+              <p className="hero-copy-in text-xs font-extrabold uppercase tracking-[0.2em] text-white sm:text-sm">
                 Conoce nuestros
               </p>
-              <h1 className="hero-copy-in hero-copy-in-delay-1 mt-2 font-display text-[clamp(2.75rem,7vw,4.15rem)] font-black leading-[0.9] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
-                Juegos
-                <br />
-                Increíbles
+              <h1 className="hero-copy-in hero-copy-in-delay-1 mt-2 whitespace-nowrap font-display text-[clamp(2.85rem,11vw,6.75rem)] font-black leading-[0.9] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
+                Juegos Increíbles
               </h1>
-              <p className="hero-copy-in hero-copy-in-delay-2 mt-5 max-w-[38ch] text-base leading-relaxed text-white/95 sm:text-lg">
+              <p className="hero-copy-in hero-copy-in-delay-2 mt-5 max-w-[36ch] text-base leading-relaxed text-white sm:text-lg">
                 Demuestra tu destreza con nuestros juegos, con los que podrás obtener montones de
                 tickets electrónicos. Lo mejor es que puedes cambiar tus tickets por grandiosos
                 premios en nuestro mostrador de redención.
               </p>
-              <div className="hero-copy-in hero-copy-in-delay-3 mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="hero-copy-in hero-copy-in-delay-3 mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Button
                   asChild
-                  variant="outline"
+                  variant="secondary"
                   size="lg"
-                  className="min-h-12 w-full border-2 border-white px-8 text-base text-white sm:w-auto"
+                  className="min-h-12 w-full border-2 border-black px-8 text-base text-black sm:w-auto"
                 >
                   <Link href="/juegos">Ver más</Link>
                 </Button>
-                <Button asChild size="lg" className="min-h-12 w-full border-2 border-black px-8 text-base sm:w-auto">
+                <Button
+                  asChild
+                  variant="primary"
+                  size="lg"
+                  className="min-h-12 w-full border-2 border-black px-8 text-base text-black sm:w-auto"
+                >
                   <Link href="/menu">Compra aquí</Link>
                 </Button>
               </div>
@@ -144,25 +147,27 @@ export default function HomePage() {
               asChild
               variant="outlineDark"
               size="xl"
-              className="h-auto w-fit rounded-full border-2 border-black bg-white px-8 py-3.5 text-base font-extrabold uppercase tracking-wide text-black hover:bg-brand-ink hover:text-white sm:px-10 sm:py-4 sm:text-lg"
+              className="h-auto w-fit rounded-full border-2 border-black bg-white px-8 py-3.5 text-base font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-brand-ink hover:text-white sm:px-10 sm:py-4 sm:text-lg"
             >
               <Link href="/fiestas">Envía tu solicitud</Link>
             </Button>
           </Reveal>
 
-          <div className="relative order-1 z-10 -mt-[clamp(1.5rem,3vw,2.5rem)] min-h-[280px] overflow-hidden sm:min-h-[380px] lg:order-2 lg:-mt-[clamp(3.5rem,6vw,5.5rem)] lg:min-h-[36rem] xl:min-h-[40rem]">
-            <HeroParallaxImage
-              src="/images/home/fiesta-increible.jpg"
-              alt="Niño disfrutando su fiesta en Incredible Pizza"
-              width={3592}
-              height={3516}
-              sizes="(max-width:1024px) 100vw, 50vw"
-              priority={false}
-              quality={90}
-              objectPosition="center 22%"
-              intensity={1.35}
-            />
-          </div>
+          <Reveal className="relative order-1 z-10 -mt-[clamp(3.75rem,7vw,5.5rem)] min-h-[340px] overflow-hidden sm:min-h-[420px] lg:order-2 lg:-mt-[clamp(3.5rem,6vw,5.5rem)] lg:min-h-[36rem] xl:min-h-[40rem]">
+            <div className="group absolute inset-0">
+              <HeroParallaxImage
+                src="/images/home/fiesta-increible.jpg"
+                alt="Niño disfrutando su fiesta en Incredible Pizza"
+                width={3592}
+                height={3516}
+                sizes="(max-width:1024px) 100vw, 50vw"
+                priority={false}
+                quality={90}
+                objectPosition="center 22%"
+                intensity={1.35}
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -170,7 +175,7 @@ export default function HomePage() {
       <section className="bg-brand-red py-12 sm:py-14">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-7 lg:px-10">
           {services.map((item, i) => (
-            <Reveal key={item.title} as="article" delay={i * 80} className="flex flex-col">
+            <Reveal key={item.title} as="article" delay={i * 90} className="group flex flex-col">
               <div className="hover-lift relative aspect-square w-full overflow-hidden rounded-3xl bg-brand-red">
                 <Image
                   src={item.image}
@@ -179,7 +184,7 @@ export default function HomePage() {
                   height={item.height}
                   sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 360px"
                   quality={90}
-                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  className="img-zoom absolute inset-0 h-full w-full object-cover object-center"
                 />
               </div>
               <h3 className="mt-4 font-display text-[clamp(1.5rem,3.2vw,1.85rem)] font-black text-brand-yellow">
@@ -190,7 +195,7 @@ export default function HomePage() {
                 asChild
                 variant="secondary"
                 size="default"
-                className="mt-4 min-h-10 w-full border-2 border-white bg-white px-6 text-brand-ink hover:bg-white/90 sm:w-fit"
+                className="mt-4 min-h-10 w-full border-2 border-white bg-white px-6 text-brand-ink transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white/90 sm:w-fit"
               >
                 <Link href={item.href}>Ver más</Link>
               </Button>
@@ -202,16 +207,18 @@ export default function HomePage() {
       {/* 5. Rápido y Furioso */}
       <section className="relative overflow-hidden bg-black text-white">
         <div className="relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px]">
-          <Image
-            src="/images/home/rapido-y-furioso.jpg"
-            alt="Madre e hijo en go-kart Rápido y Furioso"
-            width={3840}
-            height={1680}
-            sizes="100vw"
-            quality={90}
-            priority={false}
-            className="absolute inset-0 h-full w-full object-cover object-[center_28%]"
-          />
+          <div className="group absolute inset-0">
+            <Image
+              src="/images/home/rapido-y-furioso.jpg"
+              alt="Madre e hijo en go-kart Rápido y Furioso"
+              width={3840}
+              height={1680}
+              sizes="100vw"
+              quality={90}
+              priority={false}
+              className="img-zoom absolute inset-0 h-full w-full object-cover object-[center_28%]"
+            />
+          </div>
           {/* Oscurece solo la zona del copy; la foto del kart queda limpia */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent lg:via-black/30" />
           <div className="relative mx-auto flex min-h-[320px] max-w-6xl items-center px-5 py-10 sm:min-h-[400px] sm:px-8 lg:min-h-[480px] lg:px-10">
@@ -230,7 +237,7 @@ export default function HomePage() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="min-h-11 w-full border-2 border-white px-8 text-white sm:w-auto"
+                className="min-h-11 w-full border-2 border-white px-8 text-white transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:w-auto"
               >
                 <Link href="/juegos">Ver más</Link>
               </Button>
@@ -242,7 +249,7 @@ export default function HomePage() {
       {/* 6. Galería — carrusel con foco central + puntitos */}
       <section className="bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#f5d84a] pt-16 pb-10 sm:pt-20 sm:pb-12 lg:pt-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
-          <Reveal>
+          <Reveal delay={60}>
             <GalleryCarousel items={gallery} />
           </Reveal>
         </div>
@@ -280,7 +287,7 @@ export default function HomePage() {
                     asChild
                     variant="secondary"
                     size="lg"
-                    className="min-h-12 bg-white px-8 text-base shadow-md"
+                    className="min-h-12 bg-white px-8 text-base shadow-md transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1"
                   >
                     <Link href="/contacto">Envía tu solicitud</Link>
                   </Button>
@@ -293,7 +300,7 @@ export default function HomePage() {
                 width={1024}
                 height={1002}
                 sizes="(max-width:640px) 120px, 320px"
-                className="absolute -left-6 -bottom-4 z-20 w-[7.25rem] drop-shadow-lg sm:-left-24 sm:-bottom-8 sm:w-[15.7rem] md:-left-32 md:w-[20.2rem]"
+                className="float-soft absolute -left-6 -bottom-4 z-20 w-[7.25rem] drop-shadow-lg sm:-left-24 sm:-bottom-8 sm:w-[15.7rem] md:-left-32 md:w-[20.2rem]"
               />
               <Image
                 src="/images/home/staff-checkered-solid.png"
@@ -301,7 +308,8 @@ export default function HomePage() {
                 width={1024}
                 height={1024}
                 sizes="(max-width:640px) 120px, 320px"
-                className="absolute -right-6 -top-5 z-20 w-[7.25rem] drop-shadow-lg sm:-right-24 sm:-top-10 sm:w-[15.7rem] md:-right-32 md:w-[20.2rem]"
+                className="float-soft absolute -right-6 -top-5 z-20 w-[7.25rem] drop-shadow-lg sm:-right-24 sm:-top-10 sm:w-[15.7rem] md:-right-32 md:w-[20.2rem]"
+                style={{ animationDelay: "1.2s" }}
               />
             </div>
           </Reveal>
