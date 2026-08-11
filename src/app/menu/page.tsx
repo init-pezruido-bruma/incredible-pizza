@@ -96,7 +96,7 @@ const sidesRight = [
 
 const drinks = [
   {
-    name: "Coca Cola, Fanta, Joyya de manzana 500 ml.",
+    name: "Coca Cola, Fanta, Joya de manzana 500 ml.",
     price: "$30 c/u",
   },
   {
@@ -197,18 +197,18 @@ export default function MenuPage() {
       <section className="relative overflow-x-clip bg-gradient-to-b from-brand-blue to-brand-red text-white">
         <div className="mx-auto max-w-6xl px-5 pb-8 pt-14 sm:px-8 sm:pb-10 sm:pt-16 lg:px-10 lg:pt-20">
           <Reveal>
-            {/* Cinta del ancho de “De todo un” (desde De hasta un) */}
-            <div className="inline-grid max-w-full grid-cols-[auto_auto] items-start">
-              <h2 className="contents font-display text-[clamp(5.5rem,16vw,9rem)] font-black leading-[0.9] drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)]">
-                <span className="col-start-1 row-start-1 whitespace-nowrap">
+            {/* Móvil: wrap natural; sm+: cinta al ancho de “De todo un” */}
+            <div className="w-full max-w-full sm:inline-grid sm:w-auto sm:grid-cols-[auto_auto] sm:items-start">
+              <h2 className="max-w-full text-left font-display text-[clamp(3.25rem,14vw,9rem)] font-black leading-[0.92] drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)] sm:contents sm:text-[clamp(5.5rem,16vw,9rem)] sm:leading-[0.9]">
+                <span className="sm:col-start-1 sm:row-start-1 sm:whitespace-nowrap">
                   De todo un
-                </span>
-                <span className="col-start-2 row-start-1 whitespace-nowrap">
-                  {"\u00a0"}poco
+                </span>{" "}
+                <span className="sm:col-start-2 sm:row-start-1 sm:whitespace-nowrap">
+                  poco
                 </span>
               </h2>
               <div
-                className="col-start-1 row-start-2 mt-4 w-full bg-gradient-to-r from-brand-red to-brand-yellow px-5 py-2.5 shadow-[0_8px_18px_rgba(0,0,0,0.22)] sm:mt-5 sm:px-6 sm:py-3"
+                className="mt-4 w-full max-w-md bg-gradient-to-r from-brand-red to-brand-yellow px-5 py-2.5 shadow-[0_8px_18px_rgba(0,0,0,0.22)] sm:col-start-1 sm:row-start-2 sm:mt-5 sm:max-w-none sm:px-6 sm:py-3"
                 style={{
                   /* Izq. -135°, der. -100° */
                   clipPath:
@@ -295,8 +295,8 @@ export default function MenuPage() {
           </div>
         </div>
 
-        {/* Refrescos — fondo en ángulo; botella grande mitad fuera a la derecha */}
-        <div className="relative mt-6 min-h-[24rem] w-full overflow-hidden sm:mt-8 sm:min-h-[30rem] lg:min-h-[36rem]">
+        {/* Refrescos — móvil: coca arriba + lista abajo; desktop: overlay a la derecha */}
+        <div className="relative mt-6 w-full overflow-hidden sm:mt-8 sm:min-h-[30rem] lg:min-h-[36rem]">
           <div
             aria-hidden
             className="absolute inset-0"
@@ -307,12 +307,47 @@ export default function MenuPage() {
             }}
           />
 
-          <div className="relative z-10 mx-auto max-w-6xl px-5 pb-10 pt-[clamp(8.5rem,20vw,14rem)] sm:px-8 lg:px-10 lg:pb-14">
+          {/* Móvil: Refrescos arriba de la coca, ambos -20° juntos; lista abajo */}
+          <div className="relative z-10 mx-auto flex max-w-6xl flex-col px-5 pb-10 pt-[clamp(2.75rem,8vw,4.5rem)] sm:hidden">
+            <Reveal className="mx-auto flex w-[min(22rem,88%)] flex-col items-center">
+              <h2 className="relative z-10 mb-1 translate-y-24 rotate-[27deg] font-display text-[clamp(3.5rem,15vw,5rem)] font-black leading-[0.9] text-white drop-shadow-[0_3px_0_rgba(35,31,32,0.22)]">
+                Refrescos
+              </h2>
+              <img
+                src="/images/menu/coca-cola-bottle.png"
+                alt="Botella de Coca-Cola"
+                width={1421}
+                height={1147}
+                className="h-auto w-full select-none"
+                draggable={false}
+              />
+            </Reveal>
+            <Reveal delay={60} className="mt-3">
+              <ul className="space-y-5">
+                {drinks.map((drink, i) => (
+                  <li
+                    key={drink.name}
+                    className={`flex items-baseline justify-between gap-4 border-b border-white/25 ${i === 0 ? "pb-1.5 pt-0" : "pb-3.5"}`}
+                  >
+                    <p className="text-sm font-extrabold uppercase leading-snug tracking-wide text-white">
+                      {drink.name}
+                    </p>
+                    <span className="shrink-0 text-base font-black uppercase tabular-nums text-white">
+                      {drink.price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+
+          {/* Desktop: lista + coca con título sobre la botella (sin cambios de móvil) */}
+          <div className="relative z-10 mx-auto hidden max-w-6xl px-5 pb-10 pt-[clamp(8.5rem,20vw,14rem)] sm:block sm:px-8 lg:px-10 lg:pb-14">
             <Reveal className="relative z-20 max-w-xl pt-6 sm:pt-8">
               <ul className="space-y-5">
                 {drinks.map((drink) => (
                   <li
-                    key={drink.name}
+                    key={`desk-${drink.name}`}
                     className="flex items-baseline justify-between gap-4 border-b border-white/25 pb-3.5"
                   >
                     <p className="text-sm font-extrabold uppercase leading-snug tracking-wide text-white sm:text-base lg:text-lg">
@@ -327,15 +362,15 @@ export default function MenuPage() {
             </Reveal>
           </div>
 
-          {/* Coca + título más a la derecha */}
-          <div className="pointer-events-none absolute -bottom-[18%] right-[-28%] z-20 w-[min(48rem,105vw)] sm:-bottom-[22%] sm:right-[-18%] sm:w-[min(54rem,85vw)] lg:-bottom-[26%] lg:right-[-12%] lg:w-[min(58rem,62vw)]">
+          <div className="pointer-events-none absolute -bottom-[18%] right-[-28%] z-20 hidden w-[min(48rem,105vw)] sm:block sm:-bottom-[22%] sm:right-[-18%] sm:w-[min(54rem,85vw)] lg:-bottom-[26%] lg:right-[-12%] lg:w-[min(58rem,62vw)]">
             <img
               src="/images/menu/coca-cola-bottle.png"
-              alt="Botella de Coca-Cola"
+              alt=""
               width={1421}
               height={1147}
               className="h-auto w-full select-none"
               draggable={false}
+              aria-hidden
             />
             <h2 className="absolute left-[20%] top-[calc(12%+1.3cm)] z-30 origin-center rotate-[18deg] font-display text-[clamp(3.75rem,11vw,6.5rem)] font-black leading-[0.9] text-white drop-shadow-[0_3px_0_rgba(35,31,32,0.22)] sm:left-[24%] sm:top-[calc(10%+1.3cm)] sm:rotate-[20deg] lg:left-[26%]">
               Refrescos
