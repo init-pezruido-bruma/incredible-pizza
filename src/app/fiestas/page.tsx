@@ -59,7 +59,7 @@ const packages = [
       alt: "Riley el mapache",
       mobileClassName: "bottom-1 right-1 h-[8.5rem] w-[8.5rem]",
       desktopClassName:
-        "-right-16 bottom-0 w-[13.5rem] translate-y-[44%] sm:-right-18 sm:w-[15.1rem] lg:-right-22 lg:w-[16.2rem]",
+        "-right-10 bottom-0 h-[10.35rem] w-[8.75rem] translate-y-[44%] sm:-right-12 sm:h-[11.7rem] sm:w-[9.85rem] lg:-right-14",
     },
   },
   {
