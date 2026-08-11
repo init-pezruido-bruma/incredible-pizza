@@ -7,7 +7,8 @@ export const siteConfig = {
   url: (() => {
     const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
     if (fromEnv) return fromEnv.replace(/\/$/, "");
-    return "https://incrediblepizza.mx";
+    // Staging actual; producción final: https://incrediblepizza.mx
+    return "https://incrediblepizza.init.com.mx";
   })(),
   locale: "es_MX",
   phone: "(81) 1100-1214",
