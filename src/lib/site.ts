@@ -4,7 +4,11 @@ export const siteConfig = {
   tagline: "Food and Fun",
   description:
     "El mejor centro de entretenimiento familiar con buffet, juegos, atracciones y fiestas inolvidables en Monterrey.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://incrediblepizza.mx",
+  url: (() => {
+    const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+    if (fromEnv) return fromEnv.replace(/\/$/, "");
+    return "https://incrediblepizza.mx";
+  })(),
   locale: "es_MX",
   phone: "(81) 1100-1214",
   phoneTel: "+528111001214",
