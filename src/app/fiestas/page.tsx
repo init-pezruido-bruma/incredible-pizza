@@ -41,7 +41,8 @@ const packages = [
   {
     name: "Fiesta Express",
     price: "$3,500",
-    features: ["1 hr de juego + 1 atracción", "100 créditos (solo niños)", "Buffet incluido"],
+    summary: "1 hr de juego + 1 atracción + 100 créditos (solo niños).",
+    features: ["5 Niños mínimo", "1 Adulto gratis"],
     badge: "bg-gradient-to-r from-[#d94a45] via-[#9a5a8a] to-[#55679c]",
     priceClass: "text-[#3f6aad]",
     mascot: null,
@@ -49,40 +50,45 @@ const packages = [
   {
     name: 'Mini Fiesta "Riley"',
     price: "$7,999",
-    features: ["2 hrs de juego + 1 atracción", "200 créditos", "Buffet, pastel e invitaciones"],
+    summary: "2 hrs de juego + 1 atracción + 200 créditos.",
+    features: ["10 Niños mínimo", "Aguinaldo"],
     badge: "bg-gradient-to-r from-[#f7d24a] to-[#e44f2f]",
     priceClass: "text-[#e2453a]",
     mascot: {
       src: "/images/fiestas/mascots/riley.png",
       alt: "Riley el mapache",
-      // Fuera del cuadro: pies abajo, cola pegada a la derecha
-      className:
+      mobileClassName: "bottom-1 right-1 h-[14rem] w-[14rem]",
+      desktopClassName:
         "-right-16 bottom-0 w-[13.5rem] translate-y-[44%] sm:-right-18 sm:w-[15.1rem] lg:-right-22 lg:w-[16.2rem]",
     },
   },
   {
     name: "Fiesta Rosie The Cat",
     price: "$11,999",
-    features: ["3 hrs de juego + 3 atracciones", "300 créditos", "Buffet, pastel e invitaciones"],
+    summary: "3 hrs de juego + 3 atracciones + 300 créditos.",
+    features: ["10 Niños mínimo", "Aguinaldo + Anfitrión + Piñata"],
     badge: "bg-gradient-to-r from-[#f5d84a] to-[#54779f]",
     priceClass: "text-[#3f6aad]",
     mascot: {
       src: "/images/fiestas/mascots/rosie.png",
       alt: "Rosie The Cat",
-      className:
+      mobileClassName: "bottom-1 right-1 h-[7rem] w-[7rem]",
+      desktopClassName:
         "-right-3 top-0 h-[10.35rem] w-[7.65rem] -translate-y-[62%] sm:-right-4 sm:h-[11.7rem] sm:w-[8.55rem]",
     },
   },
   {
     name: "Fiesta Turbo Tiger",
     price: "$15,999",
-    features: ["4 hrs + atracciones ilimitadas", "Créditos ilimitados", "Buffet, pastel e invitaciones"],
+    summary: "4 hrs de juego + atracciones ilimitadas + créditos ilimitados.",
+    features: ["10 Niños mínimo", "5 Adultos gratis", "Aguinaldo + Anfitrión + Piñata"],
     badge: "bg-gradient-to-r from-[#cd3c3c] via-[#8d5a8e] to-[#505e9a]",
     priceClass: "text-[#e2453a]",
     mascot: {
       src: "/images/fiestas/mascots/tiger.png",
       alt: "Turbo Tiger",
-      className:
+      mobileClassName: "bottom-1 right-1 h-[7rem] w-[7rem]",
+      desktopClassName:
         "-right-3 top-0 h-[10.35rem] w-[7.65rem] -translate-y-[62%] sm:-right-4 sm:h-[11.7rem] sm:w-[8.55rem]",
     },
   },
@@ -197,44 +203,66 @@ export default function FiestasPage() {
           </p>
         </div>
 
-        <div className="grid items-stretch gap-10 pt-16 pb-28 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-28 sm:pt-20 sm:pb-36 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-24">
+        <div className="grid items-stretch gap-8 pt-6 pb-4 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-28 sm:pt-20 sm:pb-36 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-24">
           {packages.map((pkg, i) => (
             <Reveal key={pkg.name} delay={i * 50} className="relative overflow-visible">
               {/* Cuadro blanco */}
-              <div className="relative z-0 flex aspect-square w-full flex-col rounded-2xl bg-white px-5 py-5 shadow-[0_16px_36px_rgba(35,31,32,0.28)] ring-1 ring-black/5 sm:px-6 sm:py-6">
-                <span
-                  className={`inline-flex w-fit rounded-full px-3 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.12em] text-white sm:text-xs ${pkg.badge}`}
-                >
-                  Agenda tu fiesta
-                </span>
-                <h3 className="mt-3 font-display text-[1.45rem] font-black leading-[1.05] text-brand-ink sm:text-[1.65rem]">
-                  {pkg.name}
-                </h3>
-                <p
-                  className={`mt-2 text-[1.85rem] font-black leading-none tabular-nums sm:text-[2.15rem] ${pkg.priceClass}`}
-                >
-                  {pkg.price}{" "}
-                  <span className="text-[0.55em] font-extrabold uppercase tracking-wide">Total</span>
-                </p>
-                <ul className="mt-4 flex-1 space-y-0 text-sm leading-snug text-brand-ink/75 sm:text-[0.95rem]">
-                  {pkg.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-2 border-b border-brand-ink/10 py-2.5 last:border-0"
-                    >
-                      <span className="mt-0.5 shrink-0 font-bold text-brand-red" aria-hidden>
-                        ✓
-                      </span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="relative z-0 flex min-h-0 w-full flex-col overflow-hidden rounded-2xl bg-white px-5 py-5 shadow-[0_16px_36px_rgba(35,31,32,0.28)] ring-1 ring-black/5 sm:aspect-square sm:px-6 sm:py-6">
+                <div className="relative z-10 max-w-[70%] pr-2 sm:max-w-none">
+                  <span
+                    className={`inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.12em] text-white sm:text-xs ${pkg.badge}`}
+                  >
+                    Agenda tu fiesta
+                  </span>
+                  <h3 className="mt-3 font-display text-[1.7rem] font-black leading-[1.05] text-brand-ink sm:text-[1.65rem]">
+                    {pkg.name}
+                  </h3>
+                  <p
+                    className={`mt-2 text-[2.1rem] font-black leading-none tabular-nums sm:text-[2.15rem] ${pkg.priceClass}`}
+                  >
+                    {pkg.price}{" "}
+                    <span className="text-[0.55em] font-extrabold uppercase tracking-wide">Total</span>
+                  </p>
+                  <p className="mt-3 text-base leading-snug text-brand-ink/80 sm:text-[0.95rem]">
+                    {pkg.summary}
+                  </p>
+                  <ul className="mt-2 space-y-0 text-base leading-snug text-brand-ink/80 sm:text-[0.95rem]">
+                    {pkg.features.map((f) => (
+                      <li
+                        key={f}
+                        className="flex items-start gap-2 border-b border-brand-ink/10 py-2.5 last:border-0"
+                      >
+                        <span className="mt-0.5 shrink-0 font-bold text-brand-red" aria-hidden>
+                          ✓
+                        </span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Mascota dentro del cuadro (solo móvil) */}
+                {pkg.mascot ? (
+                  <div
+                    className={`pointer-events-none absolute z-0 sm:hidden ${pkg.mascot.mobileClassName}`}
+                    aria-hidden
+                  >
+                    <Image
+                      src={pkg.mascot.src}
+                      alt={pkg.mascot.alt}
+                      width={480}
+                      height={480}
+                      sizes="120px"
+                      className="h-full w-full object-contain object-right object-bottom drop-shadow-[0_8px_14px_rgba(0,0,0,0.22)]"
+                    />
+                  </div>
+                ) : null}
               </div>
 
-              {/* Mascota fuera del cuadro (hermana del blanco, no hija) */}
+              {/* Mascota fuera del cuadro (PC / tablet) */}
               {pkg.mascot ? (
                 <div
-                  className={`pointer-events-none absolute z-20 ${pkg.mascot.className}`}
+                  className={`pointer-events-none absolute z-20 hidden sm:block ${pkg.mascot.desktopClassName}`}
                   aria-hidden
                 >
                   <Image
@@ -244,7 +272,7 @@ export default function FiestasPage() {
                     height={480}
                     sizes="240px"
                     className={
-                      pkg.mascot.className.includes("h-[")
+                      pkg.mascot.desktopClassName.includes("h-[")
                         ? "h-full w-full object-contain object-right object-bottom drop-shadow-[0_10px_18px_rgba(0,0,0,0.28)]"
                         : "h-auto w-full object-contain object-right drop-shadow-[0_10px_18px_rgba(0,0,0,0.28)]"
                     }
@@ -257,7 +285,7 @@ export default function FiestasPage() {
 
         <div
           id="cotizar"
-          className="mt-14 grid gap-6 sm:mt-16 md:grid-cols-3 md:items-end"
+          className="mt-7 grid gap-6 sm:mt-16 md:grid-cols-3 md:items-end"
         >
           <div className="space-y-2 text-center md:text-left">
             <a
