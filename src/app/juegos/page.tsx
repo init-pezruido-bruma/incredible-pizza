@@ -120,7 +120,7 @@ export default function JuegosPage() {
               <h1 className="hero-copy-in font-display text-[clamp(4rem,14vw,7.5rem)] font-black leading-[0.85] drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]">
                 Juegos
               </h1>
-              <p className="hero-copy-in hero-copy-in-delay-1 mt-2 text-lg font-medium italic tracking-wide text-white sm:text-xl lg:text-2xl">
+              <p className="hero-copy-in hero-copy-in-delay-1 mt-2 font-display text-lg font-medium italic tracking-wide text-white sm:text-xl lg:text-2xl">
                 diviértete como nunca
               </p>
               <div className="hero-copy-in hero-copy-in-delay-2 mt-8">
@@ -174,7 +174,7 @@ export default function JuegosPage() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-2 px-4 pb-4 pt-3 sm:px-4 sm:pb-5 sm:pt-3.5">
-                    <h3 className="text-[0.95rem] font-extrabold uppercase tracking-[0.04em] text-[#2b5899] sm:text-base">
+                    <h3 className="font-sans text-[0.95rem] font-extrabold uppercase tracking-[0.04em] text-[#2b5899] sm:text-base">
                       {item.title}
                     </h3>
                     <p className="text-[0.8rem] leading-snug text-brand-ink/80 sm:text-[0.85rem]">
