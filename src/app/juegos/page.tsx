@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { PageSection } from "@/components/layout/page-section";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Juegos y atracciones",
@@ -130,7 +130,9 @@ export default function JuegosPage() {
                   size="lg"
                   className="min-h-12 rounded-full border-2 border-black px-8 text-base font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:min-h-14 sm:px-10 sm:text-lg"
                 >
-                  <Link href="/menu">Compra aquí</Link>
+                  <a href={siteConfig.storeUrl} target="_blank" rel="noopener noreferrer">
+                    Compra aquí
+                  </a>
                 </Button>
               </div>
             </div>
@@ -299,19 +301,22 @@ export default function JuegosPage() {
             className="pointer-events-none absolute inset-0 z-[1]"
             style={{
               background:
-                "linear-gradient(90deg, #e31b23 0%, #e31b23 42%, rgba(227,27,35,0.82) 52%, rgba(227,27,35,0.35) 68%, rgba(227,27,35,0.08) 82%, rgba(227,27,35,0) 100%)",
+                "linear-gradient(90deg, #e31b23 0%, rgba(227,27,35,0.88) 28%, rgba(227,27,35,0.45) 48%, rgba(227,27,35,0.12) 68%, rgba(227,27,35,0) 100%)",
             }}
             aria-hidden
           />
 
           {/* Copy on left */}
-          <Reveal className="relative z-10 flex min-h-[24rem] w-full max-w-[50%] flex-col justify-center px-4 pb-16 pt-12 sm:min-h-[26rem] sm:px-8 sm:py-14 lg:min-h-[32rem] lg:px-12 xl:px-16">
+          <Reveal className="relative z-10 flex min-h-[24rem] w-full max-w-[48%] flex-col justify-center px-4 pb-20 pt-12 sm:min-h-[26rem] sm:px-8 sm:pb-16 sm:pt-14 lg:min-h-[32rem] lg:px-12 xl:px-16">
             <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-brand-yellow sm:text-base">
               Para los más pequeños
             </p>
             <h2 className="mt-2 font-display text-[clamp(2.5rem,7vw,5.5rem)] font-black leading-[0.88] text-white drop-shadow-[0_1px_0_#f5d84a]">
               Tiny Town
             </h2>
+            <p className="mt-3 inline-flex w-fit rounded-full border-2 border-brand-yellow bg-brand-yellow/15 px-3.5 py-1.5 text-xs font-extrabold uppercase tracking-[0.08em] text-brand-yellow sm:text-sm">
+              0–3 años · máx. 1 m de estatura
+            </p>
             <div className="mt-5 space-y-1 text-sm leading-relaxed text-white sm:text-base lg:text-lg">
               <p>Tiny Town cuenta con:</p>
               <ul className="space-y-0.5">
@@ -332,8 +337,8 @@ export default function JuegosPage() {
 
           {/* Mobile: message in a box (no ribbon) */}
           <Reveal className="absolute inset-x-3 bottom-3 z-20 sm:hidden">
-            <p className="rounded-xl bg-gradient-to-r from-[#ef9a1a] via-[#f0b02a] to-[#f5c43a] px-3.5 py-2.5 text-center text-[0.8rem] font-semibold italic leading-snug tracking-wide text-white shadow-[0_6px_16px_rgba(0,0,0,0.22)]">
-              Para niños 0-3 años (límite de estatura 1 m)
+            <p className="rounded-xl bg-gradient-to-r from-[#ef9a1a] via-[#f0b02a] to-[#f5c43a] px-3.5 py-2.5 text-center text-[0.85rem] font-extrabold uppercase leading-snug tracking-wide text-white shadow-[0_6px_16px_rgba(0,0,0,0.22)]">
+              Para niños 0–3 años (límite de estatura 1 m)
             </p>
           </Reveal>
 
@@ -342,8 +347,8 @@ export default function JuegosPage() {
             <div
               className="absolute flex items-center"
               style={{
-                left: "40%",
-                bottom: "-16%",
+                left: "36%",
+                bottom: "-14%",
                 width: "90%",
                 height: "clamp(2.85rem, 5.8vw, 3.9rem)",
                 transformOrigin: "left center",
@@ -354,8 +359,8 @@ export default function JuegosPage() {
                   "0 6px 16px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.12)",
               }}
             >
-              <p className="ml-[18%] whitespace-nowrap text-[clamp(0.9rem,2.2vw,1.35rem)] font-semibold italic tracking-wide text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] sm:ml-[22%]">
-                Para niños 0-3 años (límite de estatura 1 m)
+              <p className="ml-[16%] whitespace-nowrap text-[clamp(0.95rem,2.2vw,1.4rem)] font-extrabold uppercase italic tracking-wide text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] sm:ml-[20%]">
+                Para niños 0–3 años (límite de estatura 1 m)
               </p>
             </div>
           </Reveal>

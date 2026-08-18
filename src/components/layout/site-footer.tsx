@@ -7,13 +7,21 @@ import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  siteConfig.mapsQuery,
+)}`;
+
 const footerLinks = [
   { href: "/quienes-somos", label: "Acerca" },
-  { href: "/contacto", label: "Empleos" },
-  { href: "/aviso-de-privacidad", label: "Términos y condiciones" },
+  { href: "/contacto#empleos", label: "Empleos" },
+  { href: "/terminos", label: "Términos y condiciones" },
   { href: "/aviso-de-privacidad", label: "Política de privacidad" },
-  { href: "/contacto", label: "Facturación" },
-];
+  {
+    href: `mailto:${siteConfig.email}?subject=${encodeURIComponent("Facturación Incredible Pizza")}`,
+    label: "Facturación",
+    external: true,
+  },
+] as const;
 
 export function SiteFooter() {
   const pathname = usePathname();
@@ -43,9 +51,15 @@ export function SiteFooter() {
           <ul className="grid gap-2.5 text-sm font-extrabold uppercase tracking-[0.06em]">
             {footerLinks.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="transition hover:opacity-80">
-                  {link.label}
-                </Link>
+                {"external" in link && link.external ? (
+                  <a href={link.href} className="transition hover:opacity-80">
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link href={link.href} className="transition hover:opacity-80">
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -55,7 +69,19 @@ export function SiteFooter() {
           <p className="pointer-events-none absolute -top-4 right-0 hidden font-display text-3xl font-black leading-none text-[#fcda21] drop-shadow-[0_1px_0_rgba(35,31,32,0.15)] rotate-12 md:block lg:-top-6 lg:text-4xl">
             Since 2007
           </p>
-          <p>{siteConfig.address.street}</p>
+          <p>
+            <a
+              href={mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:opacity-80"
+            >
+              {siteConfig.address.street}
+              <br />
+              {siteConfig.address.city}, {siteConfig.address.region}{" "}
+              {siteConfig.address.postalCode}
+            </a>
+          </p>
           <p>
             <a href={`tel:${siteConfig.phoneTel}`} className="transition hover:opacity-80">
               {siteConfig.phone}

@@ -3,11 +3,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "¿Quiénes somos?",
   description:
-    "Conoce la historia, misión y valores familiares de America’s Incredible Pizza Company en Monterrey.",
+    "Conoce la historia, misión y valores familiares de Incredible Food & Fun en Monterrey.",
   alternates: { canonical: "/quienes-somos" },
 };
 
@@ -95,23 +96,23 @@ export default function QuienesSomosPage() {
               ¿Quiénes somos?
             </h1>
             <p className="hero-copy-in hero-copy-in-delay-1 mx-auto mt-5 max-w-3xl text-center text-base leading-relaxed text-white/95 sm:text-lg">
-              El mejor{" "}
-              <span className="font-extrabold uppercase tracking-wide">
-                centro de entretenimiento familiar
-              </span>{" "}
-              de los Estados Unidos ¡Ahora en México!, America’s Incredible Pizza Company fue
-              fundado en la ciudad de Springfield, Missouri en el año 2002.
+              Somos el centro de entretenimiento familiar más increíble de Monterrey. Desde hace más
+              de 19 años llenamos de diversión a las familias regias con buffet ilimitado, pizza
+              recién horneada, juegos y atracciones para todas las edades. Aquí no solo se come
+              increíble… ¡se vive increíble!
             </p>
           </Reveal>
 
-          <Reveal delay={80} className="mt-8 flex justify-end sm:mt-10">
+          <Reveal delay={80} className="mt-8 flex justify-center sm:mt-10">
             <div className="hero-copy-in hero-copy-in-delay-2">
               <Button
                 asChild
                 size="lg"
                 className="min-h-12 rounded-full border-2 border-black bg-brand-yellow px-8 text-sm font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-brand-yellow sm:min-h-14 sm:px-10 sm:text-base"
               >
-                <Link href="/menu">Compra aquí</Link>
+                <a href={siteConfig.storeUrl} target="_blank" rel="noopener noreferrer">
+                  Compra aquí
+                </a>
               </Button>
             </div>
           </Reveal>
@@ -161,32 +162,28 @@ export default function QuienesSomosPage() {
           <Reveal className="order-2 flex flex-col justify-center px-5 py-12 sm:px-8 sm:py-16 lg:order-1 lg:px-10 lg:py-20">
             <div className="space-y-4 text-base leading-relaxed text-brand-ink sm:text-[1.05rem]">
               <p>
-                En America’s Incredible Pizza Company reunimos a las familias y amigos a través de la
-                buena comida y gran diversión.
+                En Incredible Food & Fun reunimos a las familias y amigos a través de la buena comida
+                y gran diversión.
               </p>
               <p>
-                <span className="font-extrabold">Familias y amigos vienen juntos</span> a Incredible
-                Pizza a disfrutar de experiencias increíbles y crear recuerdos memorables, logrando
-                que regresen una y otra vez.
+                Cada grupo viene a disfrutar de experiencias increíbles y crear recuerdos
+                memorables, logrando que regresen una y otra vez.
               </p>
               <p>
                 Estamos involucrados directamente con los niños aportando una influencia positiva en
                 sus vidas.
               </p>
               <p>
-                A quien contratamos, es la decisión más importante que tomamos.{" "}
-                <span className="font-extrabold">Promovemos</span> un ambiente de trabajo arduo,
-                honesto y divertido. <span className="font-extrabold">Fomentamos</span> el desarrollo
-                de valores positivos y de buena moral. Proveemos{" "}
-                <span className="font-extrabold">un ambiente divertido</span> para entrenamiento,
+                A quien contratamos, es la decisión más importante que tomamos. Promovemos un
+                ambiente de trabajo arduo, honesto y divertido. Fomentamos el desarrollo de valores
+                positivos y de buena moral. Proveemos un ambiente divertido para entrenamiento,
                 desarrollo y reconocimiento de nuestros empleados para su crecimiento con la
                 organización.
               </p>
               <p>
                 Mantenemos nuestra reputación como líderes en el Entretenimiento Familiar, por la
-                implementación de ideas únicas e innovadoras, que logran{" "}
-                <span className="font-extrabold">unir a las familias</span> a través de buena comida,
-                diversión, familia y amigos.
+                implementación de ideas únicas e innovadoras, que logran unir a las familias a
+                través de buena comida, diversión, familia y amigos.
               </p>
             </div>
           </Reveal>

@@ -11,54 +11,38 @@ export const metadata: Metadata = {
   alternates: { canonical: "/menu" },
 };
 
-const orderWhatsApp = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-  "Hola, quiero ordenar del Menú To Go",
-)}`;
-
 const pizzas = [
   {
-    name: "Peppequeso",
-    description: "Pepperoni y mitad queso",
-    price: "$119",
+    name: "Pizza Pepperoni",
+    description: "Pepperoni clásico con queso derretido.",
     image: "/images/menu/pizza-pepperoni.jpg",
   },
   {
-    name: "Grande 1 Ingrediente",
-    description: null,
-    price: "$159",
+    name: "Pizza Hawaiana",
+    description: "Jamón y piña sobre salsa de tomate.",
     image: "/images/menu/pizza-pepperoni.jpg",
   },
   {
-    name: "Especialidades",
-    description: "Hawaiana: jamón y piña.",
-    price: "$159",
-    image: "/images/menu/pizza-pepperoni.jpg",
+    name: "Spaghetti",
+    description: "Espagueti con salsa de tomate casera.",
+    image: "/images/menu/wings.jpg",
   },
   {
-    name: "Especialidades",
-    description: "Mexicana: salsa de frijol, queso, chorizo, pico de gallo y chipotle.",
-    price: "$159",
-    image: "/images/menu/pizza-pepperoni.jpg",
+    name: "Boneless",
+    description: "Crujientes, con papas y salsa Buffalo o BBQ.",
+    image: "/images/menu/nuggets.jpg",
   },
-] as const;
-
-const extraIngredients = [
-  ["Cebolla", "Jalapeño", "Piña", "Champiñones"],
-  ["Chorizo", "Pico de gallo", "Pepperoni", "Aceitunas"],
-  ["Morrón verde", "Tocino", "Jamón", "Salami"],
 ] as const;
 
 const starters = [
   {
     name: "Boneless",
     description: "8 pz acompañado de papas a la francesa.",
-    price: "$139",
     image: "/images/menu/nuggets.jpg",
   },
   {
     name: "Alitas",
     description: "10 pz acompañado de papas a la francesa.",
-    price: "$139",
     image: "/images/menu/wings.jpg",
   },
 ] as const;
@@ -67,17 +51,14 @@ const sidesLeft = [
   {
     name: "Dedos de queso",
     description: "4 pz acompañado de papas a la francesa y salsa marinara.",
-    price: "$60",
   },
   {
     name: "Papas a la francesa",
     description: "300 grs de papas a la francesa.",
-    price: "$55",
   },
   {
     name: "Medio litro de Espaguetti",
     description: "Espaguetti con salsa de tomate.",
-    price: "$55",
   },
 ] as const;
 
@@ -85,34 +66,32 @@ const sidesRight = [
   {
     name: "Medio litro de puré de papa con gravy",
     description: null,
-    price: "$55",
   },
   {
     name: "Aderezo o Salsa extra",
     description: null,
-    price: "$20",
   },
 ] as const;
 
 const drinks = [
   {
     name: "Coca Cola, Fanta, Joya de manzana 500 ml.",
-    price: "$30 c/u",
   },
   {
     name: "Agua natural 600 ml.",
-    price: "$30 c/u",
   },
   {
     name: "Coca Cola regular o Zero de 1.75 lts.",
-    price: "$60 c/u",
   },
 ] as const;
+
+const deliveryCtaClass =
+  "min-h-12 rounded-full border-2 border-black px-8 text-sm font-extrabold uppercase tracking-wide transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:min-h-14 sm:px-10 sm:text-base";
 
 export default function MenuPage() {
   return (
     <>
-      {/* Pizzas — flyer: red→yellow + circular pies + Compra aquí */}
+      {/* Pizzas — flyer: red→yellow + circular pies + delivery CTAs */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#d92b1f] via-[#e85a2a] to-[#f0a020] pb-10 pt-40 text-white sm:pb-12 sm:pt-48 lg:pb-14 lg:pt-56">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
           <Reveal>
@@ -124,7 +103,7 @@ export default function MenuPage() {
           <div className="mt-10 grid gap-8 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {pizzas.map((item, i) => (
               <Reveal
-                key={`${item.name}-${item.description ?? i}`}
+                key={item.name}
                 delay={i * 60}
                 className="relative flex flex-col items-center text-center"
               >
@@ -144,71 +123,58 @@ export default function MenuPage() {
                 <h2 className="mt-5 font-display text-[clamp(1.35rem,2.4vw,1.75rem)] font-black leading-[1.05] text-brand-yellow">
                   {item.name}
                 </h2>
-                {item.description ? (
-                  <p className="mt-1.5 max-w-[16rem] text-[0.7rem] font-extrabold uppercase leading-snug tracking-wide text-white/95 sm:text-xs">
-                    {item.description}
-                  </p>
-                ) : null}
-                <p className="mt-2 text-xl font-black tabular-nums text-white sm:text-2xl">
-                  {item.price}
+                <p className="mt-1.5 max-w-[16rem] text-[0.7rem] font-extrabold uppercase leading-snug tracking-wide text-white/95 sm:text-xs">
+                  {item.description}
                 </p>
               </Reveal>
             ))}
           </div>
 
-          <Reveal delay={200} className="mt-10 flex justify-center sm:mt-12">
+          <Reveal
+            delay={200}
+            className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:mt-12 sm:gap-4"
+          >
             <Button
               asChild
               size="lg"
-              className="min-h-12 rounded-full border-2 border-black bg-brand-yellow px-10 text-sm font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-brand-yellow sm:min-h-14 sm:px-12 sm:text-base"
+              className={`${deliveryCtaClass} bg-brand-yellow text-black hover:bg-brand-yellow`}
             >
-              <a href={orderWhatsApp} target="_blank" rel="noopener noreferrer">
-                Compra aquí
+              <a href={siteConfig.delivery.uber} target="_blank" rel="noopener noreferrer">
+                Uber Eats
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className={`${deliveryCtaClass} bg-white text-black hover:bg-white`}
+            >
+              <a href={siteConfig.delivery.rappi} target="_blank" rel="noopener noreferrer">
+                Rappi
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className={`${deliveryCtaClass} bg-brand-yellow text-black hover:bg-brand-yellow`}
+            >
+              <a href={siteConfig.delivery.didi} target="_blank" rel="noopener noreferrer">
+                DiDi Food
               </a>
             </Button>
           </Reveal>
         </div>
       </section>
 
-      {/* Ingrediente extra — red bar */}
-      <section className="bg-brand-red py-6 text-white sm:py-7">
-        <Reveal className="mx-auto flex max-w-6xl flex-col gap-5 px-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-8 lg:px-10">
-          <p className="shrink-0 font-display text-[clamp(1.65rem,4vw,2.5rem)] font-black leading-[1.05]">
-            Ingrediente extra $25 c/u
-          </p>
-          <div className="grid flex-1 grid-cols-2 gap-x-6 gap-y-1 sm:grid-cols-3 sm:gap-x-8">
-            {extraIngredients.map((col) => (
-              <ul key={col[0]} className="space-y-0.5">
-                {col.map((name) => (
-                  <li
-                    key={name}
-                    className="text-[0.65rem] font-extrabold uppercase tracking-wide text-white/95 sm:text-xs"
-                  >
-                    {name}
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       {/* De todo un poco + Complementos (azul→rojo) + Refrescos (ángulo lima→teal) */}
       <section className="relative overflow-x-clip bg-gradient-to-b from-brand-blue to-brand-red text-white">
         <div className="mx-auto max-w-6xl px-5 pb-8 pt-14 sm:px-8 sm:pb-10 sm:pt-16 lg:px-10 lg:pt-20">
           <Reveal>
-            {/* Móvil: wrap natural; sm+: cinta al ancho de “De todo un” */}
-            <div className="w-full max-w-full sm:inline-grid sm:w-auto sm:grid-cols-[auto_auto] sm:items-start">
-              <h2 className="max-w-full text-left font-display text-[clamp(3.25rem,14vw,9rem)] font-black leading-[0.92] drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)] sm:contents sm:text-[clamp(5.5rem,16vw,9rem)] sm:leading-[0.9]">
-                <span className="sm:col-start-1 sm:row-start-1 sm:whitespace-nowrap">
-                  De todo un
-                </span>{" "}
-                <span className="sm:col-start-2 sm:row-start-1 sm:whitespace-nowrap">
-                  poco
-                </span>
+            <div className="w-full max-w-full sm:inline-grid sm:w-auto sm:grid-cols-1 sm:items-start">
+              <h2 className="max-w-full whitespace-nowrap text-left font-display text-[clamp(3.25rem,14vw,9rem)] font-black leading-[0.92] drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)] sm:text-[clamp(5.5rem,16vw,9rem)] sm:leading-[0.9]">
+                De todo un poco
               </h2>
               <div
-                className="mt-4 w-full max-w-md bg-gradient-to-r from-brand-red to-brand-yellow px-5 py-2.5 shadow-[0_8px_18px_rgba(0,0,0,0.22)] sm:col-start-1 sm:row-start-2 sm:mt-5 sm:max-w-none sm:px-6 sm:py-3"
+                className="mt-4 w-full max-w-md bg-gradient-to-r from-brand-red to-brand-yellow px-5 py-2.5 shadow-[0_8px_18px_rgba(0,0,0,0.22)] sm:mt-5 sm:max-w-none sm:px-6 sm:py-3"
                 style={{
                   /* Izq. -135°, der. -100° */
                   clipPath:
@@ -240,7 +206,6 @@ export default function MenuPage() {
                 <p className="mx-auto mt-2 max-w-xs text-[0.7rem] font-extrabold uppercase leading-snug tracking-wide text-white/95 sm:text-xs">
                   {item.description}
                 </p>
-                <p className="mt-2 text-2xl font-black tabular-nums sm:text-3xl">{item.price}</p>
               </Reveal>
             ))}
           </div>
@@ -255,18 +220,13 @@ export default function MenuPage() {
             <div className="space-y-6">
               {sidesLeft.map((item, i) => (
                 <Reveal key={item.name} delay={100 + i * 40}>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="min-w-0">
-                      <h3 className="font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-black leading-[1.05] text-brand-yellow">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 text-[0.65rem] font-extrabold uppercase leading-snug tracking-wide text-white/90 sm:text-xs">
-                        {item.description}
-                      </p>
-                    </div>
-                    <span className="shrink-0 pt-1 text-lg font-black tabular-nums sm:text-xl">
-                      {item.price}
-                    </span>
+                  <div>
+                    <h3 className="font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-black leading-[1.05] text-brand-yellow">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 text-[0.65rem] font-extrabold uppercase leading-snug tracking-wide text-white/90 sm:text-xs">
+                      {item.description}
+                    </p>
                   </div>
                 </Reveal>
               ))}
@@ -274,20 +234,15 @@ export default function MenuPage() {
             <div className="space-y-6">
               {sidesRight.map((item, i) => (
                 <Reveal key={item.name} delay={140 + i * 40}>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="min-w-0">
-                      <h3 className="font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-black leading-[1.05] text-brand-yellow">
-                        {item.name}
-                      </h3>
-                      {item.description ? (
-                        <p className="mt-1 text-[0.65rem] font-extrabold uppercase leading-snug tracking-wide text-white/90 sm:text-xs">
-                          {item.description}
-                        </p>
-                      ) : null}
-                    </div>
-                    <span className="shrink-0 pt-1 text-lg font-black tabular-nums sm:text-xl">
-                      {item.price}
-                    </span>
+                  <div>
+                    <h3 className="font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-black leading-[1.05] text-brand-yellow">
+                      {item.name}
+                    </h3>
+                    {item.description ? (
+                      <p className="mt-1 text-[0.65rem] font-extrabold uppercase leading-snug tracking-wide text-white/90 sm:text-xs">
+                        {item.description}
+                      </p>
+                    ) : null}
                   </div>
                 </Reveal>
               ))}
@@ -327,14 +282,11 @@ export default function MenuPage() {
                 {drinks.map((drink, i) => (
                   <li
                     key={drink.name}
-                    className={`flex items-baseline justify-between gap-4 border-b border-white/25 ${i === 0 ? "pb-1.5 pt-0" : "pb-3.5"}`}
+                    className={`border-b border-white/25 ${i === 0 ? "pb-1.5 pt-0" : "pb-3.5"}`}
                   >
                     <p className="text-sm font-extrabold uppercase leading-snug tracking-wide text-white">
                       {drink.name}
                     </p>
-                    <span className="shrink-0 text-base font-black uppercase tabular-nums text-white">
-                      {drink.price}
-                    </span>
                   </li>
                 ))}
               </ul>
@@ -348,14 +300,11 @@ export default function MenuPage() {
                 {drinks.map((drink) => (
                   <li
                     key={`desk-${drink.name}`}
-                    className="flex items-baseline justify-between gap-4 border-b border-white/25 pb-3.5"
+                    className="border-b border-white/25 pb-3.5"
                   >
                     <p className="text-sm font-extrabold uppercase leading-snug tracking-wide text-white sm:text-base lg:text-lg">
                       {drink.name}
                     </p>
-                    <span className="shrink-0 text-base font-black uppercase tabular-nums text-white sm:text-lg lg:text-xl">
-                      {drink.price}
-                    </span>
                   </li>
                 ))}
               </ul>

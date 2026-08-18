@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { HeroParallaxImage } from "@/components/ui/hero-parallax-image";
 import { Reveal } from "@/components/ui/reveal";
-import { GalleryCarousel } from "@/components/home/gallery-carousel";
 import { HoursBanner } from "@/components/home/hours-banner";
 import { siteConfig } from "@/lib/site";
 
@@ -45,21 +44,6 @@ const services = [
     height: 1700,
     href: "/menu",
   },
-] as const;
-
-const gallery = [
-  { src: "/images/home/gallery/carousel-01-v2.jpg", alt: "Celebración en Incredible Pizza" },
-  { src: "/images/home/gallery/carousel-02-v2.jpg", alt: "Diversión en familia" },
-  { src: "/images/home/gallery/carousel-03-v2.jpg", alt: "Momentos increíbles" },
-  { src: "/images/home/gallery/carousel-04-v2.jpg", alt: "Fiesta de cumpleaños" },
-  { src: "/images/home/gallery/carousel-05-v2.jpg", alt: "Invitados disfrutando" },
-  { src: "/images/home/gallery/carousel-06-v2.jpg", alt: "Juegos y risas" },
-  { src: "/images/home/gallery/carousel-07-v2.jpg", alt: "Arcade Incredible Pizza" },
-  { src: "/images/home/gallery/carousel-08-v2.jpg", alt: "Amigos en Incredible Pizza" },
-  { src: "/images/home/gallery/carousel-09-v2.jpg", alt: "Experiencia Food and Fun" },
-  { src: "/images/home/gallery/carousel-10-v2.jpg", alt: "Diversión sin límites" },
-  { src: "/images/home/gallery/carousel-11-v2.jpg", alt: "Ambiente Incredible Pizza" },
-  { src: "/images/home/gallery/carousel-12-v2.jpg", alt: "Cumpleaños inolvidable" },
 ] as const;
 
 export default function HomePage() {
@@ -117,7 +101,9 @@ export default function HomePage() {
                   size="lg"
                   className="min-h-12 w-full border-2 border-black px-8 text-base text-black sm:w-auto"
                 >
-                  <Link href="/menu">Compra aquí</Link>
+                  <a href={siteConfig.storeUrl} target="_blank" rel="noopener noreferrer">
+                    Compra aquí
+                  </a>
                 </Button>
               </div>
             </div>
@@ -246,17 +232,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Galería — carrusel con foco central + puntitos */}
-      <section className="bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#f5d84a] pt-16 pb-10 sm:pt-20 sm:pb-12 lg:pt-24">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
-          <Reveal delay={60}>
-            <GalleryCarousel items={gallery} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 7. Equipo — bowtie asset + fotos de staff */}
-      <section className="relative overflow-x-clip bg-gradient-to-b from-[#f5d84a] via-[#f0c83a] to-[#6ba3d4] py-16 sm:py-24">
+      {/* Equipo — bowtie asset + fotos de staff */}
+      <section className="relative overflow-x-clip bg-gradient-to-b from-[#fff8e0] via-[#f5d84a] to-[#6ba3d4] py-16 sm:py-24">
         <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 text-center">
           <Reveal className="relative w-full max-w-4xl">
             <div className="relative mx-auto w-full">

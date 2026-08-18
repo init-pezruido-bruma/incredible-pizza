@@ -5,20 +5,21 @@ import { GalleryCarousel } from "@/components/home/gallery-carousel";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { EventQuoteForm } from "@/features/eventos/event-quote-form";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Eventos grupales y corporativos",
   description:
-    "Eventos escolares, empresariales, posadas y play dates en Incredible Pizza Monterrey. Grupos desde 25 personas.",
+    "Eventos escolares, empresariales, sociales y fiestas en Incredible Pizza Monterrey. Capacidad hasta 2,000 personas. Grupos desde 25.",
   alternates: { canonical: "/eventos" },
 };
 
 const offers = [
-  "Áreas 100% climatizadas para que disfrutes sin importar el clima.",
-  "Paquetes con buffet y opciones a la medida de tu grupo.",
-  "Te ayudamos con la logística de tu evento para que solo te preocupes por divertirte.",
-  "Salones privados para juntas y reuniones con equipo de audio y video.",
+  "Áreas 100% climatizadas",
+  "Buffet y paquetes a tu medida",
+  "Logística del evento incluida",
+  "Salones privados con audio y video",
 ] as const;
 
 const heroGallery = [
@@ -43,15 +44,16 @@ type EventCard = {
   buttonClass: string;
   features?: readonly string[];
   blurb?: string;
+  ctaHref?: string;
+  ctaLabel?: string;
 };
 
 const eventSociales: EventCard = {
   title: "Sociales",
-  price: "Desde $X,XXX",
+  price: "Desde $389",
   priceClass: "text-brand-blue",
   buttonClass: "bg-gradient-to-r from-brand-red to-brand-blue",
   features: [
-    "Cumpleaños",
     "Primera comunión",
     "XV Años",
     "Despedidas y/o Bodas",
@@ -63,7 +65,7 @@ const eventSociales: EventCard = {
 
 const eventEscolares: EventCard = {
   title: "Escolares",
-  price: "Desde $X,XXX",
+  price: "Desde $349",
   priceClass: "text-brand-red",
   buttonClass: "bg-gradient-to-r from-brand-yellow to-brand-orange",
   features: [
@@ -76,17 +78,9 @@ const eventEscolares: EventCard = {
   ],
 };
 
-const eventPlayDates: EventCard = {
-  title: "Play Dates",
-  price: "Desde $X,XXX",
-  priceClass: "text-brand-blue",
-  buttonClass: "bg-gradient-to-r from-brand-yellow to-brand-blue",
-  blurb: "Reuniones llenas de diversión",
-};
-
 const eventEmpresas: EventCard = {
   title: "Empresas",
-  price: "Desde $X,XXX",
+  price: "Desde $599*",
   priceClass: "text-brand-blue",
   buttonClass: "bg-gradient-to-r from-brand-yellow to-brand-blue",
   features: [
@@ -94,15 +88,18 @@ const eventEmpresas: EventCard = {
     "Juntas fuera de lo común",
     "Team Building",
     "Espacios para capacitaciones",
+    "Promoción Posadas",
   ],
 };
 
-const eventPosadas: EventCard = {
-  title: "Posadas",
-  price: "Desde $X,XXX",
+const eventFiestas: EventCard = {
+  title: "Fiestas",
+  price: "Desde $7,999",
   priceClass: "text-brand-red",
   buttonClass: "bg-gradient-to-r from-brand-red to-brand-blue",
-  blurb: "Organiza tu posada increíble",
+  blurb: "Cumpleaños y fiestas inolvidables",
+  ctaHref: "/fiestas",
+  ctaLabel: "Ver fiestas",
 };
 
 const eventGalleryTop = [
@@ -135,6 +132,12 @@ const eventGalleryBottom = [
 
 function EventTypeCard({ event, delay = 0 }: { event: EventCard; delay?: number }) {
   const features = event.features;
+  const ctaHref = event.ctaHref ?? "#cotizar";
+  const ctaLabel = event.ctaLabel ?? "Cotizar";
+  const isExternal = ctaHref.startsWith("http");
+  const priceHasAsterisk = event.price.includes("*");
+  const priceLabel = priceHasAsterisk ? event.price.replace(/\*+$/, "") : event.price;
+
   return (
     <Reveal
       delay={delay}
@@ -144,7 +147,16 @@ function EventTypeCard({ event, delay = 0 }: { event: EventCard; delay?: number 
         {event.title}
       </h2>
       <p className={cn("mt-2 text-sm font-extrabold sm:text-base", event.priceClass)}>
-        {event.price}
+        {priceLabel}
+        {priceHasAsterisk ? (
+          <a
+            href="#leyenda-terminos"
+            className="ml-0.5 align-super text-[0.7em] underline-offset-2 hover:underline"
+            aria-label="Ver términos y condiciones"
+          >
+            *
+          </a>
+        ) : null}
       </p>
       {features ? (
         <ul className="mt-4 flex-1">
@@ -171,7 +183,15 @@ function EventTypeCard({ event, delay = 0 }: { event: EventCard; delay?: number 
           event.buttonClass,
         )}
       >
-        <a href="#cotizar">Cotizar</a>
+        {isExternal ? (
+          <a href={ctaHref} target="_blank" rel="noopener noreferrer">
+            {ctaLabel}
+          </a>
+        ) : ctaHref.startsWith("#") ? (
+          <a href={ctaHref}>{ctaLabel}</a>
+        ) : (
+          <Link href={ctaHref}>{ctaLabel}</Link>
+        )}
       </Button>
     </Reveal>
   );
@@ -206,17 +226,35 @@ export default function EventosPage() {
             />
           </Reveal>
 
+          {/* Capacidad — jerarquía fuerte */}
+          <Reveal delay={40} className="relative z-10 mt-6 sm:mt-8">
+            <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-white/90 sm:text-base">
+              Recibimos hasta
+            </p>
+            <p className="mt-1 font-display text-[clamp(3.25rem,12vw,7rem)] font-black leading-[0.9] text-brand-yellow drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
+              2,000
+            </p>
+            <p className="mt-1 font-display text-[clamp(1.5rem,4vw,2.5rem)] font-black leading-none text-white">
+              personas
+            </p>
+          </Reveal>
+
           {/* Logo fuera de flujo + mt corto: ofertas/grupos no bajan */}
-          <div className="relative z-10 mt-3 grid items-start gap-10 md:grid-cols-2 md:gap-8 lg:mt-4 lg:gap-12">
-            {/* Col 1 — Incredible Pizza ofrece + Compra aquí */}
+          <div className="relative z-10 mt-6 grid items-start gap-10 md:grid-cols-2 md:gap-8 lg:mt-8 lg:gap-12">
+            {/* Col 1 — Incredible Pizza ofrece + Cotizar */}
             <Reveal delay={60} className="space-y-5">
               <div className="space-y-3">
                 <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-white sm:text-base">
                   Incredible Pizza ofrece:
                 </p>
-                <ul className="space-y-2.5 text-sm leading-relaxed text-white/95 sm:text-base">
+                <ul className="space-y-2 text-sm leading-snug text-white/95 sm:text-base">
                   {offers.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="flex gap-2">
+                      <span aria-hidden className="font-black text-brand-yellow">
+                        •
+                      </span>
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -225,7 +263,9 @@ export default function EventosPage() {
                 size="lg"
                 className="min-h-11 rounded-full border-2 border-black bg-brand-yellow px-8 text-sm font-extrabold uppercase tracking-wide text-black transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-brand-yellow sm:min-h-12"
               >
-                <Link href="/menu">Compra aquí</Link>
+                <a href={siteConfig.storeUrl} target="_blank" rel="noopener noreferrer">
+                  Comprar ahora
+                </a>
               </Button>
             </Reveal>
 
@@ -294,18 +334,27 @@ export default function EventosPage() {
 
       <section className="bg-gradient-to-b from-[#4a76a8] via-[#7a5a8a] to-[#d64541] py-14 text-white sm:py-20">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
-          {/* Cards: Sociales | Escolares+Empresas | Play Dates+Posadas */}
+          {/* Cards: Sociales | Escolares+Empresas | Fiestas */}
           <div className="grid items-start gap-5 md:grid-cols-3">
             <EventTypeCard event={eventSociales} delay={40} />
             <div className="flex flex-col gap-5">
               <EventTypeCard event={eventEscolares} delay={80} />
               <EventTypeCard event={eventEmpresas} delay={140} />
             </div>
-            <div className="flex flex-col gap-5">
-              <EventTypeCard event={eventPlayDates} delay={100} />
-              <EventTypeCard event={eventPosadas} delay={160} />
-            </div>
+            <EventTypeCard event={eventFiestas} delay={100} />
           </div>
+
+          <p
+            id="leyenda-terminos"
+            className="mx-auto mt-6 max-w-3xl scroll-mt-28 text-center text-xs leading-relaxed text-white/85 sm:mt-8 sm:text-sm"
+          >
+            * Aplican{" "}
+            <Link href="/terminos" className="underline underline-offset-2 hover:text-white">
+              términos y condiciones
+            </Link>
+            . Precios sujetos a cambio sin previo aviso. Consulta vigencia, disponibilidad y
+            detalles al cotizar.
+          </p>
 
           <Reveal delay={120} className="mt-14 sm:mt-16">
             <h2 className="text-center font-display text-[clamp(2.25rem,6vw,3.75rem)] font-black leading-[0.95] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]">
@@ -352,16 +401,6 @@ export default function EventosPage() {
               ))}
             </div>
           </div>
-
-          <Reveal delay={180} className="mt-6 flex justify-end pb-2 sm:mt-8">
-            <Button
-              asChild
-              size="sm"
-              className="min-h-10 rounded-full border-2 border-black bg-white px-5 text-xs font-extrabold uppercase tracking-wide text-black shadow-none transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white sm:text-sm"
-            >
-              <Link href="/">Ver galería completa</Link>
-            </Button>
-          </Reveal>
         </div>
       </section>
 

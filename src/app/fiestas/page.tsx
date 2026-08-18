@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageHeading, PageSection } from "@/components/layout/page-section";
@@ -14,15 +13,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/fiestas" },
 };
 
+const quoteWhatsAppHref = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+  "Hola, quiero cotizar una fiesta",
+)}`;
+
 const reasons = [
   {
-    title: "Juegos ilimitados",
-    description: "Arcade, atracciones y diversión sin parar.",
+    title: "Juegos con créditos",
+    description: "Arcade y atracciones con la tarjeta y créditos de tu paquete.",
     image: "/images/fiestas/reason-laser.jpg",
   },
   {
     title: "Buffet",
-    description: "Pizza y más para todos los invitados.",
+    description:
+      "Selección de pizzas, barra de ensaladas, hot dogs, platillos especiales y mucho más.",
     image: "/images/menu/buffet.jpg",
   },
   {
@@ -39,19 +43,15 @@ const reasons = [
 
 const packages = [
   {
-    name: "Fiesta Express",
-    price: "$3,500",
-    summary: "1 hr de juego + 1 atracción + 100 créditos (solo niños).",
-    features: ["5 Niños mínimo", "1 Adulto gratis"],
-    badge: "bg-gradient-to-r from-[#d94a45] via-[#9a5a8a] to-[#55679c]",
-    priceClass: "text-[#3f6aad]",
-    mascot: null,
-  },
-  {
     name: 'Mini Fiesta "Riley"',
     price: "$7,999",
     summary: "2 hrs de juego + 1 atracción + 200 créditos.",
-    features: ["10 Niños mínimo", "Aguinaldo"],
+    features: [
+      "10 Niños mínimo",
+      "2 Adultos gratis",
+      "Pastel + Buffet ilimitado",
+      "Aguinaldo",
+    ],
     badge: "bg-gradient-to-r from-[#f7d24a] to-[#e44f2f]",
     priceClass: "text-[#e2453a]",
     mascot: {
@@ -66,7 +66,7 @@ const packages = [
     name: "Fiesta Rosie The Cat",
     price: "$11,999",
     summary: "3 hrs de juego + 3 atracciones + 300 créditos.",
-    features: ["10 Niños mínimo", "Aguinaldo + Anfitrión + Piñata"],
+    features: ["10 Niños mínimo", "2 Adultos gratis", "Aguinaldo + Anfitrión + Piñata"],
     badge: "bg-gradient-to-r from-[#f5d84a] to-[#54779f]",
     priceClass: "text-[#3f6aad]",
     mascot: {
@@ -80,7 +80,7 @@ const packages = [
   {
     name: "Fiesta Turbo Tiger",
     price: "$15,999",
-    summary: "4 hrs de juego + atracciones ilimitadas + créditos ilimitados.",
+    summary: "4 hrs de juego + atracciones ilimitadas + 400 créditos.",
     features: ["10 Niños mínimo", "5 Adultos gratis", "Aguinaldo + Anfitrión + Piñata"],
     badge: "bg-gradient-to-r from-[#cd3c3c] via-[#8d5a8e] to-[#505e9a]",
     priceClass: "text-[#e2453a]",
@@ -122,7 +122,9 @@ export default function FiestasPage() {
         description="Celebra en un espacio diseñado para que cada momento sea único e inolvidable, todo el año, sin importar el clima."
       >
         <Button asChild variant="secondary" size="lg" className="min-h-12 w-full sm:w-auto">
-          <Link href="#cotizar">Cotizar mi fiesta</Link>
+          <a href={quoteWhatsAppHref} target="_blank" rel="noopener noreferrer">
+            Cotizar mi fiesta
+          </a>
         </Button>
         <Button
           asChild
@@ -204,13 +206,11 @@ export default function FiestasPage() {
             Celebra con nosotros
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm font-extrabold uppercase leading-relaxed tracking-[0.06em] text-white sm:text-base md:text-lg">
-            Todos incluyen buffet ilimitado, pastel, invitaciones
-            <br />
-            y palomitas ilimitadas.
+            En todos los paquetes, el cumpleañero entra gratis.
           </p>
         </Reveal>
 
-        <div className="grid items-stretch gap-8 pt-6 pb-4 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-28 sm:pt-20 sm:pb-36 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-24">
+        <div className="grid items-stretch gap-8 pt-6 pb-4 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-28 sm:pt-20 sm:pb-36 xl:grid-cols-3 xl:gap-x-8 xl:gap-y-24">
           {packages.map((pkg, i) => (
             <Reveal key={pkg.name} delay={i * 70} className="relative overflow-visible">
               {/* Cuadro blanco */}
@@ -290,6 +290,12 @@ export default function FiestasPage() {
           ))}
         </div>
 
+        <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-relaxed text-white/85 sm:mt-8 sm:text-sm">
+          Precios sujetos a cambio sin previo aviso. Aplican términos y condiciones. El
+          cumpleañero entra gratis con la compra del paquete. Consulta vigencia, disponibilidad y
+          detalles al cotizar.
+        </p>
+
         <Reveal delay={100}>
           <div
             id="cotizar"
@@ -328,11 +334,7 @@ export default function FiestasPage() {
                 variant="secondary"
                 className="min-h-14 w-full border-2 border-brand-ink bg-white px-10 text-base text-brand-ink shadow-[0_6px_0_0_#fad122] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:w-auto"
               >
-                <a
-                  href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hola, quiero cotizar una fiesta")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={quoteWhatsAppHref} target="_blank" rel="noopener noreferrer">
                   Agenda tu fiesta
                 </a>
               </Button>
@@ -396,11 +398,7 @@ export default function FiestasPage() {
               variant="secondary"
               className="min-h-12 w-full border-2 border-brand-ink bg-white px-8 text-brand-ink shadow-[0_0_0_3px_#eacf2e] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:w-auto"
             >
-              <a
-                href={`https://wa.me/${siteConfig.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={quoteWhatsAppHref} target="_blank" rel="noopener noreferrer">
                 Cotizar por WhatsApp
               </a>
             </Button>

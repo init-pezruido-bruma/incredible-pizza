@@ -17,25 +17,31 @@ export const siteConfig = {
   whatsappDisplay: "812 1971 233",
   email: "contacto@incrediblepizza.mx",
   address: {
-    street: "Av. Lázaro Cárdenas 999, Brisas",
+    street: "Av. Lázaro Cárdenas 999, Brisas La Punta",
     city: "Monterrey",
-    region: "Nuevo León",
-    postalCode: "64000",
+    region: "N.L.",
+    postalCode: "64790",
     country: "MX",
   },
-  /** Google Maps — negocio listado como America’s Incredible Pizza Company */
+  /** Google Maps — Incredible Pizza Monterrey */
   mapsQuery:
-    "America's Incredible Pizza Company, Av. Lázaro Cárdenas 999, Monterrey, Nuevo León",
+    "Incredible Pizza, Av. Lázaro Cárdenas 999, Brisas La Punta, 64790 Monterrey, Nuevo León, Mexico",
   hours: {
     weekdays: "Lunes a viernes: 11:00 AM – 9:00 PM",
     weekend: "Sábado y domingo: 11:00 AM – 9:00 PM",
   },
   social: {
-    facebook: "https://www.facebook.com/",
-    instagram: "https://www.instagram.com/",
-    tiktok: "https://www.tiktok.com/",
+    facebook: "https://www.facebook.com/incrediblepizzamx",
+    instagram: "https://www.instagram.com/incrediblepizzamty/",
+    tiktok: "https://www.tiktok.com/@ipcmty",
   },
   storeUrl: "https://tiendaenlinea.incrediblepizza.mx/app",
+  /** Links directos de delivery — sustituir por URLs de tienda definitivas */
+  delivery: {
+    uber: "https://www.ubereats.com/mx/search?q=Incredible%20Pizza%20Monterrey",
+    rappi: "https://www.rappi.com.mx/buscar?query=Incredible%20Pizza",
+    didi: "https://www.didi-food.com/es-MX/food/search?q=Incredible%20Pizza%20Monterrey",
+  },
 } as const;
 
 /** Orden exacto del mockup de header */

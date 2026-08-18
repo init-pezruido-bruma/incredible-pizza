@@ -18,7 +18,7 @@ export function EventQuoteForm() {
         setSent(true);
       }}
     >
- <h3 className="font-display text-[clamp(2rem,4vw,2.75rem)] font-black leading-none text-brand-blue">
+      <h3 className="font-display text-[clamp(2rem,4vw,2.75rem)] font-black leading-none text-brand-blue">
         Pide tu cotización
       </h3>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -28,7 +28,7 @@ export function EventQuoteForm() {
         </label>
         <label className="grid gap-1 text-xs font-bold uppercase tracking-wide text-brand-ink/70">
           Correo
-          <input required type="email" name="email" className={fieldClass} />
+          <input type="email" name="email" className={fieldClass} />
         </label>
         <label className="grid gap-1 text-xs font-bold uppercase tracking-wide text-brand-ink/70">
           Teléfono
@@ -43,7 +43,7 @@ export function EventQuoteForm() {
             <option>Social</option>
             <option>Escolar</option>
             <option>Play Date</option>
-            <option>Posada</option>
+            <option>Fiesta</option>
             <option>Empresa</option>
           </select>
         </label>
