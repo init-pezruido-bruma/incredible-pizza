@@ -16,11 +16,7 @@ const footerLinks = [
   { href: "/contacto#empleos", label: "Empleos" },
   { href: "/terminos", label: "Términos y condiciones" },
   { href: "/aviso-de-privacidad", label: "Política de privacidad" },
-  {
-    href: `mailto:${siteConfig.email}?subject=${encodeURIComponent("Facturación Incredible Pizza")}`,
-    label: "Facturación",
-    external: true,
-  },
+  { href: "/facturacion", label: "Facturación" },
 ] as const;
 
 export function SiteFooter() {

@@ -35,7 +35,7 @@ export function PageSection({
   return (
     <section
       id={id}
-      className={cn("relative", clearHeader && "pt-28 sm:pt-32 lg:pt-40", className)}
+      className={cn("relative", clearHeader && "pt-36 sm:pt-44 lg:pt-52", className)}
     >
       {reveal ? <Reveal className="overflow-visible">{inner}</Reveal> : inner}
     </section>

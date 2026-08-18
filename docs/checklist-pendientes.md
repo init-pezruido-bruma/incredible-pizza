@@ -48,7 +48,7 @@ Sin esos párrafos no podemos sustituir el copy actual (sigue el texto viejo a p
 | **EVE-08** | CMS o panel interno para que marketing edite promociones sin pasar por la agencia. |
 | **EVE-09** | Envío del formulario de cotización a: `f.castillo@hungrypartners.com`, `natalia@hungrypartners.com`, `myafdelaf@incrediblepizza.mx` (hoy el form es front-only). |
 | **Legal** | Texto oficial de `/terminos` y `/aviso-de-privacidad` (hoy son placeholders). |
-| **Facturación / Empleos** | Proceso real (correo, formulario o landing). Footer ya apunta a mailto / `#empleos`. |
+| **Facturación / Empleos** | Proceso real: `/facturacion` ya tiene placeholder de requisitos CFDI; confirmar correo oficial, plazos y texto legal. Empleos sigue en `#empleos` / mailto. |
 
 ---
 

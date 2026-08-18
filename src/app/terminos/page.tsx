@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TerminosPage() {
   return (
-    <PageSection clearHeader reveal={false} className="bg-brand-cream py-16 sm:py-20">
+    <PageSection clearHeader reveal={false} className="bg-brand-cream pb-16 sm:pb-20">
       <Reveal>
         <article className="mx-auto max-w-3xl">
           <p className="hero-copy-in text-xs font-extrabold uppercase tracking-[0.16em] text-brand-red">
